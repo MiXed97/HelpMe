@@ -9,22 +9,45 @@ package assgn;
  *
  * @author Mixed_97
  */
-public class DeliveryMen {
+public class DeliveryMen implements DeliveryMenInterface {
     
     String name;
     String staffID;
+    String password;
+    String ic;
     String address;
     String contactNo;
     double salary;
-    
+    String tempSalary;
     public DeliveryMen(){}
     
-    public DeliveryMen(String name, String staffID, String address, String contactNo, double salary) {
+    public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, String tempSalary) {
         this.name = name;
         this.staffID = staffID;
+        this.ic = ic;
+        this.password = ic;
         this.address = address;
         this.contactNo = contactNo;
+        this.tempSalary = tempSalary;
+    }
+    
+    public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, double salary) {
+        this.name = name;
+        this.staffID = staffID;
+        this.ic = ic;
+        this.password = ic;
+        this.address = address;
+        this.contactNo = contactNo;
+        this.tempSalary = String.valueOf(salary);
         this.salary = salary;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     public double getSalary() {
@@ -66,14 +89,97 @@ public class DeliveryMen {
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
-    
-    
 
+    public String getIc() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
+    }
+    
     @Override
     public String toString() {
         return "DeliveryMen{" + "name=" + name + ", staffID=" + staffID + ", address=" + address + ", contactNo=" + contactNo + ", salary=" + salary + '}';
     }
     
+    public String checkName(){
+        
+        char c[] = name.toCharArray();
+        String result = "";
+        
+        if(name.isEmpty())
+            return "• Please don't left name empty\n";
+        
+        for(char x:c){
+            if(!Character.isLetter(x) && !Character.isSpace(x)){
+                result+="• Please enter all letter in Name\n";
+                break;
+            }
+        }
+        
+        return result;
+    }
+    public String checkContact(){
+        char c[] = contactNo.toCharArray();
+        String result = "";
+        if(contactNo.isEmpty())
+            return "• Please don't left contact empty\n";
+        
+        for(char x:c){
+             if(!Character.isDigit(x)){
+                result+="• Please enter all digit in Contact No\n";
+                break;
+             }
+        }
+        
+        return result;
+    }
+    public String checkIC(){
+         char c[] = ic.toCharArray();
+        String result = "";
+        if(ic.isEmpty())
+            return "• Please don't left ic empty\n";
+        for(char x:c){
+             if(!Character.isDigit(x)){
+                result+="• Please enter all digit in IC\n";
+                break;
+             }
+        }
+        
+        return result;
+    }
+    public String checkSalary(){
+        String result = "";
+        
+        try{
+        salary = Double.parseDouble(tempSalary);
+        }catch(Exception E){
+            return "• Please enter salary in a correct format\n";
+        }
+        return result;
+    }
+    public String checkAddress(){
+        String result ="";
+        
+        if(address.isEmpty())
+            return "• Please don't left the address empty";
+        
+        return result;
+    }
     
+    @Override
+    public String check() {
+        
+        String result = "";
+        
+        result+= checkName();
+        result+=checkContact();
+        result+= checkIC();
+        result+=checkSalary();
+        result+=checkAddress();
+        
+        return result;
+    }
     
 }

@@ -21,10 +21,10 @@ public class Assgn {
         ArrayListInterface<Customer> customer = new ArrList<>();
         
         
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","555","LoL","01934567",323.00);
-        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","777","Wonder Land","01134567",423.00);
+        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
+        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","456","999","No where","01899997",223.00);
+        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","555","456","LoL","01934567",323.00);
+        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","777","789","Wonder Land","01134567",423.00);
         
         Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
         Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
