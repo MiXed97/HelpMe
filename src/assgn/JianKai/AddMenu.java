@@ -1,18 +1,19 @@
 package assgn.JianKai;
 
-import assgn.ArrList;
-import assgn.ArrayListInterface;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-
+import listLink.ListLink;
+import listLink.ListLinkInt;
 
 public class AddMenu extends javax.swing.JFrame {
-
-    ArrayListInterface<MenuClass> manuArray = new ArrList<MenuClass>();
+    
+    ListLinkInt<MenuClass> menuArray2 = new ListLink<>();
 
     public AddMenu() {
         initComponents();
-        //MenuClass aa1 = new MenuClass("FoodName", "ResName" , "FoodDesc" , "Price" ,"Status");
-        //manuArray.add(aa1);
     }
 
     @SuppressWarnings("unchecked")
@@ -154,11 +155,45 @@ public class AddMenu extends javax.swing.JFrame {
         
         if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
         {
-            JOptionPane.showMessageDialog(this, "Add successful");
-            manuArray.add(new MenuClass(jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jComboBox1.getSelectedItem().toString()));
-            //for(MenuClass a:manuArray){  
-              // System.out.println(a.foodname+", "+a.resname+", "+a.desc+", "+a.price+", "+a.status); 
-              // }
+            
+            menuArray2.add(mc);
+            String user = "umi";
+                String pass = "umi";
+                String host = "jdbc:derby://localhost:1527/Affiliates";
+            int count=0;
+                try {
+                Connection con = DriverManager.getConnection( host, user, pass );
+                String query = "Insert into Menu values(?,?,?,?,?,?)";
+                String query2 = "Select FoodID from MENU";
+                PreparedStatement ps;
+                
+                ps= con.prepareStatement(query2);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    count++;
+                }
+                
+                count++;
+                String theID = "F" +count;
+                
+                ps = con.prepareStatement(query);
+                ps.setString(1,jTextField1.getText());
+                ps.setString(2,jTextField2.getText());
+                ps.setString(3,jTextField3.getText());
+                ps.setString(4,jTextField4.getText());
+                ps.setString(5,jComboBox1.getSelectedItem().toString());
+                ps.setString(6,theID);
+                ps.execute();
+                con.close();
+                JOptionPane.showMessageDialog(this, "Add successful");
+            }catch(Exception e)
+            {
+                
+            }
+//System.out.println(menuArray2.get(1).getFoodname());
+             //for(MenuClass a:menuArray2){  
+             //  System.out.println(a.foodname+", "+a.resname+", "+a.desc+", "+a.price+", "+a.status); 
+             //  }
             
         }
         else

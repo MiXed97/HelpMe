@@ -15,5 +15,5 @@ public interface ListLinkInt<T> {
     public boolean remove(int index);
     public boolean isEmpty();
     public T get(int index);
-    
+    public int getSize();
 }

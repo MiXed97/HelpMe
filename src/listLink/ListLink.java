@@ -88,4 +88,8 @@ public class ListLink<T> implements ListLinkInt<T>{
         }
         return c;
     }
+    
+    public int getSize(){
+        return size;
+    }
 }

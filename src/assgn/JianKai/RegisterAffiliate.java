@@ -4,6 +4,12 @@ import javax.swing.JOptionPane;
 
 import assgn.ArrList;
 import assgn.ArrayListInterface;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegisterAffiliate extends javax.swing.JFrame {
     
@@ -218,9 +224,30 @@ public class RegisterAffiliate extends javax.swing.JFrame {
         { 
                 JOptionPane.showMessageDialog(this, "Register successful");
                 affiliateArray.add(new aff(name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
-                //for(aff a:affiliateArray){  
+                String user = "umi";
+                String pass = "umi";
+                String host = "jdbc:derby://localhost:1527/Affiliates";
+            try {
+                Connection con = DriverManager.getConnection( host, user, pass );
+                String query = "Insert into AFFILIATE values(?,?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1,name1.getText());
+                ps.setString(2,jPasswordField1.getText());
+                ps.setString(3,ic.getText());
+                ps.setString(4,tele.getText());
+                ps.setString(5,em.getText());
+                ps.setString(6,rn.getText());
+                ps.setString(7,ra.getText());
+                ps.setString(8,pos.getText());
+                ps.setString(9,jComboBox1.getSelectedItem().toString());
+                ps.execute();
+                con.close();
+                //for(aff a:affiliateArray){
                 //System.out.println(a.name+", "+a.password+", "+a.IC+", "+a.tel+", "+a.email +", "+a.resname+", "+a.resadd+", "+a.postal+", "+a.rescat); 
                 //}
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterAffiliate.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
              JOptionPane.showMessageDialog(this, q.toString());
