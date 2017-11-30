@@ -164,17 +164,16 @@ public class AddMenu extends javax.swing.JFrame {
                 try {
                 Connection con = DriverManager.getConnection( host, user, pass );
                 String query = "Insert into Menu values(?,?,?,?,?,?)";
-                String query2 = "Select FoodID from MENU";
+                String query2 = "SELECT foodid FROM MENU order by foodid desc";
                 PreparedStatement ps;
                 
                 ps= con.prepareStatement(query2);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    count++;
-                }
+                rs.next();
+                String theid = rs.getString(1);
                 
-                count++;
-                String theID = "F" +count;
+                
+                String theID = "F" +getdigit(theid);
                 
                 ps = con.prepareStatement(query);
                 ps.setString(1,jTextField1.getText());
@@ -233,6 +232,22 @@ public class AddMenu extends javax.swing.JFrame {
             }
         });
     }
+    
+    public int getdigit(String s)
+    {
+        int result = 0;
+        String anyname = "";
+        char c[] = s.toCharArray();
+        for(char x:c){
+            if (Character.isDigit(x)) {
+                anyname+=x;
+            }
+        }
+        result = Integer.parseInt(anyname);
+        result++;
+        return result;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
