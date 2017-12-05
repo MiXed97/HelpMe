@@ -20,9 +20,13 @@ public class test {
         s.add(s1);
         s.add(s2);
         s.add(s3);
-        s.remove(3);
-        System.out.println(s.get(1).getName());
-        
+        student sa = s.remove(1);
+        System.out.println(sa.getName());
+        sa = s.remove(1);
+        System.out.println(sa.getName());
+        sa = s.remove(1);
+        System.out.println(sa.getName());
+        sa = s.remove(1);
     }
     
 }

@@ -57,14 +57,15 @@ public class ListLink<T> implements ListLinkInt<T>{
         node n = firstNode;
         node next;
         node pre;
+        
+        if(size >= 0){
+        
         if(givenPosition == 1){
             next = n.getNext();
             firstNode = next;
         }
         else{
-        
         int avg = (size+1)/2;
-            
             if(avg <= givenPosition){
                 for(int i = 0; i< givenPosition-1;i++){
                     n = n.getNext();
@@ -76,17 +77,22 @@ public class ListLink<T> implements ListLinkInt<T>{
                     n = n.getPre();
                 }
             }
-            
             next = n.getNext();
             pre = n.getPre();
             
             pre.setNext(next);
             if(next != null)
                 next.setPre(pre);
-          
         }
+        
         size--;
         return (T)n.getData();
+        }
+        else{
+            System.out.println("No more element");
+        }
+        
+        return null;
     }
 
     @Override
