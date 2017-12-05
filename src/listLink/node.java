@@ -11,18 +11,15 @@ package listLink;
  */
 public class node<T> {
     T data;
-    node next; 
+    node next;
+    node pre;
 
-    public node(T data) {
-        this.data = data;
+    public node(T data){
+        this.data= data;
         this.next = null;
+        this.pre = null;
     }
     
-    public node(T data, node next){
-         this.data = data;
-        this.next = next;
-    }
-
     public T getData() {
         return data;
     }
@@ -38,7 +35,13 @@ public class node<T> {
     public void setNext(node next) {
         this.next = next;
     }
-    
-    
+
+    public node getPre() {
+        return pre;
+    }
+
+    public void setPre(node pre) {
+        this.pre = pre;
+    }
     
 }

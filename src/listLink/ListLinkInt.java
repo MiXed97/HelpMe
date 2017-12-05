@@ -11,9 +11,21 @@ package listLink;
  */
 public interface ListLinkInt<T> {
     
-    public boolean add(T newNode);
-    public boolean remove(int index);
-    public boolean isEmpty();
-    public T get(int index);
-    public int getSize();
+public boolean add(T newEntry);
+  
+  public boolean add(int newPosition, T newEntry);
+  
+  public T remove(int givenPosition);
+
+  public T get(int index);
+  
+  public int getSize();
+  
+  public node getPre();
+  
+  public node getNode(int index);
+  
+   public node getLastNode();
+   
+   public node getFirstNode();
 }

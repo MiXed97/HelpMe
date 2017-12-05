@@ -11,85 +11,136 @@ package listLink;
  */
 public class ListLink<T> implements ListLinkInt<T>{
 
-    node<T> firstNode;
-    int size = 0;
-    
+    node firstNode;
+    node lastNode;
+    int size = -1;
+
     @Override
-    public boolean add(T newNode) {
-        node<T> currNode = new node(newNode);
-        if(isEmpty()){
-            firstNode = currNode;
+    public boolean add(T newEntry) {
+        node n = new node(newEntry);
+        if(size == -1){
+            firstNode = n;
+            lastNode = n;
+        }else{
+
+            node pre = getPre();
+            n.setPre(pre);
+            pre.setNext(n);
+            lastNode = n;
+            
         }
-        else{
-            node<T> lastNode = getLatest();
-            lastNode.setNext(currNode);
-        }
+        
         size++;
         return true;
     }
 
     @Override
-    public boolean remove(int index) {
-        if(firstNode != null){
-            node<T> be4Node = getBefore(index);
-            node<T> currNode = getElement(index);
-            if(currNode== firstNode){
-                firstNode = currNode.getNext();
-            }
-            else{
-                be4Node.setNext(currNode.getNext());
-            }
+    public boolean add(int newPosition, T newEntry) {
         
-            size--;
-        }
+        node entry = new node(newEntry);
+        node cur = getIndex(newPosition);
+        
+        node pre = cur.getPre();
+        node next = cur.getNext();
+        
+        pre.setNext(entry);
+        entry.setPre(pre);
+        next.setPre(entry);
+        entry.setNext(next);
+        
         return true;
     }
 
     @Override
-    public boolean isEmpty() {
-        if(size == 0)
-            return true;
-        else 
-            return false;
+    public T remove(int givenPosition) {
+        
+        node n = firstNode;
+        node next;
+        node pre;
+        if(givenPosition == 1){
+            next = n.getNext();
+            firstNode = next;
+        }
+        else{
+        
+        int avg = (size+1)/2;
+            
+            if(avg <= givenPosition){
+                for(int i = 0; i< givenPosition-1;i++){
+                    n = n.getNext();
+                }
+            }
+            else{
+                n = lastNode;
+                for(int i = 0; i< givenPosition-1;i++){
+                    n = n.getPre();
+                }
+            }
+            
+            next = n.getNext();
+            pre = n.getPre();
+            
+            pre.setNext(next);
+            if(next != null)
+                next.setPre(pre);
+          
+        }
+        size--;
+        return (T)n.getData();
     }
 
     @Override
     public T get(int index) {
-        T result;
-        result = getElement(index).getData();
         
-        return result;
-    }
-     
-    public node<T> getLatest() {
-       
-        node<T> c = firstNode;
+        node n = firstNode;
         
-        for(int i =0;i<size-1;i++){
-           c = c.getNext();
+        
+        for(int i = 0; i< index-1;i++){
+            n = n.getNext();
         }
-        return c;
+        
+        return (T)n.getData();
+    }
+
+    @Override
+    public int getSize() {
+        return size+1;
+    }
+
+    @Override
+    public node getPre(){
+        node cur = firstNode;
+                           //1
+        for(int i = 0; i < size;i++)
+            cur = cur.getNext();
+        
+        return cur;
+    }
+
+    @Override
+    public node getNode(int index) {
+        node n = firstNode;
+        for(int i =0; i < index-1;i++){
+            n = n.getNext();
+        }
+        return n;
     }
     
-    public node<T> getBefore(int index){
-        node<T> c = firstNode;
-        for(int i = 0; i < index-2;i++){
-            c = c.getNext();
-        }
-        return c;
+    @Override
+    public node getLastNode(){
+        return lastNode;
     }
     
-    public node<T> getElement(int index){
-        node<T> c = firstNode;
-        
-        for(int i=1;i< index;i++)
-        {
-            c = c.getNext();
-        }
-        return c;
+    @Override
+    public node getFirstNode(){
+        return firstNode;
     }
     
-    public int getSize(){
-        return size;
+    public node getIndex(int index){
+        node n = firstNode;
+        for(int i =0; i < index-1;i++){
+            n = n.getNext();
+        }
+        return n;
     }
 }
