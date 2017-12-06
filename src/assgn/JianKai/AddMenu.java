@@ -10,10 +10,18 @@ import listLink.ListLinkInt;
 
 public class AddMenu extends javax.swing.JFrame {
     
-    ListLinkInt<MenuClass> menuArray2 = new ListLink<>();
-
+    MenuClass mc1 = new MenuClass("asd","asd","asd","11","Available");
+    MenuClass mc2 = new MenuClass("asdas","asasd","assd","1111","Available");
+    MenuClass mc3 = new MenuClass("asxzd","asxd","axsd","11x","Available");
+    MenuClass mc4 = new MenuClass("axsd","asxd","axsd","121","Available");
+    ListLinkInt <MenuClass>mArray = new ListLink<>();
+   
     public AddMenu() {
         initComponents();
+        mArray.add(mc1);
+        mArray.add(mc2);
+        mArray.add(mc3);
+        mArray.add(mc4);
     }
 
     @SuppressWarnings("unchecked")
@@ -156,7 +164,7 @@ public class AddMenu extends javax.swing.JFrame {
         if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
         {
             
-            menuArray2.add(mc);
+            mArray.add(mc);
             String user = "umi";
                 String pass = "umi";
                 String host = "jdbc:derby://localhost:1527/Affiliates";
@@ -189,10 +197,7 @@ public class AddMenu extends javax.swing.JFrame {
             {
                 
             }
-//System.out.println(menuArray2.get(1).getFoodname());
-             //for(MenuClass a:menuArray2){  
-             //  System.out.println(a.foodname+", "+a.resname+", "+a.desc+", "+a.price+", "+a.status); 
-             //  }
+             
             
         }
         else

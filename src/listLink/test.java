@@ -5,13 +5,17 @@
  */
 package listLink;
 
+import java.sql.*;
+
 /**
  *
  * @author Mixed_97
  */
 public class test {
     
-    public static void main(String args[]){
+    public static void main(String args[]) throws SQLException{
+        
+        
         
         student s1 = new student("Nicholas", "123");
         student s2 = new student("Ng Poh hooi", "456");
@@ -20,6 +24,8 @@ public class test {
         s.add(s1);
         s.add(s2);
         s.add(s3);
+        
+        
         student sa = s.remove(1);
         System.out.println(sa.getName());
         sa = s.remove(1);
