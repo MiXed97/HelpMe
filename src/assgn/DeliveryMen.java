@@ -19,6 +19,8 @@ public class DeliveryMen implements DeliveryMenInterface {
     String contactNo;
     double salary;
     String tempSalary;
+    String status;
+    
     public DeliveryMen(){}
     
     public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, String tempSalary) {
@@ -29,6 +31,7 @@ public class DeliveryMen implements DeliveryMenInterface {
         this.address = address;
         this.contactNo = contactNo;
         this.tempSalary = tempSalary;
+        this.status = "Working";
     }
     
     public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, double salary) {
@@ -40,6 +43,15 @@ public class DeliveryMen implements DeliveryMenInterface {
         this.contactNo = contactNo;
         this.tempSalary = String.valueOf(salary);
         this.salary = salary;
+        this.status = "Working";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getPassword() {
