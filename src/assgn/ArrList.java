@@ -43,10 +43,6 @@ public class ArrList<T> implements ArrayListInterface{
             break;
             }
         }
-     
-        
-        
-        
         return true;
     }
 
