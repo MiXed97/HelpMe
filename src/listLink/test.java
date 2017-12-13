@@ -14,9 +14,6 @@ import java.sql.*;
 public class test {
     
     public static void main(String args[]) throws SQLException{
-        
-        
-        
         student s1 = new student("Nicholas", "123");
         student s2 = new student("Ng Poh hooi", "456");
         student s3 = new student("Soon Jian Kai","789");
@@ -25,14 +22,15 @@ public class test {
         s.add(s2);
         s.add(s3);
         
+       store sto = new store();
+       
+       sto.setStud(s);
+       
+       System.out.println(sto.getStud().get(1).getName());
         
-        student sa = s.remove(1);
-        System.out.println(sa.getName());
-        sa = s.remove(1);
-        System.out.println(sa.getName());
-        sa = s.remove(1);
-        System.out.println(sa.getName());
-        sa = s.remove(1);
     }
+    
+    
+    
     
 }
