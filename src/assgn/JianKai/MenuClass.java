@@ -4,13 +4,33 @@ import javax.swing.JOptionPane;
 
 public class MenuClass implements AddMenuInterface{
     
+    String foodid;
     String foodname;
     String resname;
     String desc;
     String price;
     String status;
+ 
+    public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status) {
+        this.foodid = foodid;
+        this.foodname = foodname;
+        this.resname = resname;
+        this.desc = desc;
+        this.price = price;
+        this.status = status;
+    }
+    
+    
     
     private String theerror="";
+    
+    public String getFoodid() {
+        return foodid;
+    }
+
+    public void setFoodid(String foodid) {
+        this.foodid = foodid;
+    }
 
     public String getFoodname() {
         return foodname;
@@ -120,6 +140,4 @@ public class MenuClass implements AddMenuInterface{
     public String toString(){
         return theerror;
     }
-
-    
 }
