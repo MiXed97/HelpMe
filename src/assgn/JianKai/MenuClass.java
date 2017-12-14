@@ -19,9 +19,7 @@ public class MenuClass implements AddMenuInterface{
         this.price = price;
         this.status = status;
     }
-    
-    
-    
+
     private String theerror="";
     
     public String getFoodid() {

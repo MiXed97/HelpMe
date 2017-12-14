@@ -17,12 +17,15 @@ public class aff implements RegisterInterface{
     String rescat;
     String postal;
     String theerror="";
+    
+    String AID;
 
     
     public aff(){}
     
-    public aff(String name,String password,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
+    public aff(String AID, String name,String password,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
     {
+        this.AID = AID;
         this.name = name;
         this.password = password;
         this.IC = IC;
@@ -34,8 +37,9 @@ public class aff implements RegisterInterface{
         this.rescat = rescat;
     }
     
-public aff(String name,String password,String password2,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
+public aff(String AID,String name,String password,String password2,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
     {
+        this.AID = AID;
         this.name = name;
         this.password = password;
         this.password2 = password2;
@@ -46,6 +50,14 @@ public aff(String name,String password,String password2,String IC,String tel,Str
         this.resadd = resadd;
         this.postal = postal;
         this.rescat = rescat;
+    }
+
+    public String getAID() {
+        return AID;
+    }
+
+    public void setAID(String AID) {
+        this.AID = AID;
     }
 
     public String getName() {
