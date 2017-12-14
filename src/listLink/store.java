@@ -5,6 +5,8 @@
  */
 package listLink;
 
+import assgn.JianKai.aff;
+
 /**
  *
  * @author Student
@@ -12,8 +14,10 @@ package listLink;
 public class store {
     
     ListLinkInt<student> stud = new ListLink<>();
+    ListLinkInt<aff> aff = new ListLink<>();
     
-    store(){}
+    
+    public store(){}
 
     public ListLinkInt<student> getStud() {
         return stud;
@@ -22,6 +26,15 @@ public class store {
     public void setStud(ListLinkInt<student> stud) {
         this.stud = stud;
     }
+
+    public ListLinkInt<aff> getAff() {
+        return aff;
+    }
+
+    public void setAff(ListLinkInt<aff> aff) {
+        this.aff = aff;
+    }
+    
     
     
 

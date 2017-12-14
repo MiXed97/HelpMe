@@ -10,9 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import listLink.store;
 
 public class RegisterAffiliate extends javax.swing.JFrame {
     
+    store save = new store();
     ArrayListInterface<aff> affiliateArray = new ArrList<aff>();
 
     public RegisterAffiliate() {
