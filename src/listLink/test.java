@@ -5,8 +5,6 @@
  */
 package listLink;
 
-import assgn.JianKai.MenuClass;
-import assgn.JianKai.aff;
 import java.sql.*;
 
 /**
@@ -18,27 +16,21 @@ public class test {
     public static void main(String args[]) throws SQLException{
         student s1 = new student("Nicholas", "123");
         student s2 = new student("Ng Poh hooi", "456");
-        student s3 = new student("Kurumi","789");
+        student s3 = new student("Soon Jian Kai","789");
         ListLinkInt<student> s = new ListLink<>();
-        //s.add(s1);
-        //s.add(s2);
-        //s.add(s3);
+        s.add(s1);
+        s.add(s2);
+        s.add(s3);
         
-        ListLinkInt<aff> affiliate = new ListLink<>();
-        aff a1 = new aff("A1","Namess", "Password","IC", "0122222222","email@","mamak", "pv setapak","41200","Local Cuisine");
-        aff a2 = new aff("A2","Namezz", "Password","IC", "0122222222","email@","momok", "pv setapak","41200","Local Cuisine");
-        aff a3 = new aff("A3","Namejj", "Password","IC", "0122222222","email@","mumuk", "pv setapak","41200","Local Cuisine");
-        affiliate.add(a1);
-        affiliate.add(a2);
-        affiliate.add(a3);
-
        store sto = new store();
-       store stoaff = new store();
        
-       sto.setResname(affiliate);
-       stoaff.setAffID(affiliate);
-
-       System.out.println(sto.getResname().get(2).getResname());
-       System.out.println(stoaff.getAffID().get(1).getAID());
-    } 
+       sto.setStud(s);
+       
+       System.out.println(sto.getStud().get(1).getName());
+        
+    }
+    
+    
+    
+    
 }

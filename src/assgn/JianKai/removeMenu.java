@@ -15,6 +15,8 @@ public class removeMenu extends javax.swing.JFrame {
     
     public removeMenu() {
         initComponents();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
