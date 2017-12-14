@@ -5,7 +5,10 @@
  */
 package listLink;
 
+import assgn.Customer;
+import assgn.DeliveryMen;
 import assgn.JianKai.aff;
+import assgn.Menu;
 
 /**
  *
@@ -15,7 +18,9 @@ public class store {
     
     ListLinkInt<student> stud = new ListLink<>();
     ListLinkInt<aff> aff = new ListLink<>();
-    
+    ListLinkInt<DeliveryMen> delMen = new ListLink<>();
+    ListLinkInt<Menu> menu = new ListLink<>();
+    ListLinkInt<Customer> customer = new ListLink<>();
     
     public store(){}
 
@@ -33,6 +38,30 @@ public class store {
 
     public void setAff(ListLinkInt<aff> aff) {
         this.aff = aff;
+    }
+
+    public ListLinkInt<Customer> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(ListLinkInt<Customer> customer) {
+        this.customer = customer;
+    }
+
+    public ListLinkInt<DeliveryMen> getDelMen() {
+        return delMen;
+    }
+
+    public void setDelMen(ListLinkInt<DeliveryMen> delMen) {
+        this.delMen = delMen;
+    }
+
+    public ListLinkInt<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(ListLinkInt<Menu> menu) {
+        this.menu = menu;
     }
     
     
