@@ -32,8 +32,6 @@ public RegisterAffiliate() {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-        //aff a1 = new aff("Name", "Password","IC", "0122222222","email@","mamak", "pv setapak","41200","Local Cuisine");
-        //affiliateArray.add(a1);
         AID.setText("A"+(affiliateArray.getSize()+1));
         AID.setEditable(false);
     }
