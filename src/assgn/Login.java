@@ -169,9 +169,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         RegisterAffiliate ra = new RegisterAffiliate();
-        ra.setVisible(true);
-        ra.setLocationRelativeTo(null);
-        ra.setTitle("Register affiliate");
+
         
     }//GEN-LAST:event_registerAffActionPerformed
 

@@ -48,9 +48,7 @@ public class Assgn {
         customer.add(c1);
         
         Login l = new Login();
-        l.setVisible(true);
-        l.setLocationRelativeTo(null);
-        l.setTitle("Log in");
+
     }
     
 }
