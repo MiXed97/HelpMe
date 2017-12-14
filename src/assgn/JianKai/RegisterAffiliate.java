@@ -10,17 +10,31 @@ import listLink.store;
 
 public class RegisterAffiliate extends javax.swing.JFrame {
     
-    store save = new store();
-    ListLinkInt<aff> affiliateArray = save.getAff();
-
-    public RegisterAffiliate() {
+    store save;
+    ListLinkInt<aff> affiliateArray;
+    
+public RegisterAffiliate() {
+    //    affiliateArray = save.getAff();
+        this.setTitle("Register Affiliate");
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        initComponents();
+     
+        AID.setText("A"+(affiliateArray.getSize()+1));
+        AID.setEditable(false);
+    }
+   
+    
+    public RegisterAffiliate(store save) {
+        this.save = save;
+        affiliateArray = save.getAff();
         this.setTitle("Register Affiliate");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
         //aff a1 = new aff("Name", "Password","IC", "0122222222","email@","mamak", "pv setapak","41200","Local Cuisine");
         //affiliateArray.add(a1);
-        AID.setText("A"+affiliateArray.getSize());
+        AID.setText("A"+(affiliateArray.getSize()+1));
         AID.setEditable(false);
     }
 
@@ -294,7 +308,7 @@ public class RegisterAffiliate extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Login l = new Login();
+        Login l = new Login(save);
         
     }//GEN-LAST:event_backActionPerformed
 

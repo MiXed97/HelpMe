@@ -9,6 +9,7 @@ import assgn.JianKai.RegisterAffiliate;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -16,9 +17,7 @@ import listLink.ListLinkInt;
  */
 public class Login extends javax.swing.JFrame {
     
-    ListLinkInt<DeliveryMen> deliveryMen = new ListLink<>();
-    ListLinkInt<Menu> menu = new ListLink<>();
-    ListLinkInt<Customer> customer = new ListLink<>();
+    store save;
     Customer c;
     boolean result = false;
     MainMenu m;
@@ -26,6 +25,15 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        save = new store(1);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("User Login");
+        initComponents();
+    }
+    
+        public Login(store save) {
+        this.save =save;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("User Login");
@@ -156,7 +164,8 @@ public class Login extends javax.swing.JFrame {
     private void _loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__loginActionPerformed
         
         // do login shit ok :D 
-
+        save.findAff(_email.getText(), _password.getText());
+        System.out.println(save.determineUser());
     }//GEN-LAST:event__loginActionPerformed
 
     private void registerCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCusActionPerformed
@@ -168,7 +177,7 @@ public class Login extends javax.swing.JFrame {
     private void registerAffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerAffActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        RegisterAffiliate ra = new RegisterAffiliate();
+        RegisterAffiliate ra = new RegisterAffiliate(save);
 
         
     }//GEN-LAST:event_registerAffActionPerformed
