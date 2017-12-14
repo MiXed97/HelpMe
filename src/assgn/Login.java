@@ -6,6 +6,8 @@
 package assgn;
 
 import javax.swing.JOptionPane;
+import listLink.ListLink;
+import listLink.ListLinkInt;
 
 /**
  *
@@ -13,9 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    ArrayListInterface<DeliveryMen> deliveryMen = new ArrList<>();
-    ArrayListInterface<Menu> menu = new ArrList<>();
-    ArrayListInterface<Customer> customer = new ArrList<>();
+    ListLinkInt<DeliveryMen> deliveryMen = new ListLink<>();
+    ListLinkInt<Menu> menu = new ListLink<>();
+    ListLinkInt<Customer> customer = new ListLink<>();
     Customer c;
     boolean result = false;
     MainMenu m;
@@ -110,21 +112,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void _loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__loginActionPerformed
-        for(int i= 0; i < customer.size();i++){
-            result= customer.get(i).logIn(_email.getText(), _password.getText());
-            if(result){
-                c = customer.get(i);
-                this.setVisible(false);
-                m = new MainMenu();
-                m.setMenu(menu);
-                m.setDeliveryMen(deliveryMen);
-                m.setCustomer(c);
-                break;
-            }
-        }
-        if(result == false)
-            JOptionPane.showMessageDialog(null, "invalid account");
-
+        
+        // do login shit ok :D 
 
     }//GEN-LAST:event__loginActionPerformed
 
@@ -164,17 +153,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void setCustomer(ArrayListInterface<Customer> customer){
-        this.customer=customer;
-    }
-    public void setMenu(ArrayListInterface<Menu> menu){
-        this.menu=menu;
-    }
-    public void setDeliveryMen(ArrayListInterface<DeliveryMen> deliveryMen){
-        this.deliveryMen=deliveryMen;
-    }
-    
+       
     public boolean getResult(){
         return result;
     }
