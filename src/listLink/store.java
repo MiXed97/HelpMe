@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package listLink;
 
 import assgn.Customer;
 import assgn.Delivery;
 import assgn.DeliveryMen;
+import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
 
@@ -20,7 +16,7 @@ public class store {
     ListLinkInt<student> stud = new ListLink<>();
     ListLinkInt<aff> aff = new ListLink<>();
     ListLinkInt<DeliveryMen> delMen = new ListLink<>();
-    ListLinkInt<Menu> menu = new ListLink<>();
+    ListLinkInt<MenuClass> menu = new ListLink<>();
     ListLinkInt<Customer> customer = new ListLink<>();
     ListLinkInt<Delivery> del = new ListLink<>();
     
@@ -39,20 +35,21 @@ public class store {
         
         Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
         Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
-        
-        Menu m = new Menu("1","Burger",12.3);
-        Menu m1 = new Menu("2", "hotdog",10.5);
-        Menu m2 = new Menu("3","fries",5.0);
+
+        MenuClass mc1 = new MenuClass("F1","asd","asd","asd","11","Available");
+        MenuClass mc2 = new MenuClass("F2","asdas","asasd","assd","1111","Available");
+        MenuClass mc3 = new MenuClass("F3","asxzd","asxd","axsd","11x","Available");
+        MenuClass mc4 = new MenuClass("F4","axsd","asxd","axsd","121","Available");
+        menu.add(mc1);
+        menu.add(mc2);
+        menu.add(mc3);
+        menu.add(mc4);
         
         delMen.add(d1);
         delMen.add(d2);
         delMen.add(d3);
         delMen.add(d4);
-        
-        menu.add(m);
-        menu.add(m1);
-        menu.add(m2);
-        
+
         customer.add(c);
         customer.add(c1);
     }
@@ -113,11 +110,11 @@ public class store {
         this.delMen = delMen;
     }
 
-    public ListLinkInt<Menu> getMenu() {
+    public ListLinkInt<MenuClass> getMenu() {
         return menu;
     }
 
-    public void setMenu(ListLinkInt<Menu> menu) {
+    public void setMenu(ListLinkInt<MenuClass> menu) {
         this.menu = menu;
     }
 
