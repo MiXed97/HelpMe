@@ -17,6 +17,11 @@ public class humanResource {
     public humanResource(){
         
     }
+    
+    public humanResource(String id,String pw){
+        this.id=id;
+        this.pw=pw;
+    }
 
     public String getId() {
         return id;
