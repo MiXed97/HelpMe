@@ -166,6 +166,7 @@ public class Login extends javax.swing.JFrame {
         // do login shit ok :D 
         save.findAff(_email.getText(), _password.getText());
         System.out.println(save.determineUser());
+        
     }//GEN-LAST:event__loginActionPerformed
 
     private void registerCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCusActionPerformed
