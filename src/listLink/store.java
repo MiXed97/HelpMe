@@ -188,6 +188,48 @@ public class store {
     public void setDel(ListLinkInt<Delivery> del) {
         this.del = del;
     }
+
+    public ListLinkInt<humanResource> getHr() {
+        return hr;
+    }
+
+    public void setHr(ListLinkInt<humanResource> hr) {
+        this.hr = hr;
+    }
+
+    public Customer getCurCus() {
+        return curCus;
+    }
+
+    public void setCurCus(Customer curCus) {
+        this.curCus = curCus;
+    }
+
+    public aff getCurAff() {
+        return curAff;
+    }
+
+    public void setCurAff(aff curAff) {
+        this.curAff = curAff;
+    }
+
+    public DeliveryMen getCurDelMen() {
+        return curDelMen;
+    }
+
+    public void setCurDelMen(DeliveryMen curDelMen) {
+        this.curDelMen = curDelMen;
+    }
+
+    public humanResource getCurHR() {
+        return curHR;
+    }
+
+    public void setCurHR(humanResource curHR) {
+        this.curHR = curHR;
+    }
+    
+    
     
     public void resetUser(){
         curAff= null;

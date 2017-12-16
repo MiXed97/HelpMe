@@ -18,6 +18,7 @@ public class AllAffiliatePage extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Affiliate Homepage");
+        jLabel1.setText("Welcome "+ save.getCurAff().getName());
         initComponents();
     }
 
