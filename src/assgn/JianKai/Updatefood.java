@@ -5,6 +5,7 @@
  */
 package assgn.JianKai;
 
+import assgn.Login;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,19 +13,29 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 /**
  *
  * @author USER
  */
 public class Updatefood extends javax.swing.JFrame {
 
-    ListLinkInt<MenuClass> l = new ListLink<>();
+    store save;
     String user = "umi";
     String pass = "umi";
     String host = "jdbc:derby://localhost:1527/Affiliates";
     
     public Updatefood() {
+        
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Update Menu");
         initComponents();
+    }
+    
+    public Updatefood(store save) {
+     
+        this.save = save;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Update Menu");
@@ -39,6 +50,7 @@ public class Updatefood extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +68,13 @@ public class Updatefood extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
@@ -77,11 +96,17 @@ public class Updatefood extends javax.swing.JFrame {
                         .addGap(129, 129, 129)
                         .addComponent(jButton1)))
                 .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(back)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(26, 26, 26)
+                .addComponent(back)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -101,26 +126,15 @@ public class Updatefood extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String thetext = jTextField1.getText();
-        
-                
-            try {
-                storeMenu();
-                int result = findFoodIndex(thetext);
-                if (result <= 0) {
-                     JOptionPane.showMessageDialog(this, "No record found");
-                }
-                else
-                {
-                    this.setVisible(false);
-                    Updatefood2 goUpdate = new Updatefood2();
-                    goUpdate.updatepage(l.get(result));
-                }
-                
-            }catch(Exception e)
-            {
-                System.out.println("No");
-            }
+        // get the food index for the users
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        AllAffiliatePage a = new AllAffiliatePage(save);
+        
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,43 +171,10 @@ public class Updatefood extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void storeMenu(){
-        try {
-                Connection con = DriverManager.getConnection(host, user, pass);
-                String query = "Select * from UMI.MENU";
-                PreparedStatement ps = con.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-                
-                while (rs.next()) {
-                    
-                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
-                    l.add(m);
-                }
-                
-                con.close();
-                
-            }catch(Exception e)
-            {
-                System.out.println("No");
-            }
-    }
-    
-    public int findFoodIndex(String foodID){
-
-        for(int i = 0; i < l.getSize(); i ++){
-            
-            
-            if(l.get(i+1).getFoodid().equals(foodID)){
-                return i+1;
-            }
-            
-        }
-        
-        return 0;
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
