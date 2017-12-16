@@ -258,9 +258,17 @@ public RegisterAffiliate() {
 
         if(q.checkName() && q.checkPassword() && q.checkIC() && q.checkTel() && q.checkEmail() && q.checkRes() && q.checkResAdd() && q.checkPostal())
         { 
-                JOptionPane.showMessageDialog(this, "Register successful");
-                affiliateArray.add(new aff(name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
-                save.setAff(affiliateArray);
+                
+                if(save.checkEmailCA(em.getText())){
+                    JOptionPane.showMessageDialog(this, "Register successful");
+                    affiliateArray.add(new aff(name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
+                    save.setAff(affiliateArray);
+                    this.setVisible(false);
+                    Login l = new Login(save);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Email already used","Error",JOptionPane.ERROR_MESSAGE);
+                }
         }
         else
              JOptionPane.showMessageDialog(this, q.toString());
