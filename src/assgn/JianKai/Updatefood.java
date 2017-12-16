@@ -167,7 +167,7 @@ public class Updatefood extends javax.swing.JFrame {
                 
                 while (rs.next()) {
                     
-                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"));
+                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
                     l.add(m);
                 }
                 

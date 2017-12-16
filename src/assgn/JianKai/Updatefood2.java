@@ -153,7 +153,7 @@ public class Updatefood2 extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     storeMenu();
-    MenuClass m = new MenuClass(foodid.getText(),foodname.getText(),resname.getText(),fooddesc.getText(), price.getText(), jComboBox1.getSelectedItem().toString());
+    MenuClass m = new MenuClass(foodid.getText(),foodname.getText(),resname.getText(),fooddesc.getText(), price.getText(), jComboBox1.getSelectedItem().toString(),"asd");
     int result = findFoodIndex(m.getFoodid());
     l.add(result, m);
     JOptionPane.showMessageDialog(rootPane, "Successfully updated");
@@ -214,7 +214,7 @@ public class Updatefood2 extends javax.swing.JFrame {
                 
                 while (rs.next()) {
                     
-                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"));
+                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
                     l.add(m);
                 }
                 

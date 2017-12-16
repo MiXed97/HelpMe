@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class aff implements RegisterInterface{
     
+    String Aid;
     String name;
     String password;
     String password2;
@@ -21,8 +22,9 @@ public class aff implements RegisterInterface{
     
     public aff(){}
     
-    public aff(String name,String password,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
+    public aff(String Aid,String name,String password,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
     {
+        this.Aid = Aid;
         this.name = name;
         this.password = password;
         this.IC = IC;
@@ -34,8 +36,9 @@ public class aff implements RegisterInterface{
         this.rescat = rescat;
     }
     
-public aff(String name,String password,String password2,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
+public aff(String Aid,String name,String password,String password2,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
     {
+        this.Aid = Aid;
         this.name = name;
         this.password = password;
         this.password2 = password2;

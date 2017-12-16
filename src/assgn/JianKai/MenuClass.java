@@ -10,14 +10,16 @@ public class MenuClass implements AddMenuInterface{
     String desc;
     String price;
     String status;
+    String affID;
     
-    public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status) {
+    public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status, String affID) {
         this.foodid = foodid;
         this.foodname = foodname;
         this.resname = resname;
         this.desc = desc;
         this.price = price;
         this.status = status;
+        this.affID=affID;
     }
     
     private String theerror="";

@@ -18,6 +18,7 @@ public class store {
     ListLinkInt<Delivery> del = new ListLink<>();
     ListLinkInt<humanResource> hr = new ListLink<>();
     
+    
     // keep track user
     Customer curCus = null;
     aff curAff = null;
@@ -32,6 +33,7 @@ public class store {
         addCust();
         addMenu();
         addHR();
+        addAff();
 
     }
     
@@ -94,6 +96,11 @@ public class store {
         return true;
     }
     
+    public void addAff(){
+        aff a = new aff("A1","Glaz","123","970802445566","0123456789","glaz@hotmail.com","Yes Restaurant","Somewhere","53300","Local Cuisine");
+        aff.add(a);
+    }
+    
     public void addDeliMen(){
         DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","456","999","No where","01899997",223.00);
@@ -115,10 +122,10 @@ public class store {
     }
     
     public void addMenu(){
-        MenuClass mc1 = new MenuClass("F1","asd","asd","asd","11","Available");
-        MenuClass mc2 = new MenuClass("F2","asdas","asasd","assd","1111","Available");
-        MenuClass mc3 = new MenuClass("F3","asxzd","asxd","axsd","11x","Available");
-        MenuClass mc4 = new MenuClass("F4","axsd","asxd","axsd","121","Available");
+        MenuClass mc1 = new MenuClass("F1","asd","asd","asd","11","Available","A1");
+        MenuClass mc2 = new MenuClass("F2","asdas","asasd","assd","1111","Available","A1");
+        MenuClass mc3 = new MenuClass("F3","asxzd","asxd","axsd","11x","Available","A1");
+        MenuClass mc4 = new MenuClass("F4","axsd","asxd","axsd","121","Available","A1");
         
         menu.add(mc1);
         menu.add(mc2);

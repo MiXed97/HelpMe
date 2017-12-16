@@ -261,7 +261,7 @@ public RegisterAffiliate() {
                 
                 if(save.checkEmailCA(em.getText())){
                     JOptionPane.showMessageDialog(this, "Register successful");
-                    affiliateArray.add(new aff(name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
+                    affiliateArray.add(new aff(AID.getText(),name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
                     save.setAff(affiliateArray);
                     this.setVisible(false);
                     Login l = new Login(save);
