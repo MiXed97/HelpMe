@@ -6,6 +6,7 @@
 package assgn;
 
 import javax.swing.JOptionPane;
+import listLink.store;
 
 /**
  *
@@ -16,7 +17,20 @@ public class addDeliveryMen extends javax.swing.JFrame {
     /**
      * Creates new form addDeliveryMen
      */
+    store save;
+    
     public addDeliveryMen() {
+        
+        initComponents();
+    }
+    public addDeliveryMen(store save) {
+        this.save = save;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Add delivery men");
+        _staffID.setText("D"+save.getDelMen().getSize());
+        _staffID.setEditable(false);
+        
         initComponents();
     }
 
@@ -44,6 +58,7 @@ public class addDeliveryMen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         _ic = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +88,14 @@ public class addDeliveryMen extends javax.swing.JFrame {
 
         jLabel7.setText("IC :");
 
+        back.setText("Back");
+        back.setToolTipText("");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +104,9 @@ public class addDeliveryMen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -100,14 +125,19 @@ public class addDeliveryMen extends javax.swing.JFrame {
                             .addComponent(_contactNo)
                             .addComponent(jScrollPane1)
                             .addComponent(_ic))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(back)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(_staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,8 +180,16 @@ public class addDeliveryMen extends javax.swing.JFrame {
         }
         else{
              JOptionPane.showMessageDialog(null, "Successfull added");
+             save.getDelMen().add(d1);
+             
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        HrHome h = new HrHome(save);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +233,7 @@ public class addDeliveryMen extends javax.swing.JFrame {
     private javax.swing.JTextField _name;
     private javax.swing.JTextField _salary;
     private javax.swing.JTextField _staffID;
+    private javax.swing.JButton back;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

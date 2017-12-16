@@ -8,6 +8,7 @@ package assgn;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -15,12 +16,7 @@ import listLink.ListLinkInt;
  */
 public class LoginStaff extends javax.swing.JFrame {
 
-    ListLinkInt<DeliveryMen> deliveryMen = new ListLink<>();
-    ListLinkInt<Menu> menu = new ListLink<>();
-    ListLinkInt<Customer> customer = new ListLink<>();
-    Customer c;
-    boolean result = false;
-    MainMenu m;
+    store save;
     /**
      * Creates new form Login
      */
@@ -31,6 +27,14 @@ public class LoginStaff extends javax.swing.JFrame {
         initComponents();
     }
 
+    public LoginStaff(store save) {
+        this.save = save;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Staff login");
+        initComponents();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +58,7 @@ public class LoginStaff extends javax.swing.JFrame {
         jLabel1.setText("Staff Log In");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Staff ID");
+        jLabel2.setText("Staff ID  :");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Password :");
@@ -86,14 +90,14 @@ public class LoginStaff extends javax.swing.JFrame {
                         .addComponent(_password))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(_email, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(userLogin)
                         .addGap(30, 30, 30)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(_login)
@@ -107,16 +111,17 @@ public class LoginStaff extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(userLogin))
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(_email, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(_email)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(_password, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                    .addComponent(_password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(_login)
                 .addGap(58, 58, 58))
         );
@@ -127,7 +132,14 @@ public class LoginStaff extends javax.swing.JFrame {
     private void _loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__loginActionPerformed
         
         // do login shit ok :D 
-
+        save.findHr(_email.getText(), _password.getText());
+        save.findDeliMen(_email.getText(), _password.getText());
+        if(save.determineUser()==4){
+            this.setVisible(false);
+            HrHome a = new HrHome(save);
+        }
+        
+        
     }//GEN-LAST:event__loginActionPerformed
 
     private void userLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginActionPerformed
@@ -176,9 +188,6 @@ public class LoginStaff extends javax.swing.JFrame {
         });
     }
        
-    public boolean getResult(){
-        return result;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField _email;
