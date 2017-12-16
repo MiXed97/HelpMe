@@ -20,6 +20,8 @@ public class DeliveryMenClockInClockOut {
     public DeliveryMenClockInClockOut(DeliveryMen Deliverymen, String date) {
         this.Deliverymen = Deliverymen;
         this.date = date;
+        this.clock_in = "";
+        this.clock_out = "";
     }
 
     public void setDeliverymen(DeliveryMen Deliverymen) {

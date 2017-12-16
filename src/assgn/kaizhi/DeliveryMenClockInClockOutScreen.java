@@ -24,8 +24,18 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         DeliveryMenClockInClockOut CICO = new DeliveryMenClockInClockOut(d1,dateFormat.format(date));
     
     /** Creates new form DeliveryMenClockInClockOutMenu */
-    public DeliveryMenClockInClockOutScreen() {
+    public DeliveryMenClockInClockOutScreen(DeliveryMenClockInClockOut test) {
         initComponents();
+        CICO = test;
+        Date date = new Date( );
+        refresh(date);
+        jlblDeliveryMen.setText(CICO.getDeliverymen().getName());
+        CICO.getDeliverymen().setPassword("1212");
+        jlblClockIn.setText(CICO.getClock_in());
+    }
+     public DeliveryMenClockInClockOutScreen() {
+        initComponents();
+        Date date = new Date( );
         refresh(date);
         jlblDeliveryMen.setText(CICO.getDeliverymen().getName());
         CICO.getDeliverymen().setPassword("1212");
@@ -54,7 +64,6 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jlblClockIn = new javax.swing.JLabel();
         jlblClockOut = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,13 +130,6 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                 .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Clock In");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Clock Out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,9 +149,7 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(1, 1, 1))
+                            .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(50, 50, 50)
                         .addComponent(jlblDate))
@@ -159,8 +159,7 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jbtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,8 +180,6 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtnRefresh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -208,33 +205,22 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         refresh(now);
     }//GEN-LAST:event_jbtnRefreshActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String pass = JOptionPane.showInputDialog("Enter Password");
-        if(pass.equals(CICO.getDeliverymen().getPassword())){
-            Date now = new Date();
-            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-            CICO.setClock_in(timeFormat.format(now));
-            JOptionPane.showMessageDialog(rootPane, "Clock In time updated");
-            jlblClockIn.setText(CICO.getClock_in());
-            refresh(now);
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Invalid Password!");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(CICO.getClock_out().isEmpty()){
         String pass = JOptionPane.showInputDialog("Enter Password");
         if(pass.equals(CICO.getDeliverymen().getPassword())){
             Date now = new Date();
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
             CICO.setClock_out(timeFormat.format(now));
             JOptionPane.showMessageDialog(rootPane, "Clock Out time updated");
-            jlblClockIn.setText(CICO.getClock_out());
+            jlblClockOut.setText(CICO.getClock_out());
             refresh(now);
-        }else{
+        }else {
             JOptionPane.showMessageDialog(rootPane, "Invalid Password!");
+        }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Already clocked out!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -284,7 +270,6 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
