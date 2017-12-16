@@ -7,21 +7,32 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 public class AddMenu extends javax.swing.JFrame {
     
-    MenuClass mc1 = new MenuClass("asd","asd","asd","11","Available");
-    MenuClass mc2 = new MenuClass("asdas","asasd","assd","1111","Available");
-    MenuClass mc3 = new MenuClass("asxzd","asxd","axsd","11x","Available");
-    MenuClass mc4 = new MenuClass("axsd","asxd","axsd","121","Available");
-    ListLinkInt <MenuClass>mArray = new ListLink<>();
-   
+    store save;
+    ListLinkInt <MenuClass>mArray;
+
     public AddMenu() {
         initComponents();
-        mArray.add(mc1);
-        mArray.add(mc2);
-        mArray.add(mc3);
-        mArray.add(mc4);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Add Menu");
+        
+        foodid.setText("F"+(mArray.getSize()+1));
+        foodid.setEditable(false);
+    }
+    
+    public AddMenu(store save) {
+        this.save = save;
+        mArray = save.getMenu();
+        this.setTitle("Add Menu");
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        initComponents();
+        foodid.setText("F"+(mArray.getSize()+1));
+        foodid.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,14 +44,16 @@ public class AddMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        clearbutton = new javax.swing.JButton();
+        addbutton = new javax.swing.JButton();
+        foodname = new javax.swing.JTextField();
+        restaurantname = new javax.swing.JTextField();
+        fooddescription = new javax.swing.JTextField();
+        foodprice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        foodstatus = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        foodid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,29 +67,31 @@ public class AddMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Price (RM)");
 
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        clearbutton.setText("Clear");
+        clearbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                clearbuttonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addbutton.setText("Add");
+        addbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addbuttonActionPerformed(evt);
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        foodname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                foodnameActionPerformed(evt);
             }
         });
 
         jLabel6.setText("Food Status");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available","Not available" }));
+        foodstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available","Not available" }));
+
+        jLabel7.setText("Food ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,9 +101,9 @@ public class AddMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(jButton1)
+                        .addComponent(clearbutton)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton2))
+                        .addComponent(addbutton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -97,15 +112,17 @@ public class AddMenu extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
-                                .addComponent(jLabel5)))
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel7))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(foodname)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fooddescription)
+                            .addComponent(foodprice)
+                            .addComponent(foodstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(restaurantname, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(foodid))))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,57 +130,60 @@ public class AddMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(foodid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(foodname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(restaurantname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fooddescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                    .addComponent(foodprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(foodstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(clearbutton)
+                    .addComponent(addbutton))
                 .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void foodnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_foodnameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void clearbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearbuttonActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        foodname.setText("");
+        restaurantname.setText("");
+        fooddescription.setText("");
+        foodprice.setText("");
+    }//GEN-LAST:event_clearbuttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbuttonActionPerformed
         // TODO add your handling code here:
         
-        MenuClass mc = new MenuClass(jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jComboBox1.getSelectedItem().toString());
+        MenuClass mc = new MenuClass(foodname.getText(),restaurantname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString());
         AddMenuInterface p = mc;
         
         if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
         {
-            
             mArray.add(mc);
             String user = "umi";
                 String pass = "umi";
@@ -184,11 +204,11 @@ public class AddMenu extends javax.swing.JFrame {
                 String theID = "F" +getdigit(theid);
                 
                 ps = con.prepareStatement(query);
-                ps.setString(1,jTextField1.getText());
-                ps.setString(2,jTextField2.getText());
-                ps.setString(3,jTextField3.getText());
-                ps.setString(4,jTextField4.getText());
-                ps.setString(5,jComboBox1.getSelectedItem().toString());
+                ps.setString(1,foodname.getText());
+                ps.setString(2,restaurantname.getText());
+                ps.setString(3,fooddescription.getText());
+                ps.setString(4,foodprice.getText());
+                ps.setString(5,foodstatus.getSelectedItem().toString());
                 ps.setString(6,theID);
                 ps.execute();
                 con.close();
@@ -204,7 +224,7 @@ public class AddMenu extends javax.swing.JFrame {
         {
              JOptionPane.showMessageDialog(this, "" + p.toString());
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addbuttonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -255,18 +275,20 @@ public class AddMenu extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton addbutton;
+    private javax.swing.JButton clearbutton;
+    private javax.swing.JTextField fooddescription;
+    private javax.swing.JTextField foodid;
+    private javax.swing.JTextField foodname;
+    private javax.swing.JTextField foodprice;
+    private javax.swing.JComboBox<String> foodstatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField restaurantname;
     // End of variables declaration//GEN-END:variables
 }

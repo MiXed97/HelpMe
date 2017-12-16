@@ -2,9 +2,6 @@ package assgn.JianKai;
 
 import assgn.Login;
 import javax.swing.JOptionPane;
-
-
-
 import listLink.ListLinkInt;
 import listLink.store;
 
@@ -19,8 +16,9 @@ public RegisterAffiliate() {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-       //AID.setText("A"+(affiliateArray.getSize()+1));
-       //AID.setEditable(false);
+     
+        AID.setText("A"+(affiliateArray.getSize()+1));
+        AID.setEditable(false);
     }
    
     
@@ -260,15 +258,9 @@ public RegisterAffiliate() {
 
         if(q.checkName() && q.checkPassword() && q.checkIC() && q.checkTel() && q.checkEmail() && q.checkRes() && q.checkResAdd() && q.checkPostal())
         { 
-            if(save.checkEmailCA(em.getText())){
                 JOptionPane.showMessageDialog(this, "Register successful");
                 affiliateArray.add(new aff(name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
                 save.setAff(affiliateArray);
-                this.setVisible(false);
-                Login l = new Login(save);
-            }
-            else
-                JOptionPane.showMessageDialog(null, "Email already used","Error",JOptionPane.ERROR_MESSAGE);
         }
         else
              JOptionPane.showMessageDialog(this, q.toString());

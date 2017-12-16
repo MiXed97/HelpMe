@@ -166,6 +166,7 @@ public class Login extends javax.swing.JFrame {
         // do login shit ok :D
         save.resetUser();
         save.findAff(_email.getText(), _password.getText());
+        save.findCus(_email.getText(), _password.getText());
         System.out.println(save.determineUser());
         
         
@@ -182,15 +183,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         RegisterAffiliate ra = new RegisterAffiliate(save);
-
-        
     }//GEN-LAST:event_registerAffActionPerformed
 
     private void staffLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffLoginActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         LoginStaff ls = new LoginStaff();
-        
     }//GEN-LAST:event_staffLoginActionPerformed
 
     /**

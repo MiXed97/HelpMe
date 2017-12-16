@@ -25,6 +25,10 @@ public class Updatefood extends javax.swing.JFrame {
     
     public Updatefood() {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Update Menu");
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")

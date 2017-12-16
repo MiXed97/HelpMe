@@ -41,6 +41,31 @@ public class store {
                 curAff = aff.get(i);
                 break;
             }
+    }  
+
+    public void findCus(String email,String pass){
+        for(int i = 1; i <= customer.getSize();i++)
+            if(customer.get(i).getEmail().equals(email) && customer.get(i).getPassword().equals(pass)){
+                curCus = customer.get(i);
+                break;
+            }
+                
+    }
+    
+    public void findDeliMen(String email, String pass){
+        for(int i =1; i<= delMen.getSize();i++)
+            if(delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass)){
+                curDelMen = delMen.get(i);
+                break;
+            }
+    }
+    
+    public void findHr(String email, String pass){
+        for(int i =1; i<= hr.getSize();i++)
+            if(hr.get(i).getId().equals(email) && hr.get(i).getPw().equals(pass)){
+                curHR = hr.get(i);
+                break;
+            }
     }
     
     public int determineUser(){
@@ -82,8 +107,8 @@ public class store {
     }
     
     public void addCust(){
-        Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
-        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
+        Customer c = new Customer("Name", "HOO LAND", "012378999","lol@hotmail.com","123");
+        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","lol1@hotmail.com","1234");
         
         customer.add(c);
         customer.add(c1);

@@ -10,7 +10,7 @@ public class MenuClass implements AddMenuInterface{
     String desc;
     String price;
     String status;
- 
+    
     public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status) {
         this.foodid = foodid;
         this.foodname = foodname;
@@ -19,8 +19,6 @@ public class MenuClass implements AddMenuInterface{
         this.price = price;
         this.status = status;
     }
-    
-    
     
     private String theerror="";
     

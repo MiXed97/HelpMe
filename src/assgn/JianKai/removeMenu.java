@@ -15,7 +15,10 @@ public class removeMenu extends javax.swing.JFrame {
     
     public removeMenu() {
         initComponents();
-        
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Remove Menu");
+        initComponents();
         
     }
 
