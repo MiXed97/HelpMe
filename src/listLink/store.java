@@ -6,6 +6,7 @@ import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
+import assgn.hooi.Cart;
 import assgn.humanResource;
 
 public class store {
@@ -17,6 +18,7 @@ public class store {
     ListLinkInt<Customer> customer = new ListLink<>();
     ListLinkInt<Delivery> del = new ListLink<>();
     ListLinkInt<humanResource> hr = new ListLink<>();
+    ListLinkInt<Cart> cart = new ListLink<>();
     
     
     // keep track user
@@ -25,6 +27,7 @@ public class store {
     DeliveryMen curDelMen = null;
     humanResource curHR = null;
     ListLinkInt<MenuClass> curMenu = new ListLink<>();
+    String selectedRes = null;
     public store(){}
     
     public store(int i){
@@ -276,6 +279,7 @@ public class store {
         curCus=null;
         curDelMen=null;
         curHR=null;
+        selectedRes=null; 
     }
     
     public void removeMenu(String foodID){
@@ -284,6 +288,21 @@ public class store {
         curMenu.remove(index);
         index = findMenu(foodID);
         menu.remove(index);
+    }
+    
+        public void setSelectedRes(String res){
+        this.selectedRes = res;
+    }
+    
+    public String getSelectedRes(){
+        return selectedRes;
+    }
+    
+    public void setCart(ListLinkInt<Cart> cart){
+        this.cart = cart;
+    }
+    public ListLinkInt<Cart> getCart(){
+        return cart;
     }
     
 }
