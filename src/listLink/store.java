@@ -24,7 +24,7 @@ public class store {
     aff curAff = null;
     DeliveryMen curDelMen = null;
     humanResource curHR = null;
-    
+    ListLinkInt<MenuClass> curMenu = new ListLink<>();
     public store(){}
     
     public store(int i){
@@ -56,7 +56,7 @@ public class store {
     
     public void findDeliMen(String email, String pass){
         for(int i =1; i<= delMen.getSize();i++)
-            if(delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass)){
+            if(delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && delMen.get(i).getStatus().equals("Working")){
                 curDelMen = delMen.get(i);
                 break;
             }
@@ -77,8 +77,7 @@ public class store {
             
         return 0;
     }
-
-    
+     
     public int determineUser(){
         
         if(curAff != null)
@@ -131,15 +130,13 @@ public class store {
     }
     
     public void addMenu(){
-        MenuClass mc1 = new MenuClass("F1","asd","asd","asd","11","Available","A1");
-        MenuClass mc2 = new MenuClass("F2","asdas","asasd","assd","1111","Available","A1");
-        MenuClass mc3 = new MenuClass("F3","asxzd","asxd","axsd","11x","Available","A1");
-        MenuClass mc4 = new MenuClass("F4","axsd","asxd","axsd","121","Available","A1");
+        MenuClass mc1 = new MenuClass("A1F1","asd","asd","asd","11","Available","A1");
+        MenuClass mc2 = new MenuClass("A1F2","asdas","asasd","assd","1111","Available","A1");
+        MenuClass mc3 = new MenuClass("A1F3","asxzd","asxd","axsd","11x","Available","A1");
         
         menu.add(mc1);
         menu.add(mc2);
         menu.add(mc3);
-        menu.add(mc4);
     }
 
     public void addHR(){
@@ -148,6 +145,23 @@ public class store {
         
         hr.add(hr1);
         hr.add(hr2);
+    }
+    
+    public void setAffMenu(){
+        
+        for(int i = 1;i <= menu.getSize();i++){
+            if(menu.get(i).getAffID().equals(curAff.getAid())){
+                curMenu.add(menu.get(i));
+            }
+        }
+    }
+
+    public ListLinkInt<MenuClass> getCurMenu() {
+        return curMenu;
+    }
+
+    public void setCurMenu(ListLinkInt<MenuClass> curMenu) {
+        this.curMenu = curMenu;
     }
     
     public ListLinkInt<student> getStud() {

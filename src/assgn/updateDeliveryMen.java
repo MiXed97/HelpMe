@@ -6,6 +6,7 @@
 package assgn;
 
 import javax.swing.JOptionPane;
+import listLink.store;
 
 /**
  *
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class updateDeliveryMen extends javax.swing.JFrame {
     DeliveryMen d1 = new DeliveryMen("Nicholas","666","9710014145587","Somewhere","01234567",123.00);
+    store save;
     /**
      * Creates new form updateDeliveryMen
      */
@@ -26,6 +28,25 @@ public class updateDeliveryMen extends javax.swing.JFrame {
         _salary.setText(String.format("%.2f", d1.getSalary()));
         _contactNo.setText(d1.getContactNo());
         _address.setText(d1.getAddress());
+    }
+    
+    public updateDeliveryMen(store save){
+        this.save = save;
+        initComponents();
+        _salary.setEditable(false);
+        _staffID.setEditable(false);
+        _staffID.setText(save.getCurDelMen().getStaffID());
+        _name.setText(save.getCurDelMen().getName());
+        _ic.setText(save.getCurDelMen().getIc());
+        _salary.setText(String.format("%.2f", save.getCurDelMen().getSalary()));
+        _contactNo.setText(save.getCurDelMen().getContactNo());
+        _address.setText(save.getCurDelMen().getAddress());
+        
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Delivery men personal Details");
+        
+        
     }
 
     /**
@@ -52,6 +73,7 @@ public class updateDeliveryMen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         _address = new javax.swing.JTextArea();
         update = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,41 +106,51 @@ public class updateDeliveryMen extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(update)
-                            .addComponent(_staffID)
-                            .addComponent(_name)
-                            .addComponent(_ic)
-                            .addComponent(_salary)
-                            .addComponent(_contactNo)
-                            .addComponent(jScrollPane1))))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(update)
+                    .addComponent(_staffID)
+                    .addComponent(_name)
+                    .addComponent(_ic)
+                    .addComponent(_salary)
+                    .addComponent(_contactNo)
+                    .addComponent(jScrollPane1))
                 .addContainerGap(125, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back)
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(_staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,10 +190,24 @@ public class updateDeliveryMen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, d.check(), "Error", JOptionPane.ERROR_MESSAGE);
         }
        else{
+            DeliveryMen d1 = new DeliveryMen(_name.getText(),_staffID.getText(),_ic.getText(),_address.getText(),_contactNo.getText(), _salary.getText());
+            int index = save.findStaff(save.getCurDelMen().getStaffID());
+            save.getDelMen().add(index, d1);
+            save.setCurDelMen(d1);
              JOptionPane.showMessageDialog(null, "Successfull updated");
+            this.setVisible(false);
+            DMHome a = new DMHome(save);
         }
         
     }//GEN-LAST:event_updateActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        DMHome d = new DMHome(save);
+        
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +251,7 @@ public class updateDeliveryMen extends javax.swing.JFrame {
     private javax.swing.JTextField _name;
     private javax.swing.JTextField _salary;
     private javax.swing.JTextField _staffID;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

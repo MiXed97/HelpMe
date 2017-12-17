@@ -41,6 +41,7 @@ public class DMHome extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
+        updateDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,13 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
+        updateDetails.setText("Personal Details");
+        updateDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,6 +72,10 @@ public class DMHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(logOut)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateDetails)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +84,9 @@ public class DMHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(logOut))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(updateDetails)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,6 +97,13 @@ public class DMHome extends javax.swing.JFrame {
         this.setVisible(false);
         LoginStaff a = new LoginStaff(save);
     }//GEN-LAST:event_logOutActionPerformed
+
+    private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        updateDeliveryMen  a = new updateDeliveryMen(save);
+        
+    }//GEN-LAST:event_updateDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,5 +143,6 @@ public class DMHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logOut;
+    private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,15 +24,16 @@ public class AddMenu extends javax.swing.JFrame {
         foodid.setEditable(false);
     }
     
-    public AddMenu(store save) {
+   public AddMenu(store save) {
         this.save = save;
-        mArray = save.getMenu();
         this.setTitle("Add Menu");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-        foodid.setText("F"+(mArray.getSize()+1));
+        foodid.setText(save.getCurAff().getAid()+"F"+(save.getCurMenu().getSize()+1));
         foodid.setEditable(false);
+        restaurantname.setText(save.getCurAff().getResname());
+        restaurantname.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -197,42 +198,13 @@ public class AddMenu extends javax.swing.JFrame {
         MenuClass mc = new MenuClass(foodname.getText(),restaurantname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString());
         AddMenuInterface p = mc;
         
-        if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
+       if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
         {
-            mArray.add(mc);
-            String user = "umi";
-                String pass = "umi";
-                String host = "jdbc:derby://localhost:1527/Affiliates";
-            int count=0;
-                try {
-                Connection con = DriverManager.getConnection( host, user, pass );
-                String query = "Insert into Menu values(?,?,?,?,?,?)";
-                String query2 = "SELECT foodid FROM MENU order by foodid desc";
-                PreparedStatement ps;
-                
-                ps= con.prepareStatement(query2);
-                ResultSet rs = ps.executeQuery();
-                rs.next();
-                String theid = rs.getString(1);
-                
-                
-                String theID = "F" +getdigit(theid);
-                
-                ps = con.prepareStatement(query);
-                ps.setString(1,foodname.getText());
-                ps.setString(2,restaurantname.getText());
-                ps.setString(3,fooddescription.getText());
-                ps.setString(4,foodprice.getText());
-                ps.setString(5,foodstatus.getSelectedItem().toString());
-                ps.setString(6,theID);
-                ps.execute();
-                con.close();
-                JOptionPane.showMessageDialog(this, "Add successful");
-            }catch(Exception e)
-            {
-                
-            }
-             
+            save.getCurMenu().add(mc);
+            save.getMenu().add(mc);
+            JOptionPane.showMessageDialog(this, "Add successful");
+            this.setVisible(false);
+            AllAffiliatePage l = new AllAffiliatePage(save);
             
         }
         else
@@ -280,22 +252,6 @@ public class AddMenu extends javax.swing.JFrame {
             }
         });
     }
-    
-    public int getdigit(String s)
-    {
-        int result = 0;
-        String anyname = "";
-        char c[] = s.toCharArray();
-        for(char x:c){
-            if (Character.isDigit(x)) {
-                anyname+=x;
-            }
-        }
-        result = Integer.parseInt(anyname);
-        result++;
-        return result;
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbutton;
