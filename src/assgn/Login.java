@@ -171,6 +171,7 @@ public class Login extends javax.swing.JFrame {
         save.findCus(_email.getText(), _password.getText());
         if(save.determineUser()==1){
             this.setVisible(false);
+            save.setAffMenu();
             AllAffiliatePage l = new AllAffiliatePage(save);
         }
         else{

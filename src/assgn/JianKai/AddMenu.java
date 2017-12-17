@@ -16,12 +16,6 @@ public class AddMenu extends javax.swing.JFrame {
 
     public AddMenu() {
         initComponents();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Add Menu");
-        
-        foodid.setText("F"+(mArray.getSize()+1));
-        foodid.setEditable(false);
     }
     
    public AddMenu(store save) {
@@ -204,8 +198,7 @@ public class AddMenu extends javax.swing.JFrame {
             save.getMenu().add(mc);
             JOptionPane.showMessageDialog(this, "Add successful");
             this.setVisible(false);
-            AllAffiliatePage l = new AllAffiliatePage(save);
-            
+            AllAffiliatePage a = new AllAffiliatePage(save);
         }
         else
         {

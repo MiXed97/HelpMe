@@ -16,7 +16,6 @@ public class AllAffiliatePage extends javax.swing.JFrame {
     
     public AllAffiliatePage(store save) {
         this.save = save;
-        save.setAffMenu();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Affiliate Homepage");
