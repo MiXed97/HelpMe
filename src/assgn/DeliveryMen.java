@@ -31,6 +31,7 @@ public class DeliveryMen implements DeliveryMenInterface {
         this.address = address;
         this.contactNo = contactNo;
         this.tempSalary = tempSalary;
+        this.salary= Double.parseDouble(tempSalary);
         this.status = "Working";
     }
     

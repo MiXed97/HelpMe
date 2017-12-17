@@ -185,14 +185,14 @@ public class updateDeliveryMen extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
         
-        DeliveryMenInterface d = new DeliveryMen(_name.getText(),_staffID.getText(),_ic.getText(),_address.getText(),_contactNo.getText(), _salary.getText());
+        DeliveryMen d = new DeliveryMen(_name.getText(),_staffID.getText(),_ic.getText(),_address.getText(),_contactNo.getText(), _salary.getText());
+        
         if(!d.check().equals("")){
             JOptionPane.showMessageDialog(null, d.check(), "Error", JOptionPane.ERROR_MESSAGE);
         }
        else{
-            DeliveryMen d1 = new DeliveryMen(_name.getText(),_staffID.getText(),_ic.getText(),_address.getText(),_contactNo.getText(), _salary.getText());
             int index = save.findStaff(save.getCurDelMen().getStaffID());
-            save.getDelMen().add(index, d1);
+            save.getDelMen().add(index, d);
             save.setCurDelMen(d1);
              JOptionPane.showMessageDialog(null, "Successfull updated");
             this.setVisible(false);
