@@ -72,11 +72,12 @@ public class store {
     
      public int findStaff(String s){
         for(int i =1; i<= delMen.getSize();i++)
-            if(delMen.get(i).getStaffID().equals(s) && delMen.get(i).getStatus().equals("Working"))
+            if(delMen.get(i).getStaffID().equals(s))
                 return i;
             
         return 0;
     }
+
     
     public int determineUser(){
         
