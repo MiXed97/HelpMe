@@ -43,7 +43,8 @@ public class HrHome extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         addDelMen = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        updateStatus = new javax.swing.JButton();
+        display = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,10 +67,17 @@ public class HrHome extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Change staff status");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateStatus.setText("Change staff status");
+        updateStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateStatusActionPerformed(evt);
+            }
+        });
+
+        display.setText("Display staff status");
+        display.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayActionPerformed(evt);
             }
         });
 
@@ -84,13 +92,17 @@ public class HrHome extends javax.swing.JFrame {
                 .addComponent(back)
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addDelMen, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jButton1)))
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(addDelMen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(updateStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(display, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,9 +116,11 @@ public class HrHome extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(updateStatus)
                     .addComponent(addDelMen))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(display)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,11 +140,17 @@ public class HrHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_addDelMenActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         updateStaffStatus a = new updateStaffStatus(save);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateStatusActionPerformed
+
+    private void displayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        displayStaff a = new displayStaff(save);
+    }//GEN-LAST:event_displayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,8 +190,9 @@ public class HrHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDelMen;
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton display;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton updateStatus;
     // End of variables declaration//GEN-END:variables
 }

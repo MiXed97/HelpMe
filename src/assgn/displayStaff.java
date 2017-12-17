@@ -21,7 +21,18 @@ public class displayStaff extends javax.swing.JFrame {
     
     public displayStaff() {
         initComponents();
+        
     }
+    
+    public displayStaff(store save) {
+        this.save = save;
+        this.setVisible(true);
+        this.setTitle("Display staff status");
+        this.setLocationRelativeTo(back);
+        initComponents();
+        display();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +101,8 @@ public class displayStaff extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        HrHome a = new HrHome(save);
     }//GEN-LAST:event_backActionPerformed
 
     /**
@@ -127,11 +140,11 @@ public class displayStaff extends javax.swing.JFrame {
         });
     }
     
-    public void displayOrder(){
+    public void display(){
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         
-        Object [] row = new Object[5];
-        for(int i =0; i < save.getDelMen().getSize();i++){
+        Object [] row = new Object[3];
+        for(int i =1; i <= save.getDelMen().getSize();i++){
             row[0] = save.getDelMen().get(i).getStaffID();
             row[1]= save.getDelMen().get(i).getName();
             row[2] = save.getDelMen().get(i).getStatus();
