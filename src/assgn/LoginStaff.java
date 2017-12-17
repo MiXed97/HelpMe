@@ -147,7 +147,6 @@ public class LoginStaff extends javax.swing.JFrame {
         this.setVisible(false);
         Login l = new Login(save);
         
-        
     }//GEN-LAST:event_userLoginActionPerformed
 
     /**
