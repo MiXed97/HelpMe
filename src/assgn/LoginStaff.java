@@ -132,11 +132,17 @@ public class LoginStaff extends javax.swing.JFrame {
     private void _loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__loginActionPerformed
         
         // do login shit ok :D 
+        save.resetUser();
         save.findHr(_email.getText(), _password.getText());
         save.findDeliMen(_email.getText(), _password.getText());
         if(save.determineUser()==4){
             this.setVisible(false);
             HrHome a = new HrHome(save);
+        }
+        else if(save.determineUser()==3)
+        {
+            this.setVisible(false);
+            DMHome a = new DMHome(save);
         }
         
         
