@@ -129,6 +129,7 @@ public class store {
         customer.add(c1);
     }
     
+    
     public void addMenu(){
         MenuClass mc1 = new MenuClass("A1F1","asd","asd","asd","11","Available","A1");
         MenuClass mc2 = new MenuClass("A1F2","asdas","asasd","assd","1111","Available","A1");
