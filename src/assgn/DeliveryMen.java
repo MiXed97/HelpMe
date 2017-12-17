@@ -136,6 +136,9 @@ public class DeliveryMen implements DeliveryMenInterface {
     public String checkContact(){
         char c[] = contactNo.toCharArray();
         String result = "";
+        if(c.length < 10)
+            return "• Contact number length is too short\n";
+        
         if(contactNo.isEmpty())
             return "• Please don't left contact empty\n";
         
@@ -151,8 +154,12 @@ public class DeliveryMen implements DeliveryMenInterface {
     public String checkIC(){
          char c[] = ic.toCharArray();
         String result = "";
-        if(ic.isEmpty())
+        if(c.length < 12)
+            return "• IC length is too short\n";
+        
+        else if(ic.isEmpty())
             return "• Please don't left ic empty\n";
+        
         for(char x:c){
              if(!Character.isDigit(x)){
                 result+="• Please enter all digit in IC\n";

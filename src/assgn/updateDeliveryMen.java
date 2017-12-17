@@ -13,21 +13,13 @@ import listLink.store;
  * @author Mixed_97
  */
 public class updateDeliveryMen extends javax.swing.JFrame {
-    DeliveryMen d1 = new DeliveryMen("Nicholas","666","9710014145587","Somewhere","01234567",123.00);
+
     store save;
     /**
      * Creates new form updateDeliveryMen
      */
     public updateDeliveryMen() {
         initComponents();
-        _salary.setEnabled(false);
-        _staffID.setEnabled(false);
-        _staffID.setText(d1.getStaffID());
-        _name.setText(d1.getName());
-        _ic.setText(d1.getIc());
-        _salary.setText(String.format("%.2f", d1.getSalary()));
-        _contactNo.setText(d1.getContactNo());
-        _address.setText(d1.getAddress());
     }
     
     public updateDeliveryMen(store save){
@@ -193,7 +185,7 @@ public class updateDeliveryMen extends javax.swing.JFrame {
        else{
             int index = save.findStaff(save.getCurDelMen().getStaffID());
             save.getDelMen().add(index, d);
-            save.setCurDelMen(d1);
+            save.setCurDelMen(d);
              JOptionPane.showMessageDialog(null, "Successfull updated");
             this.setVisible(false);
             DMHome a = new DMHome(save);
