@@ -259,6 +259,8 @@ public class store {
     
     
     
+    
+    
     public void setSelectedRes(String res){
         this.selectedRes = res;
     }
