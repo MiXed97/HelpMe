@@ -8,6 +8,7 @@ package assgn;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -20,16 +21,28 @@ public class updateStaffStatus extends javax.swing.JFrame {
      */
     ListLinkInt <DeliveryMen> l = new ListLink<>();
     int result;
+    store save;
     public updateStaffStatus() {
         
         
-        DeliveryMen d1 = new DeliveryMen("Nicholas","S1","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","S2","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","S3","456","LoL","01934567",323.00);
+        DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
+        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
+        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
         
         l.add(d1);
         l.add(d2);
         l.add(d3);
+        
+        
+        
+    }
+    
+    public updateStaffStatus(store save){
+        this.save = save;
+        
+        this.setVisible(true);
+        this.setTitle("Update staff status");
+        this.setLocationRelativeTo(null);
         
         initComponents();
         status.setVisible(false);
@@ -130,11 +143,11 @@ public class updateStaffStatus extends javax.swing.JFrame {
 
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
         // TODO add your handling code here:
-        result = findStaff(staffID.getText());
+        result = save.findStaff(staffID.getText());
         if( result > 0){
             status.setVisible(true);
             
-            if(l.get(result).getStatus().equals("Retired")){
+            if(save.getDelMen().get(result).getStatus().equals("Retired")){
                 status.setSelectedIndex(1);// retired
             }
             else{
@@ -152,13 +165,12 @@ public class updateStaffStatus extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
        
-        
         if(!staffID.getText().isEmpty()){
             
-            if(staffID.getText().equals(l.get(result).getStaffID()))            
-                if(!status.getSelectedItem().toString().equals(l.get(result).getStatus())){
-                    System.out.print(l.get(result).getStatus());
-                    l.get(result).setStatus(status.getSelectedItem().toString());
+            if(staffID.getText().equals(save.getDelMen().get(result).getStaffID()))            
+                if(!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())){
+                    System.out.print(save.getDelMen().get(result).getStatus());
+                    save.getDelMen().get(result).setStatus(status.getSelectedItem().toString());
                     JOptionPane.showMessageDialog(null, "Sucessfully updated staff "+ staffID.getText()+" status to "+ status.getSelectedItem().toString());
                 }else{  
                 JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -169,9 +181,7 @@ public class updateStaffStatus extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Staff id is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
-        
+                
     }//GEN-LAST:event_updateActionPerformed
 
     /**
@@ -210,13 +220,7 @@ public class updateStaffStatus extends javax.swing.JFrame {
     }
     
     
-    public int findStaff(String s){
-        for(int i =1; i<= l.getSize();i++)
-            if(l.get(i).getStaffID().equals(s))
-                return i;
-            
-        return 0;
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

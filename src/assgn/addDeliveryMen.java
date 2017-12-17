@@ -28,10 +28,11 @@ public class addDeliveryMen extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Add delivery men");
+        initComponents();
         _staffID.setText("D"+save.getDelMen().getSize());
         _staffID.setEditable(false);
         
-        initComponents();
+        
     }
 
     /**
@@ -181,7 +182,14 @@ public class addDeliveryMen extends javax.swing.JFrame {
         else{
              JOptionPane.showMessageDialog(null, "Successfull added");
              save.getDelMen().add(d1);
-             
+             if(JOptionPane.showConfirmDialog(null, "Do you wish to add again", "Question?", JOptionPane.YES_NO_OPTION)== 0){
+                 _address.setText("");
+                 _contactNo.setText("");
+                 _ic.setText("");
+                 _name.setText("");
+                 _salary.setText("");
+                 _staffID.setText("D"+save.getDelMen().getSize());
+             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
