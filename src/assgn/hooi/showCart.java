@@ -9,7 +9,7 @@ import validate.validate;
 import validate.validateInt;
 
 /**
- * test
+ * 
  * @author Aphro97
  */
 public class showCart extends javax.swing.JFrame {
@@ -94,6 +94,11 @@ public class showCart extends javax.swing.JFrame {
         jLabel2.setText("Cart ID to remove:");
 
         cfmOrderBtn.setText("Confirm Order");
+        cfmOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cfmOrderBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,7 +148,7 @@ public class showCart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void refreshTable(){
-        
+        double total=0.0;
         model = (DefaultTableModel)cartTable.getModel();
         cart = save.getCart();
         cartTable.setModel(model);
@@ -153,7 +158,9 @@ public class showCart extends javax.swing.JFrame {
         if(cart.getSize()!=0){
             for(int a = 1;a<cart.getSize()+1;a++){
                 model.addRow(new Object[]{a,cart.get(a).getItem(),cart.get(a).getItemName(),cart.get(a).getQty(),cart.get(a).getPrice()*cart.get(a).getQty()});
+                total+=cart.get(a).getPrice()*cart.get(a).getQty();
             }
+            model.addRow(new Object[]{"Total","","","",total});
         }
     }
     
@@ -161,7 +168,6 @@ public class showCart extends javax.swing.JFrame {
         this.setVisible(false);
         save.setCart(cart);
         placeOrder po = new placeOrder(save);
-        
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -173,6 +179,7 @@ public class showCart extends javax.swing.JFrame {
                     cart.remove(a);
                     JOptionPane.showMessageDialog(this, "Remove successfully");
                     refreshTable();
+                    break;
                 }else if(a == cartTable.getRowCount()-1)
                     JOptionPane.showMessageDialog(this, "Incorrect cart ID");
                 
@@ -180,6 +187,16 @@ public class showCart extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void cfmOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cfmOrderBtnActionPerformed
+        int result = JOptionPane.showConfirmDialog(this, "Confirm your order?","Confirm Order",JOptionPane.YES_NO_OPTION);
+        if(result==0){
+            //Yes
+            this.setVisible(false);
+            save.setCart(cart);
+            confirmOrder co = new confirmOrder(save);
+        }
+    }//GEN-LAST:event_cfmOrderBtnActionPerformed
 
     /**
      * @param args the command line arguments
