@@ -153,11 +153,11 @@ public class Updatefood2 extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     storeMenu();
-    MenuClass m = new MenuClass(foodid.getText(),foodname.getText(),resname.getText(),fooddesc.getText(), price.getText(), jComboBox1.getSelectedItem().toString(),"asd");
-    int result = findFoodIndex(m.getFoodid());
-    l.add(result, m);
+ //   MenuClass m = new MenuClass(foodid.getText(),foodname.getText(),resname.getText(),fooddesc.getText(), price.getText(), jComboBox1.getSelectedItem().toString(),"asd");
+//    int result = findFoodIndex(m.getFoodid());
+   // l.add(result, m);
     JOptionPane.showMessageDialog(rootPane, "Successfully updated");
-    updateDB(m);
+   // updateDB(m);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void updatepage(MenuClass m)
@@ -165,7 +165,7 @@ public class Updatefood2 extends javax.swing.JFrame {
         foodid.setText(m.getFoodid());
         foodid.setEnabled(false);
         foodname.setText(m.getFoodname());
-        resname.setText(m.getResname());
+   //     resname.setText(m.getResname());
         fooddesc.setText(m.getDesc());
         price.setText(m.getPrice());
         jComboBox1.setSelectedItem(m.getStatus());
@@ -214,8 +214,8 @@ public class Updatefood2 extends javax.swing.JFrame {
                 
                 while (rs.next()) {
                     
-                    MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
-                    l.add(m);
+      //              MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
+      //              l.add(m);
                 }
                 
                 con.close();
@@ -237,27 +237,7 @@ public class Updatefood2 extends javax.swing.JFrame {
         return 0;
     }
     
-    public void updateDB(MenuClass m){
-        try {
-            Connection con = DriverManager.getConnection(host, user, pass);
-            String query = "update UMI.MENU set foodname = ?, resname = ?, foodDesc = ?, price = ?, foodStatus = ? where foodid = ?";
-            PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, m.getFoodname());
-            ps.setString(2, m.getResname());
-            ps.setString(3, m.getDesc());
-            ps.setString(4, m.getPrice());
-            ps.setString(5, m.getStatus());
-            ps.setString(6, m.getFoodid());
-            ps.executeUpdate();
-            
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Updatefood2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fooddesc;
     private javax.swing.JTextField foodid;

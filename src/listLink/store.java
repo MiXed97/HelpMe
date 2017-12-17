@@ -78,6 +78,24 @@ public class store {
         return 0;
     }
      
+    public int findCurMenu(String foodID){
+        
+        for(int i = 1; i<= curMenu.getSize();i++)
+            if(curMenu.get(i).getFoodid().equals(foodID))
+                return i;
+        
+        return 0;
+    }
+    
+    public int findMenu(String foodID){
+        
+        for(int i = 1; i<= menu.getSize();i++)
+            if(menu.get(i).getFoodid().equals(foodID))
+                return i;
+        
+        return 0;
+    }
+     
     public int determineUser(){
         
         if(curAff != null)
@@ -131,9 +149,9 @@ public class store {
     
     
     public void addMenu(){
-        MenuClass mc1 = new MenuClass("A1F1","asd","asd","asd","11","Available","A1");
-        MenuClass mc2 = new MenuClass("A1F2","asdas","asasd","assd","1111","Available","A1");
-        MenuClass mc3 = new MenuClass("A1F3","asxzd","asxd","axsd","11x","Available","A1");
+        MenuClass mc1 = new MenuClass("A1F1","Burger","asd","11","Available","A1");
+        MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
+        MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
         
         menu.add(mc1);
         menu.add(mc2);
@@ -253,13 +271,19 @@ public class store {
         this.curHR = curHR;
     }
     
-    
-    
     public void resetUser(){
         curAff= null;
         curCus=null;
         curDelMen=null;
         curHR=null;
+    }
+    
+    public void removeMenu(String foodID){
+        
+        int index = findCurMenu(foodID);
+        curMenu.remove(index);
+        index = findMenu(foodID);
+        menu.remove(index);
     }
     
 }

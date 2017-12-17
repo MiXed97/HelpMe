@@ -6,17 +6,16 @@ public class MenuClass implements AddMenuInterface{
     
     String foodid;
     String foodname;
-    String resname;
+    
     String desc;
     String price;
     String status;
     String affID;
    
     
-    public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status, String affID) {
+    public MenuClass(String foodid, String foodname, String desc, String price, String status, String affID) {
         this.foodid = foodid;
         this.foodname = foodname;
-        this.resname = resname;
         this.desc = desc;
         this.price = price;
         this.status = status;
@@ -39,14 +38,6 @@ public class MenuClass implements AddMenuInterface{
 
     public void setFoodname(String foodname) {
         this.foodname = foodname;
-    }
-
-    public String getResname() {
-        return resname;
-    }
-
-    public void setResname(String resname) {
-        this.resname = resname;
     }
 
     public String getDesc() {
@@ -85,9 +76,9 @@ public class MenuClass implements AddMenuInterface{
     
     public MenuClass(){}
 
-    public MenuClass(String foodname, String resname, String desc, String price,String status) {
+    public MenuClass(String foodname,String desc, String price,String status) {
         this.foodname = foodname;
-        this.resname = resname;
+        
         this.desc = desc;
         this.price = price;
         this.status = status;

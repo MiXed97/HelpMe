@@ -181,7 +181,6 @@ public class AddMenu extends javax.swing.JFrame {
     private void clearbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearbuttonActionPerformed
         // TODO add your handling code here:
         foodname.setText("");
-        restaurantname.setText("");
         fooddescription.setText("");
         foodprice.setText("");
     }//GEN-LAST:event_clearbuttonActionPerformed
@@ -189,7 +188,7 @@ public class AddMenu extends javax.swing.JFrame {
     private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbuttonActionPerformed
         // TODO add your handling code here:
         
-        MenuClass mc = new MenuClass(foodname.getText(),restaurantname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString());
+        MenuClass mc = new MenuClass(foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString());
         AddMenuInterface p = mc;
         
        if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
