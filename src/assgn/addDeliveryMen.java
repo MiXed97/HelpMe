@@ -29,7 +29,7 @@ public class addDeliveryMen extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Add delivery men");
         initComponents();
-        _staffID.setText("D"+save.getDelMen().getSize());
+        _staffID.setText("D"+(save.getDelMen().getSize()+1));
         _staffID.setEditable(false);
         
         
@@ -188,7 +188,11 @@ public class addDeliveryMen extends javax.swing.JFrame {
                  _ic.setText("");
                  _name.setText("");
                  _salary.setText("");
-                 _staffID.setText("D"+save.getDelMen().getSize());
+                 _staffID.setText("D"+(save.getDelMen().getSize()+1));
+             }
+             else{
+                 this.setVisible(false);
+                 HrHome h = new HrHome(save);
              }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
