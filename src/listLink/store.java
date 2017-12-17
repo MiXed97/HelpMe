@@ -274,6 +274,24 @@ public class store {
         this.curHR = curHR;
     }
     
+    
+    
+    
+    
+    public void setSelectedRes(String res){
+        this.selectedRes = res;
+    }
+    
+    public String getSelectedRes(){
+        return selectedRes;
+    }
+    
+    public void setCart(ListLinkInt<Cart> cart){
+        this.cart = cart;
+    }
+    public ListLinkInt<Cart> getCart(){
+        return cart;
+    }
     public void resetUser(){
         curAff= null;
         curCus=null;
@@ -289,20 +307,6 @@ public class store {
         index = findMenu(foodID);
         menu.remove(index);
     }
-    
-        public void setSelectedRes(String res){
-        this.selectedRes = res;
-    }
-    
-    public String getSelectedRes(){
-        return selectedRes;
-    }
-    
-    public void setCart(ListLinkInt<Cart> cart){
-        this.cart = cart;
-    }
-    public ListLinkInt<Cart> getCart(){
-        return cart;
-    }
+   
     
 }
