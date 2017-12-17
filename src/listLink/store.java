@@ -170,7 +170,7 @@ public class store {
     }
     
     public void setAffMenu(){
-        
+        curMenu.clear();
         for(int i = 1;i <= menu.getSize();i++){
             if(menu.get(i).getAffID().equals(curAff.getAid())){
                 curMenu.add(menu.get(i));

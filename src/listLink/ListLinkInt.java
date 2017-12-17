@@ -28,4 +28,6 @@ public boolean add(T newEntry);
    public node getLastNode();
    
    public node getFirstNode();
+   
+   public void clear();
 }

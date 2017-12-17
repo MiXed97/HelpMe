@@ -154,4 +154,11 @@ public class ListLink<T> implements ListLinkInt<T>{
         }
         return n;
     }
+
+    @Override
+    public void clear() {
+        firstNode = null;
+        lastNode = null;
+        size = -1;
+    }
 }
