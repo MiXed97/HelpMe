@@ -38,7 +38,6 @@ public class updateDeliveryMen extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Delivery men personal Details");
         
-        
     }
 
     /**
