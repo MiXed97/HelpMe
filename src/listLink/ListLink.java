@@ -43,10 +43,15 @@ public class ListLink<T> implements ListLinkInt<T>{
         node pre = cur.getPre();
         node next = cur.getNext();
         
+        if(pre!= null){
         pre.setNext(entry);
         entry.setPre(pre);
+        }
+        
+        if(next != null){
         next.setPre(entry);
         entry.setNext(next);
+        }
         
         return true;
     }

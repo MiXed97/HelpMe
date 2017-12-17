@@ -8,6 +8,7 @@ package assgn;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -20,16 +21,28 @@ public class updateStaffStatus extends javax.swing.JFrame {
      */
     ListLinkInt <DeliveryMen> l = new ListLink<>();
     int result;
+    store save;
     public updateStaffStatus() {
         
         
-        DeliveryMen d1 = new DeliveryMen("Nicholas","S1","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","S2","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","S3","456","LoL","01934567",323.00);
+        DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
+        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
+        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
         
         l.add(d1);
         l.add(d2);
         l.add(d3);
+        
+        
+        
+    }
+    
+    public updateStaffStatus(store save){
+        this.save = save;
+        
+        this.setVisible(true);
+        this.setTitle("Update staff status");
+        this.setLocationRelativeTo(null);
         
         initComponents();
         status.setVisible(false);
@@ -51,6 +64,7 @@ public class updateStaffStatus extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         update = new javax.swing.JButton();
         status = new javax.swing.JComboBox<>();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,38 +93,48 @@ public class updateStaffStatus extends javax.swing.JFrame {
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Working", "Retired" }));
         status.setToolTipText("");
 
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(select)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addGap(54, 54, 54)
+                        .addComponent(update))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(select)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(update))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(134, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(back)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(staffID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,11 +154,11 @@ public class updateStaffStatus extends javax.swing.JFrame {
 
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
         // TODO add your handling code here:
-        result = findStaff(staffID.getText());
+        result = save.findStaff(staffID.getText());
         if( result > 0){
             status.setVisible(true);
             
-            if(l.get(result).getStatus().equals("Retired")){
+            if(save.getDelMen().get(result).getStatus().equals("Retired")){
                 status.setSelectedIndex(1);// retired
             }
             else{
@@ -152,13 +176,11 @@ public class updateStaffStatus extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
        
-        
         if(!staffID.getText().isEmpty()){
             
-            if(staffID.getText().equals(l.get(result).getStaffID()))            
-                if(!status.getSelectedItem().toString().equals(l.get(result).getStatus())){
-                    System.out.print(l.get(result).getStatus());
-                    l.get(result).setStatus(status.getSelectedItem().toString());
+            if(staffID.getText().equals(save.getDelMen().get(result).getStaffID()))            
+                if(!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())){
+                    save.getDelMen().get(result).setStatus(status.getSelectedItem().toString());
                     JOptionPane.showMessageDialog(null, "Sucessfully updated staff "+ staffID.getText()+" status to "+ status.getSelectedItem().toString());
                 }else{  
                 JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -169,10 +191,15 @@ public class updateStaffStatus extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Staff id is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
-        
+                
     }//GEN-LAST:event_updateActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        HrHome a = new HrHome(save);
+        
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,15 +237,10 @@ public class updateStaffStatus extends javax.swing.JFrame {
     }
     
     
-    public int findStaff(String s){
-        for(int i =1; i<= l.getSize();i++)
-            if(l.get(i).getStaffID().equals(s))
-                return i;
-            
-        return 0;
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

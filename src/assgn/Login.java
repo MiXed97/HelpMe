@@ -171,7 +171,11 @@ public class Login extends javax.swing.JFrame {
         save.findCus(_email.getText(), _password.getText());
         if(save.determineUser()==1){
             this.setVisible(false);
+            save.setAffMenu();
             AllAffiliatePage l = new AllAffiliatePage(save);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Log in details does not match","Invalid User",JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -193,7 +197,7 @@ public class Login extends javax.swing.JFrame {
     private void staffLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffLoginActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        LoginStaff ls = new LoginStaff();
+        LoginStaff ls = new LoginStaff(save);
     }//GEN-LAST:event_staffLoginActionPerformed
 
     /**

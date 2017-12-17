@@ -1,4 +1,5 @@
 package assgn.JianKai;
+import assgn.Login;
 import listLink.store;
 
 public class AllAffiliatePage extends javax.swing.JFrame {
@@ -19,6 +20,7 @@ public class AllAffiliatePage extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Affiliate Homepage");
         initComponents();
+        jLabel1.setText("Welcome "+ save.getCurAff().getName());
     }
 
     /**
@@ -34,6 +36,8 @@ public class AllAffiliatePage extends javax.swing.JFrame {
         am = new javax.swing.JButton();
         um = new javax.swing.JButton();
         rm = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        logOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,35 +64,50 @@ public class AllAffiliatePage extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jLabel2.setText("Affiliate Home Page");
+
+        logOut.setText("Log out");
+        logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(am)
-                        .addGap(31, 31, 31)
-                        .addComponent(um)
-                        .addGap(30, 30, 30)
-                        .addComponent(rm)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(am)
+                            .addGap(31, 31, 31)
+                            .addComponent(um)
+                            .addGap(30, 30, 30)
+                            .addComponent(rm))
+                        .addComponent(logOut))
+                    .addComponent(jLabel2))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(124, 124, 124)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logOut)
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(am)
                     .addComponent(um)
                     .addComponent(rm))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,13 +120,20 @@ public class AllAffiliatePage extends javax.swing.JFrame {
 
     private void umActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_umActionPerformed
         this.setVisible(false);
-        Updatefood redirect2 = new Updatefood();
+        Updatefood redirect2 = new Updatefood(save);
     }//GEN-LAST:event_umActionPerformed
 
     private void rmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rmActionPerformed
         this.setVisible(false);
-        removeMenu redirect3 = new removeMenu();
+        removeMenu redirect3 = new removeMenu(save);
     }//GEN-LAST:event_rmActionPerformed
+
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Login l = new Login(save);
+        
+    }//GEN-LAST:event_logOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +173,8 @@ public class AllAffiliatePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton am;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton logOut;
     private javax.swing.JButton rm;
     private javax.swing.JButton um;
     // End of variables declaration//GEN-END:variables

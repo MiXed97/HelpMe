@@ -93,6 +93,11 @@ public class Cart extends javax.swing.JFrame {
         });
 
         CancelOrder.setText("Cancel");
+        CancelOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,6 +208,10 @@ public class Cart extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_confrimOrderActionPerformed
+
+    private void CancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelOrderActionPerformed
 
     /**
      * @param args the command line arguments

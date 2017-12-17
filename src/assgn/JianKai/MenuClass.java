@@ -11,6 +11,7 @@ public class MenuClass implements AddMenuInterface{
     String price;
     String status;
     String affID;
+   
     
     public MenuClass(String foodid, String foodname, String resname, String desc, String price, String status, String affID) {
         this.foodid = foodid;
@@ -71,6 +72,16 @@ public class MenuClass implements AddMenuInterface{
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getAffID() {
+        return affID;
+    }
+
+    public void setAffID(String affID) {
+        this.affID = affID;
+    }
+    
+    
     
     public MenuClass(){}
 

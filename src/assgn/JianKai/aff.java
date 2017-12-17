@@ -51,6 +51,14 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         this.rescat = rescat;
     }
 
+    public String getAid() {
+        return Aid;
+    }
+
+    public void setAid(String Aid) {
+        this.Aid = Aid;
+    }
+
     public String getName() {
         return name;
     }

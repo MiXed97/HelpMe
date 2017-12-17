@@ -26,8 +26,8 @@ public class store {
     aff curAff = null;
     DeliveryMen curDelMen = null;
     humanResource curHR = null;
+    ListLinkInt<MenuClass> curMenu = new ListLink<>();
     String selectedRes = null;
-    
     public store(){}
     
     public store(int i){
@@ -59,7 +59,7 @@ public class store {
     
     public void findDeliMen(String email, String pass){
         for(int i =1; i<= delMen.getSize();i++)
-            if(delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass)){
+            if(delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && delMen.get(i).getStatus().equals("Working")){
                 curDelMen = delMen.get(i);
                 break;
             }
@@ -73,6 +73,14 @@ public class store {
             }
     }
     
+     public int findStaff(String s){
+        for(int i =1; i<= delMen.getSize();i++)
+            if(delMen.get(i).getStaffID().equals(s))
+                return i;
+            
+        return 0;
+    }
+     
     public int determineUser(){
         
         if(curAff != null)
@@ -105,10 +113,10 @@ public class store {
     }
     
     public void addDeliMen(){
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","456","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","555","456","LoL","01934567",323.00);
-        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","777","789","Wonder Land","01134567",423.00);
+        DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
+        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
+        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
+        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","D4","789","Wonder Land","01134567",423.00);
         
         delMen.add(d1);
         delMen.add(d2);
@@ -124,6 +132,7 @@ public class store {
         customer.add(c1);
     }
     
+    
     public void addMenu(){
         MenuClass mc1 = new MenuClass("F1","Food 1","asd","asd","12.5","Unavailable","A1");
         MenuClass mc2 = new MenuClass("F2","Food 2","asasd","assd","10.5","Available","A1");
@@ -133,7 +142,6 @@ public class store {
         menu.add(mc1);
         menu.add(mc2);
         menu.add(mc3);
-        menu.add(mc4);
     }
 
     public void addHR(){
@@ -142,6 +150,23 @@ public class store {
         
         hr.add(hr1);
         hr.add(hr2);
+    }
+    
+    public void setAffMenu(){
+        
+        for(int i = 1;i <= menu.getSize();i++){
+            if(menu.get(i).getAffID().equals(curAff.getAid())){
+                curMenu.add(menu.get(i));
+            }
+        }
+    }
+
+    public ListLinkInt<MenuClass> getCurMenu() {
+        return curMenu;
+    }
+
+    public void setCurMenu(ListLinkInt<MenuClass> curMenu) {
+        this.curMenu = curMenu;
     }
     
     public ListLinkInt<student> getStud() {
@@ -191,6 +216,48 @@ public class store {
     public void setDel(ListLinkInt<Delivery> del) {
         this.del = del;
     }
+
+    public ListLinkInt<humanResource> getHr() {
+        return hr;
+    }
+
+    public void setHr(ListLinkInt<humanResource> hr) {
+        this.hr = hr;
+    }
+
+    public Customer getCurCus() {
+        return curCus;
+    }
+
+    public void setCurCus(Customer curCus) {
+        this.curCus = curCus;
+    }
+
+    public aff getCurAff() {
+        return curAff;
+    }
+
+    public void setCurAff(aff curAff) {
+        this.curAff = curAff;
+    }
+
+    public DeliveryMen getCurDelMen() {
+        return curDelMen;
+    }
+
+    public void setCurDelMen(DeliveryMen curDelMen) {
+        this.curDelMen = curDelMen;
+    }
+
+    public humanResource getCurHR() {
+        return curHR;
+    }
+
+    public void setCurHR(humanResource curHR) {
+        this.curHR = curHR;
+    }
+    
+    
     
     public void setSelectedRes(String res){
         this.selectedRes = res;
