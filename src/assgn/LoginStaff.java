@@ -145,7 +145,7 @@ public class LoginStaff extends javax.swing.JFrame {
     private void userLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Login l = new Login();
+        Login l = new Login(save);
         
         
     }//GEN-LAST:event_userLoginActionPerformed
