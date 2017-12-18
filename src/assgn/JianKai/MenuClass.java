@@ -6,21 +6,24 @@ public class MenuClass implements AddMenuInterface{
     
     String foodid;
     String foodname;
-    
     String desc;
     String price;
     String status;
     String affID;
-   
+
+        
+    public MenuClass(){}
     
     public MenuClass(String foodid, String foodname, String desc, String price, String status, String affID) {
         this.foodid = foodid;
         this.foodname = foodname;
+
         this.desc = desc;
         this.price = price;
         this.status = status;
-        this.affID=affID;
+        this.affID = affID;
     }
+   
     
     private String theerror="";
     
@@ -73,16 +76,7 @@ public class MenuClass implements AddMenuInterface{
     }
     
     
-    
-    public MenuClass(){}
 
-    public MenuClass(String foodname,String desc, String price,String status) {
-        this.foodname = foodname;
-        
-        this.desc = desc;
-        this.price = price;
-        this.status = status;
-    }
 
     @Override
     public boolean checkfn() {

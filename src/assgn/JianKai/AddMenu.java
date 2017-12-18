@@ -188,7 +188,7 @@ public class AddMenu extends javax.swing.JFrame {
     private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbuttonActionPerformed
         // TODO add your handling code here:
         
-        MenuClass mc = new MenuClass(foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString());
+        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString(),save.getCurAff().getAid());
         AddMenuInterface p = mc;
         
        if (p.checkfn()  && p.checkdesc() && p.checkprice()) 

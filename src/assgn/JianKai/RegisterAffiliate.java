@@ -8,7 +8,7 @@ import listLink.store;
 public class RegisterAffiliate extends javax.swing.JFrame {
     
     store save;
-    ListLinkInt<aff> affiliateArray;
+    
     
 public RegisterAffiliate() {
     //    affiliateArray = save.getAff();
@@ -16,20 +16,18 @@ public RegisterAffiliate() {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-     
-        AID.setText("A"+(affiliateArray.getSize()+1));
         AID.setEditable(false);
     }
    
     
     public RegisterAffiliate(store save) {
         this.save = save;
-        affiliateArray = save.getAff();
+        
         this.setTitle("Register Affiliate");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-        AID.setText("A"+(affiliateArray.getSize()+1));
+        AID.setText("A"+(save.getAff().getSize()+1));
         AID.setEditable(false);
     }
 
@@ -253,7 +251,7 @@ public RegisterAffiliate() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        aff c = new aff(name1.getText(),jPasswordField1.getText(),jPasswordField2.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString());
+        aff c = new aff(AID.getText(),name1.getText(),jPasswordField1.getText(),jPasswordField2.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString());
         RegisterInterface q = c;
 
         if(q.checkName() && q.checkPassword() && q.checkIC() && q.checkTel() && q.checkEmail() && q.checkRes() && q.checkResAdd() && q.checkPostal())
@@ -261,8 +259,7 @@ public RegisterAffiliate() {
                 
                 if(save.checkEmailCA(em.getText())){
                     JOptionPane.showMessageDialog(this, "Register successful");
-                    affiliateArray.add(new aff(AID.getText(),name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
-                    save.setAff(affiliateArray);
+                    save.getAff().add(new aff(AID.getText(),name1.getText(),jPasswordField1.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString()));
                     this.setVisible(false);
                     Login l = new Login(save);
                 }
