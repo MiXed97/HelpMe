@@ -21,10 +21,10 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         Date date = new Date( );
         DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        DeliveryMenClockInClockOut CICO = new DeliveryMenClockInClockOut(d1,dateFormat.format(date));
+        ClockInClockOut CICO = new ClockInClockOut(d1,dateFormat.format(date));
     
     /** Creates new form DeliveryMenClockInClockOutMenu */
-    public DeliveryMenClockInClockOutScreen(DeliveryMenClockInClockOut test) {
+    public DeliveryMenClockInClockOutScreen(ClockInClockOut test) {
         initComponents();
         CICO = test;
         Date date = new Date( );

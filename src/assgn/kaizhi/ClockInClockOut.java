@@ -11,13 +11,13 @@ import assgn.DeliveryMen;
  *
  * @author KaiZhi
  */
-public class DeliveryMenClockInClockOut {
+public class ClockInClockOut {
     private DeliveryMen Deliverymen;
     private String date;
     private String clock_in;
     private String clock_out;
 
-    public DeliveryMenClockInClockOut(DeliveryMen Deliverymen, String date) {
+    public ClockInClockOut(DeliveryMen Deliverymen, String date) {
         this.Deliverymen = Deliverymen;
         this.date = date;
         this.clock_in = "";

@@ -9,6 +9,8 @@ import assgn.DeliveryMen;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -22,15 +24,18 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
     
         
         Date date = new Date( );
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
+        ListLinkInt<DeliveryMen> dMen;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        DeliveryMenClockInClockOut CICO = new DeliveryMenClockInClockOut(d1,dateFormat.format(date));
         
     
     public DeliveryMenLogin() {
         initComponents();
+    }
+    public DeliveryMenLogin(ListLinkInt<DeliveryMen> deliveryMen){
         
-        CICO.getDeliverymen().setPassword("1212");
+        initComponents();
+        Date date = new Date();
+        dMen = deliveryMen;
     }
 
     /**
@@ -47,9 +52,9 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jtfUserID = new javax.swing.JTextField();
-        jtfPassword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jtfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,10 +92,9 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfPassword)
-                            .addComponent(jtfUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtfUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(jtfPassword)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(jButton1)))
@@ -107,8 +111,8 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(99, Short.MAX_VALUE))
@@ -136,17 +140,22 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jtfPassword.getText().equals(CICO.getDeliverymen().getPassword())){
-            
-            Date now = new Date();
+        int size = dMen.getSize();
+       for(int i = 0 ; i < size ; i++){
+           DeliveryMen cmp = dMen.get(i+1);
+            if(cmp.getStaffID().equals(jtfUserID.getText())&&cmp.getPassword().equals(jtfPassword.getText())){
+                
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-            CICO.setClock_in(timeFormat.format(now));
             JOptionPane.showMessageDialog(rootPane, "Login Successful!");
-            DeliveryMenClockInClockOutScreen next = new DeliveryMenClockInClockOutScreen(CICO);
+            SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy");
+            ClockInClockOut test = new ClockInClockOut(cmp,dateF.format(date));
+            test.setClock_in(timeFormat.format(date));
+            DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(cmp,test);
             next.setVisible(true);
             this.setVisible(false);
-            
-        }
+           }
+       }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -179,7 +188,10 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryMenLogin().setVisible(true);
+                
+       store test = new store();
+       test.addDeliMen();
+                new DeliveryMenLogin(test.getDelMen()).setVisible(true);
             }
         });
     }
@@ -191,7 +203,7 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jtfPassword;
+    private javax.swing.JPasswordField jtfPassword;
     private javax.swing.JTextField jtfUserID;
     // End of variables declaration//GEN-END:variables
 }
