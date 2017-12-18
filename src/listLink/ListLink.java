@@ -23,8 +23,8 @@ public class ListLink<T> implements ListLinkInt<T>{
             lastNode = n;
         }else{
 
-            node pre = getPre();
-            n.setPre(pre);
+            node pre = getPre(); 
+           n.setPre(pre);
             pre.setNext(n);
             lastNode = n;
             
