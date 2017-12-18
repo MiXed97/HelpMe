@@ -174,6 +174,11 @@ public class Login extends javax.swing.JFrame {
             save.setAffMenu();
             AllAffiliatePage l = new AllAffiliatePage(save);
         }
+        else if(save.determineUser()==2){
+            this.setVisible(false);
+            //this here put customer login page
+            
+        }
         else{
             JOptionPane.showMessageDialog(null, "Log in details does not match","Invalid User",JOptionPane.ERROR_MESSAGE);
         }
