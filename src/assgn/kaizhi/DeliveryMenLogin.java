@@ -167,11 +167,12 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
                     next.setVisible(true);
                     this.setVisible(false);
                     break;
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Invalid ID or Password!");
-                }
+                } 
+                  
+                
             
-        }
+        }  JOptionPane.showMessageDialog(rootPane, "Invalid ID or Password!");
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

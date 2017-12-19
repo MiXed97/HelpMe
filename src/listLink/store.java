@@ -133,9 +133,13 @@ public class store {
     
     public void addDeliMen(){
         DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
+        d1.setPassword("1212");
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
+        d2.setPassword("abcd");
         DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
+        d3.setPassword("1234");
         DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","D4","789","Wonder Land","01134567",423.00);
+        d4.setPassword("1111");
         
         delMen.add(d1);
         delMen.add(d2);
