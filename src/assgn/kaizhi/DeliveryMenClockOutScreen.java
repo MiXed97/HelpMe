@@ -9,37 +9,32 @@ package assgn.kaizhi;
 import assgn.DeliveryMen;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
  * @author KaiZhi
  */
-public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
+public class DeliveryMenClockOutScreen extends javax.swing.JFrame {
     
         
-        Date date = new Date( );
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        ClockInClockOut CICO = new ClockInClockOut(d1,dateFormat.format(date));
+    DeliveryMen staff;
+    ClockInClockOut cico;
     
     /** Creates new form DeliveryMenClockInClockOutMenu */
-    public DeliveryMenClockInClockOutScreen(ClockInClockOut test) {
+    
+     public DeliveryMenClockOutScreen() {
         initComponents();
-        CICO = test;
-        Date date = new Date( );
-        refresh(date);
-        jlblDeliveryMen.setText(CICO.getDeliverymen().getName());
-        CICO.getDeliverymen().setPassword("1212");
-        jlblClockIn.setText(CICO.getClock_in());
-    }
-     public DeliveryMenClockInClockOutScreen() {
-        initComponents();
-        Date date = new Date( );
-        refresh(date);
-        jlblDeliveryMen.setText(CICO.getDeliverymen().getName());
-        CICO.getDeliverymen().setPassword("1212");
         
+    }
+     public DeliveryMenClockOutScreen(DeliveryMen staff,ClockInClockOut cico) {
+        initComponents();
+        this.staff = staff;
+        this.cico = cico;
+        Date date = new Date( );
+        refresh(date);
+        jlblDeliveryMen.setText(this.staff.getName());
+        jlblClockIn.setText(cico.getClock_in());
     }
 
     /** This method is called from within the constructor to
@@ -57,6 +52,7 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlblTime = new javax.swing.JLabel();
         jbtnRefresh = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jlblDeliveryMen = new javax.swing.JLabel();
@@ -64,18 +60,29 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jlblClockIn = new javax.swing.JLabel();
         jlblClockOut = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jbtnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jlblDate.setText("ds");
 
         jLabel1.setText("Date :");
 
         jLabel2.setText("Time :");
 
+        jlblTime.setText("sd");
+
         jbtnRefresh.setText("Refresh");
         jbtnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRefreshActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Clock Out");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -130,10 +137,10 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                 .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Clock Out");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnBack.setText("Back");
+        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnBackActionPerformed(evt);
             }
         });
 
@@ -142,47 +149,47 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jlblTime))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(50, 50, 50)
-                        .addComponent(jlblDate))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(jlblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(5, 5, 5)
+                                .addComponent(jlblDate)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtnBack)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbtnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlblDate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlblTime)))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jbtnBack)
+                    .addComponent(jlblDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jlblTime))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtnRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addComponent(jButton2))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,22 +214,56 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(CICO.getClock_out().isEmpty()){
-        String pass = JOptionPane.showInputDialog("Enter Password");
-        if(pass.equals(CICO.getDeliverymen().getPassword())){
+        if(cico.getClock_out().isEmpty()){
+            
+            //joption to not display pass
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel("Enter a password:");
+            JPasswordField pass = new JPasswordField(10);
+            panel.add(label);
+            panel.add(pass);
+            String[] options = new String[]{"OK", "Cancel"};
+            int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                    JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[1]);
+            String password = pass.getText();
+            
+            
+            
+            if(option== 0){
+        if(password.equals(staff.getPassword())){
             Date now = new Date();
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-            CICO.setClock_out(timeFormat.format(now));
+            cico.setClock_out(timeFormat.format(now));
+            
             JOptionPane.showMessageDialog(rootPane, "Clock Out time updated");
-            jlblClockOut.setText(CICO.getClock_out());
+            jlblClockOut.setText(cico.getClock_out());
             refresh(now);
         }else {
             JOptionPane.showMessageDialog(rootPane, "Invalid Password!");
+        }
         }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Already clocked out!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
+        // TODO add your handling code here:
+        
+        DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(staff,cico);
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Confirm to go to main menu?");
+        panel.add(label);
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if (option == 0) {
+        this.setVisible(false);
+        next.setVisible(true);
+        }
+    }//GEN-LAST:event_jbtnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,14 +289,18 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenClockInClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenClockInClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenClockInClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenClockInClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenClockOutScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -264,7 +309,7 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryMenClockInClockOutScreen().setVisible(true);
+                new DeliveryMenClockOutScreen().setVisible(true);
             }
         });
     }
@@ -278,6 +323,7 @@ public class DeliveryMenClockInClockOutScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbtnBack;
     private javax.swing.JButton jbtnRefresh;
     private javax.swing.JLabel jlblClockIn;
     private javax.swing.JLabel jlblClockOut;

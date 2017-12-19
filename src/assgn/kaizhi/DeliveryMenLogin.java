@@ -21,21 +21,28 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryMenLogin
      */
-    
-        
-        Date date = new Date( );
-        ListLinkInt<DeliveryMen> dMen;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        
-    
+    Date date = new Date();
+    ListLinkInt<DeliveryMen> dMen;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    store test;
+
     public DeliveryMenLogin() {
         initComponents();
     }
-    public DeliveryMenLogin(ListLinkInt<DeliveryMen> deliveryMen){
-        
+
+    public DeliveryMenLogin(ListLinkInt<DeliveryMen> deliveryMen) {
+
         initComponents();
         Date date = new Date();
         dMen = deliveryMen;
+    }
+
+    public DeliveryMenLogin(ListLinkInt<DeliveryMen> deliveryMen, store test) {
+
+        initComponents();
+        Date date = new Date();
+        dMen = deliveryMen;
+        this.test = test;
     }
 
     /**
@@ -141,21 +148,31 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int size = dMen.getSize();
-       for(int i = 0 ; i < size ; i++){
-           DeliveryMen cmp = dMen.get(i+1);
-            if(cmp.getStaffID().equals(jtfUserID.getText())&&cmp.getPassword().equals(jtfPassword.getText())){
-                
-            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-            JOptionPane.showMessageDialog(rootPane, "Login Successful!");
-            SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy");
-            ClockInClockOut test = new ClockInClockOut(cmp,dateF.format(date));
-            test.setClock_in(timeFormat.format(date));
-            DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(cmp,test);
-            next.setVisible(true);
-            this.setVisible(false);
-           }
-       }
-        
+
+        SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < size; i++) {
+            DeliveryMen cmp = dMen.get(i + 1);
+            
+
+                if (cmp.getStaffID().equals(jtfUserID.getText()) && cmp.getPassword().equals(jtfPassword.getText())) {
+
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+                    JOptionPane.showMessageDialog(rootPane, "Login Successful!");
+
+                    //set date
+                    ClockInClockOut test = new ClockInClockOut(cmp, dateF.format(date));
+                    test.setClock_in(timeFormat.format(date));
+                    
+                    DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(cmp, test);
+                    next.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Invalid ID or Password!");
+                }
+            
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -188,10 +205,10 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-       store test = new store();
-       test.addDeliMen();
-                new DeliveryMenLogin(test.getDelMen()).setVisible(true);
+
+                store test = new store();
+                test.addDeliMen();
+                new DeliveryMenLogin(test.getDelMen(), test).setVisible(true);
             }
         });
     }
