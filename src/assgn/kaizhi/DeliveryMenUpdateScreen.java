@@ -12,7 +12,9 @@ import assgn.Delivery;
 import assgn.DeliveryMen;
 import assgn.Menu;
 import assgn.Order;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +26,6 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryMenUpdateScreen
      */
-       ArrayListInterface<DeliveryMen> deliveryMen = new ArrList<>();
     ArrayListInterface<Customer> customer = new ArrList<>();
     ArrayListInterface<Menu> menu = new ArrList<>();
     ArrayListInterface<Order> order = new ArrList<>();
@@ -32,21 +33,24 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     ArrayListInterface<assgn.Delivery> delivery = new ArrList<>();
     assgn.DeliveryInterface deli = new assgn.Delivery();    
     DefaultTableModel model;
+    DeliveryMen staff;
+    ClockInClockOut cico;
     
     public DeliveryMenUpdateScreen() {
         initComponents();
         
-        model = (DefaultTableModel)jTable1.getModel();
         
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","456","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","555","456","LoL","01934567",323.00);
-        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","777","789","Wonder Land","01134567",423.00);
+    }
+    
+    public DeliveryMenUpdateScreen(DeliveryMen thatguy, ClockInClockOut cico) {
+        initComponents();
+        model = (DefaultTableModel) jTable1.getModel();
+        this.staff = thatguy;
+        this.cico = cico;
         
-        deliveryMen.add(d1);
-        deliveryMen.add(d2);
-        deliveryMen.add(d3);
-        deliveryMen.add(d4);
+        
+        
+        
         
         Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
         Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
@@ -68,7 +72,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         order.add(o);
         order.add(o1);
         
-        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, d1 );
+        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, staff );
         
         delivery.add(d);
         //1 delivery
@@ -80,12 +84,15 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         order1.add(o3);
         order1.add(o2);
         
-        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, d1);
+        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, staff);
         
         delivery.add(de1);
         
          
-        Object row[] = new Object[4];
+        
+        
+        //table content
+         Object row[] = new Object[4];
         for(int i = 0; i < delivery.size();i++)
         {
             row[0] = delivery.get(i).getDeliveryID();
@@ -113,6 +120,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         jbtSearchAddress = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jStatusBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +159,13 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
         jStatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Picked Up", "Delivering", "Delivered" }));
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,16 +186,21 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                             .addComponent(jbtSearchAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jStatusBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfDeliveryID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
@@ -188,7 +208,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                         .addComponent(jStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtSearchAddress)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,6 +257,23 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtSearchAddressActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(staff, cico);
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Confirm to go to main menu?");
+        panel.add(label);
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if (option == 0) {
+            this.setVisible(false);
+            next.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +310,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

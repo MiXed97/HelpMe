@@ -252,9 +252,9 @@ public RegisterAffiliate() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         aff c = new aff(AID.getText(),name1.getText(),jPasswordField1.getText(),jPasswordField2.getText(),ic.getText(),tele.getText(), em.getText(),rn.getText(),ra.getText(),pos.getText(),jComboBox1.getSelectedItem().toString());
-        RegisterInterface q = c;
+        
 
-        if(q.checkName() && q.checkPassword() && q.checkIC() && q.checkTel() && q.checkEmail() && q.checkRes() && q.checkResAdd() && q.checkPostal())
+        if(c.checkName() && c.checkPassword() && c.checkIC() && c.checkTel() && c.checkEmail() && c.checkRes() && c.checkResAdd() && c.checkPostal())
         { 
                 
                 if(save.checkEmailCA(em.getText())){
@@ -268,7 +268,7 @@ public RegisterAffiliate() {
                 }
         }
         else
-             JOptionPane.showMessageDialog(this, q.toString());
+             JOptionPane.showMessageDialog(this, c.toString());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -24,7 +24,11 @@ public class AddMenu extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-        foodid.setText(save.getCurAff().getAid()+"F"+(save.getCurMenu().getSize()+1));
+        if(save.getCurMenu().getSize()!=0)
+            foodid.setText(save.getCurAff().getAid()+"F"+save.getMenuCount(save.getCurMenu().get(save.getCurMenu().getSize()).getFoodid()));
+        else
+            foodid.setText(save.getCurAff().getAid()+"F1");
+            
         foodid.setEditable(false);
         restaurantname.setText(save.getCurAff().getResname());
         restaurantname.setEditable(false);
@@ -189,9 +193,9 @@ public class AddMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString(),save.getCurAff().getAid());
-        AddMenuInterface p = mc;
         
-       if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
+        
+       if (mc.checkfn()  && mc.checkdesc() && mc.checkprice()) 
         {
             save.getCurMenu().add(mc);
             save.getMenu().add(mc);
@@ -201,7 +205,7 @@ public class AddMenu extends javax.swing.JFrame {
         }
         else
         {
-             JOptionPane.showMessageDialog(this, "" + p.toString());
+             JOptionPane.showMessageDialog(this, "" + mc.toString());
         }
     }//GEN-LAST:event_addbuttonActionPerformed
 

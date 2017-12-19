@@ -15,87 +15,86 @@ import assgn.Order;
 import assgn.Turn;
 import assgn.TurnInterface;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author KaiZhi
  */
-public class DeliveryMenScreen extends javax.swing.JFrame {
+public class DeliveryMenCheckAddress extends javax.swing.JFrame {
 
     /**
      * Creates new form DeliveryMenScreen
      */
-       ArrayListInterface<DeliveryMen> deliveryMen = new ArrList<>();
     ArrayListInterface<Customer> customer = new ArrList<>();
     ArrayListInterface<Menu> menu = new ArrList<>();
     ArrayListInterface<Order> order = new ArrList<>();
     ArrayListInterface<Order> order1 = new ArrList<>();
     ArrayListInterface<assgn.Delivery> delivery = new ArrList<>();
-    assgn.DeliveryInterface deli = new assgn.Delivery();    
+    assgn.DeliveryInterface deli = new assgn.Delivery();
     DefaultTableModel model;
-    
-    public DeliveryMenScreen() {
+    DeliveryMen staff;
+    ClockInClockOut cico;
+
+    public DeliveryMenCheckAddress() {
         initComponents();
-        model = (DefaultTableModel)jTable1.getModel();
-        
-        DeliveryMen d1 = new DeliveryMen("Nicholas","666","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","456","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","555","456","LoL","01934567",323.00);
-        DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","777","789","Wonder Land","01134567",423.00);
-        
-        deliveryMen.add(d1);
-        deliveryMen.add(d2);
-        deliveryMen.add(d3);
-        deliveryMen.add(d4);
-        
-        Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
-        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
-        
+    }
+
+    public DeliveryMenCheckAddress(DeliveryMen thatguy, ClockInClockOut cico) {
+
+        initComponents();
+        model = (DefaultTableModel) jTable1.getModel();
+        this.staff = thatguy;
+        this.cico = cico;
+        jlblThatguy.setText("Name : " + thatguy.getName());
+
+        Customer c = new Customer("Name", "HOO LAND", "012378999", "email", "hello");
+        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999", "email1", "hello1");
+
         customer.add(c);
         customer.add(c1);
-        
-        Menu m = new Menu("1","Burger",12.3);
-        Menu m1 = new Menu("2", "hotdog",10.5);
-        Menu m2 = new Menu("3","fries",5.0);
-        
+
+        Menu m = new Menu("1", "Burger", 12.3);
+        Menu m1 = new Menu("2", "hotdog", 10.5);
+        Menu m2 = new Menu("3", "fries", 5.0);
+
         menu.add(m);
         menu.add(m1);
         menu.add(m2);
-        
+
         Order o = new Order(m);
         Order o1 = new Order(m1);
-        
+
         order.add(o);
         order.add(o1);
-        
-        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, d1 );
-        
+
+        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, this.staff);
+
         delivery.add(d);
         //1 delivery
-        
-        
+
         Order o2 = new Order(m2);
         Order o3 = new Order(m);
-        
+
         order1.add(o3);
         order1.add(o2);
-        
-        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, d1);
-        
+
+        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, this.staff);
+
         delivery.add(de1);
-        
-         
+
         Object row[] = new Object[3];
-        for(int i = 0; i < delivery.size();i++)
-        {
-            row[0] = delivery.get(i).getDeliveryID();
-            row[1] = delivery.get(i).getCustomer().getName();
-            row[2] = delivery.get(i).getCustomer().getAddress();
-            model.addRow(row);
+        for (int i = 0; i < delivery.size(); i++) {
+            if (thatguy == delivery.get(i).getDeliveryMen()) {
+                row[0] = delivery.get(i).getDeliveryID();
+                row[1] = delivery.get(i).getCustomer().getName();
+                row[2] = delivery.get(i).getCustomer().getAddress();
+                model.addRow(row);
+            }
         }
-        
     }
 
     /**
@@ -113,6 +112,8 @@ public class DeliveryMenScreen extends javax.swing.JFrame {
         jtfDeliveryID = new javax.swing.JTextField();
         jbtSearchAddress = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jbtnBack = new javax.swing.JButton();
+        jlblThatguy = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,39 +154,57 @@ public class DeliveryMenScreen extends javax.swing.JFrame {
 
         jLabel1.setText("Enter Delivery ID:");
 
+        jbtnBack.setText("Back");
+        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBackActionPerformed(evt);
+            }
+        });
+
+        jlblThatguy.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jbtSearchAddress))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDeliveryID, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jbtSearchAddress))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfDeliveryID, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jlblThatguy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnBack)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnBack)
+                    .addComponent(jlblThatguy))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfDeliveryID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtSearchAddress)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,14 +227,30 @@ public class DeliveryMenScreen extends javax.swing.JFrame {
 
     private void jbtSearchAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSearchAddressActionPerformed
         // TODO add your handling code here:
-        
-        if(deli.checkDeliveryID(delivery,jtfDeliveryID.getText())){
+
+        if (deli.checkDeliveryID(delivery, jtfDeliveryID.getText())) {
             JOptionPane.showMessageDialog(null, delivery.get(deli.getIndex()).getCustomer().getAddress());
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE );
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbtSearchAddressActionPerformed
+
+    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
+        // TODO add your handling code here:
+
+        DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(staff, cico);
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Confirm to go to main menu?");
+        panel.add(label);
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if (option == 0) {
+            this.setVisible(false);
+            next.setVisible(true);
+        }
+    }//GEN-LAST:event_jbtnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,20 +269,21 @@ public class DeliveryMenScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenCheckAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenCheckAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenCheckAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryMenScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryMenCheckAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryMenScreen().setVisible(true);
+                new DeliveryMenCheckAddress().setVisible(true);
             }
         });
     }
@@ -258,6 +294,8 @@ public class DeliveryMenScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtSearchAddress;
+    private javax.swing.JButton jbtnBack;
+    private javax.swing.JLabel jlblThatguy;
     private javax.swing.JTextField jtfDeliveryID;
     // End of variables declaration//GEN-END:variables
 }

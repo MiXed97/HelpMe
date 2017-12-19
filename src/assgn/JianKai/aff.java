@@ -276,6 +276,20 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
     @Override
     public boolean checkPostal() {
         boolean result = true;
+        char c [] = postal.toCharArray();
+        if(c.length < 5){
+            theerror +="Please enter your postal with atleast 5 digits";
+            return false;
+        }
+        
+        for(char x:c){
+            if(!Character.isDigit(x))
+            {
+                theerror +="Please enter your postal with only digits";
+                return false;
+            }
+        }
+        
         if (postal.isEmpty()) {
             theerror += "Please enter resturant postal\n";
             return false;
