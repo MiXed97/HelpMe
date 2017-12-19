@@ -7,6 +7,7 @@ import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
 import assgn.hooi.Cart;
+import assgn.hooi.Order;
 import assgn.humanResource;
 
 public class store {
@@ -19,6 +20,8 @@ public class store {
     ListLinkInt<Delivery> del = new ListLink<>();
     ListLinkInt<humanResource> hr = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
+    ListLinkInt<Cart> cartHi = new ListLink<>();
+    ListLinkInt<Order> order = new ListLink<>();
     
     
     // keep track user
@@ -127,7 +130,20 @@ public class store {
     
     public void addAff(){
         aff a = new aff("A1","Glaz","123","970802445566","0123456789","glaz@hotmail.com","Yes Restaurant","Somewhere","53300","Local Cuisine");
+        aff b = new aff("A2","Test2","123","970802445566","0123456789","test2@hotmail.com","No Restaurant","Somewhere else","53330","Fast food");
         aff.add(a);
+        aff.add(b);
+        //Add to do testing, can remove
+        Cart abc = new Cart("CID01","F01","food 1",2,2.5,5.0);
+        Cart abc1 = new Cart("CID01","F01","food 1",2,2.5,5.0);
+        Cart abc2 = new Cart("CID01","F01","food 1",2,2.5,5.0);
+        Cart abc3 = new Cart("CID01","F01","food 1",2,2.5,5.0);
+        cartHi.add(abc);
+        cartHi.add(abc1);
+        cartHi.add(abc2);
+        cartHi.add(abc3);
+        Order o1 = new Order("OID01","CID01","today",2.50,"Placed");
+        order.add(o1);
     }
     
     public void addDeliMen(){
@@ -152,13 +168,19 @@ public class store {
     
     
     public void addMenu(){
-        MenuClass mc1 = new MenuClass("A1F1","Burger","asd","11","Available","A1");
+        MenuClass mc1 = new MenuClass("A1F1","Burger ","asd","11","Available","A1");
         MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
         MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
+        MenuClass mc4 = new MenuClass("A2F1","Test1 ","asd","11","Available","A2");
+        MenuClass mc5 = new MenuClass("A2F2","T2","assd","8","Available","A2");
+        MenuClass mc6 = new MenuClass("A2F3","t3","axsd","9","Available","A2");
         
         menu.add(mc1);
         menu.add(mc2);
         menu.add(mc3);
+        menu.add(mc4);
+        menu.add(mc5);
+        menu.add(mc6);
     }
 
     public void addHR(){
@@ -274,9 +296,13 @@ public class store {
         this.curHR = curHR;
     }
     
+    public void setCartHi(ListLinkInt<Cart> cartHi){
+        this.cartHi = cartHi;
+    }
     
-    
-    
+    public ListLinkInt<Cart> getCartHi(){
+        return cartHi;
+    }
     
     public void setSelectedRes(String res){
         this.selectedRes = res;
@@ -291,6 +317,12 @@ public class store {
     }
     public ListLinkInt<Cart> getCart(){
         return cart;
+    }
+    public void setOrder(ListLinkInt<Order> order){
+        this.order = order;
+    }
+    public ListLinkInt<Order> getOrder(){
+        return order;
     }
     public void resetUser(){
         curAff= null;

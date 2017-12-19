@@ -1,6 +1,8 @@
 
 package assgn.hooi;
 
+import listLink.ListLink;
+import listLink.ListLinkInt;
 import listLink.store;
 
 /**
@@ -9,18 +11,41 @@ import listLink.store;
  */
 public class confirmOrder extends javax.swing.JFrame {
     store save;
+    ListLinkInt<Cart> cart;
     /**
      * Creates new form confirmOrder
      */
     public confirmOrder() {
         initComponents();
+        save = new store(1);
+        setup();
     }
     
     public confirmOrder(store save) {
         initComponents();
         this.save = save;
+        setup();
+    }
+    private void setup(){
+        double total=0.0;
+        String summary="";
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setTitle("Order Summary");
+        cart = save.getCart();
+        jTextArea1.setEditable(false);
+        summary+= "Order:\n";
+        
+        for(int a = 1;a<cart.getSize()+1;a++){
+            summary+=String.format("%-20s x %-2d %-5s\n",cart.get(a).getItemName(),cart.get(a).getQty(),"RM"+cart.get(a).getTotal());
+            //summary+=String.format("%20s x %10d %-5s\n",cart.get(a).getItemName(),cart.get(a).getQty(),"RM"+cart.get(a).getTotal());
+            total += cart.get(a).getTotal();
+        }
+        summary += "Total : RM"+total+"\n\nDetails:\n";
+        summary += "Address      : "+save.getCurCus().getAddress();
+        summary += "\nContact No : "+save.getCurCus().getContactNo();
+        jTextArea1.setText(summary);
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -29,8 +54,8 @@ public class confirmOrder extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         confirmBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        cash = new javax.swing.JRadioButton();
+        card = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -39,14 +64,19 @@ public class confirmOrder extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         confirmBtn.setText("Confirm");
+        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setText("Cancel");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Cash On Delivery");
+        buttonGroup1.add(cash);
+        cash.setText("Cash On Delivery");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Credit Card");
+        buttonGroup1.add(card);
+        card.setText("Credit Card");
 
         jLabel1.setText("Payment method :");
 
@@ -54,7 +84,6 @@ public class confirmOrder extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,9 +106,9 @@ public class confirmOrder extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
+                        .addComponent(cash)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(card)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cancelBtn)
@@ -96,8 +125,8 @@ public class confirmOrder extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1)
+                    .addComponent(card)
+                    .addComponent(cash)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -108,6 +137,15 @@ public class confirmOrder extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+        if(card.isSelected()){
+            this.setVisible(false);
+            cardPayment cp = new cardPayment(save);
+        }else{
+            //go to final page
+        }
+    }//GEN-LAST:event_confirmBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,11 +185,11 @@ public class confirmOrder extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JRadioButton card;
+    private javax.swing.JRadioButton cash;
     private javax.swing.JButton confirmBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
