@@ -6,6 +6,7 @@ import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
+import assgn.Order;
 import assgn.hooi.Cart;
 import assgn.humanResource;
 
@@ -19,6 +20,7 @@ public class store {
     ListLinkInt<Delivery> del = new ListLink<>();
     ListLinkInt<humanResource> hr = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
+    ListLinkInt<Order> order = new ListLink<>();
     
     
     // keep track user
@@ -174,6 +176,19 @@ public class store {
         
         hr.add(hr1);
         hr.add(hr2);
+    }
+    
+    public void addDelivery(){
+        Delivery de1 = new Delivery();
+        Order or1 = new Order();
+        order.add(or1);
+        
+        Delivery de2 = new Delivery();
+        Delivery de3 = new Delivery();
+        Delivery de4 = new Delivery();
+        Delivery de5 = new Delivery();
+        Delivery de6 = new Delivery();
+        
     }
     
     public void setAffMenu(){
