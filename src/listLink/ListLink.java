@@ -23,8 +23,8 @@ public class ListLink<T> implements ListLinkInt<T>{
             lastNode = n;
         }else{
 
-            node pre = getPre(); 
-           n.setPre(pre);
+            node pre = getPre();
+            n.setPre(pre);
             pre.setNext(n);
             lastNode = n;
             
@@ -53,10 +53,9 @@ public class ListLink<T> implements ListLinkInt<T>{
         entry.setNext(next);
         }
         
-        if(newPosition==1){
+        if(newPosition ==1){
             firstNode = entry;
-        }
-        else if(newPosition == getSize())
+        }else if(newPosition == getSize())
             lastNode = entry;
         
         return true;

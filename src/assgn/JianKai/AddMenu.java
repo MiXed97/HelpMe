@@ -24,7 +24,11 @@ public class AddMenu extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
-        foodid.setText(save.getCurAff().getAid()+"F"+(save.getCurMenu().getSize()+1));
+        if(save.getCurMenu().getSize()!=0)
+            foodid.setText(save.getCurAff().getAid()+"F"+save.getMenuCount(save.getCurMenu().get(save.getCurMenu().getSize()).getFoodid()));
+        else
+            foodid.setText(save.getCurAff().getAid()+"F1");
+            
         foodid.setEditable(false);
         restaurantname.setText(save.getCurAff().getResname());
         restaurantname.setEditable(false);

@@ -27,6 +27,7 @@ public class store {
     DeliveryMen curDelMen = null;
     humanResource curHR = null;
     ListLinkInt<MenuClass> curMenu = new ListLink<>();
+    MenuClass curMenuForUpdate = new MenuClass();
     String selectedRes = null;
     public store(){}
     
@@ -132,13 +133,9 @@ public class store {
     
     public void addDeliMen(){
         DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
-        d1.setPassword("1212");
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
-        d2.setPassword("abcd");
         DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
-        d3.setPassword("1234");
         DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi","D4","789","Wonder Land","01134567",423.00);
-        d4.setPassword("1111");
         
         delMen.add(d1);
         delMen.add(d2);
@@ -159,10 +156,12 @@ public class store {
         MenuClass mc1 = new MenuClass("A1F1","Burger","asd","11","Available","A1");
         MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
         MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
+        MenuClass mc4 = new MenuClass("A2F1","Goreng Mee","axsd","7","Available","A2");
         
         menu.add(mc1);
         menu.add(mc2);
         menu.add(mc3);
+        menu.add(mc4);
     }
 
     public void addHR(){
@@ -182,7 +181,15 @@ public class store {
         }
     }
 
-    public ListLinkInt<MenuClass> getCurMenu() {
+    public MenuClass getCurMenuForUpdate() {
+        return curMenuForUpdate;
+    }
+
+    public void setCurMenuForUpdate(MenuClass curMenuForUpdate) {
+        this.curMenuForUpdate = curMenuForUpdate;
+    }
+    
+     public ListLinkInt<MenuClass> getCurMenu() {
         return curMenu;
     }
 
@@ -277,11 +284,7 @@ public class store {
     public void setCurHR(humanResource curHR) {
         this.curHR = curHR;
     }
-    
-    
-    
-    
-    
+   
     public void setSelectedRes(String res){
         this.selectedRes = res;
     }
@@ -311,6 +314,32 @@ public class store {
         index = findMenu(foodID);
         menu.remove(index);
     }
-   
     
+    public void UpdateMenu(String foodID, MenuClass m){
+        int index = findCurMenu(foodID);
+        curMenu.add(index, m);
+        index = findMenu(foodID);
+        menu.add(index,m);
+        
+    }
+    
+    
+    public int getMenuCount(String foodID){
+        
+        char c [] = foodID.toCharArray();
+        int check =0;
+        String digit="";
+        for(char x:c){
+            
+            if(x == 'F')
+                check=1;
+            else if(check==1)
+                digit+=x;
+        }
+        
+        check = Integer.parseInt(digit);
+        check++;
+        
+        return check;
+    }
 }

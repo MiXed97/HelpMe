@@ -1,27 +1,36 @@
 package assgn.JianKai;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
+import listLink.store;
 
 public class Updatefood2 extends javax.swing.JFrame {
     
-    String user = "umi";
-    String pass = "umi";
-    String host = "jdbc:derby://localhost:1527/Affiliates";
-    ListLinkInt<MenuClass> l = new ListLink<>();
+    store save;
+
     public Updatefood2() {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         initComponents();
+        this.setTitle("Update Menu");
     }
+    public Updatefood2(store save) {
+        this.save = save;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        initComponents();
+        this.setTitle("Update Menu");
+        foodid.setText(save.getCurMenuForUpdate().getFoodid());
+        foodid.setEditable(false);
+        foodname.setText(save.getCurMenuForUpdate().getFoodname());
+        resname.setText(save.getCurAff().getResname());
+        resname.setEditable(false);
+        fooddesc.setText(save.getCurMenuForUpdate().getDesc());
+        price.setText(save.getCurMenuForUpdate().getPrice());
+        jComboBox1.setSelectedItem(save.getCurMenuForUpdate().getStatus());
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,8 +46,8 @@ public class Updatefood2 extends javax.swing.JFrame {
         foodname = new javax.swing.JTextField();
         resname = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         fooddesc = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -57,17 +66,17 @@ public class Updatefood2 extends javax.swing.JFrame {
 
         jLabel6.setText("Food Status");
 
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancel.setText("Cancel");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
@@ -103,9 +112,9 @@ public class Updatefood2 extends javax.swing.JFrame {
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jButton1)
+                        .addComponent(cancel)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton2)))
+                        .addComponent(update)))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,39 +148,39 @@ public class Updatefood2 extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancel)
+                    .addComponent(update))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        save.setCurMenuForUpdate(null);
+        this.setVisible(false);
+         AllAffiliatePage a = new AllAffiliatePage(save);
+    }//GEN-LAST:event_cancelActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    storeMenu();
- //   MenuClass m = new MenuClass(foodid.getText(),foodname.getText(),resname.getText(),fooddesc.getText(), price.getText(), jComboBox1.getSelectedItem().toString(),"asd");
-//    int result = findFoodIndex(m.getFoodid());
-   // l.add(result, m);
-    JOptionPane.showMessageDialog(rootPane, "Successfully updated");
-   // updateDB(m);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+
+        
+        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddesc.getText(),price.getText(),jComboBox1.getSelectedItem().toString(),save.getCurAff().getAid());
+        AddMenuInterface p = mc;
+        
+       if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
+        {
+            save.UpdateMenu(foodid.getText(), mc);
+            JOptionPane.showMessageDialog(this, "Update successful");
+            this.setVisible(false);
+            AllAffiliatePage a = new AllAffiliatePage(save);
+        }            
+        else
+        {
+             JOptionPane.showMessageDialog(this, "" + p.toString());
+        }
+    }//GEN-LAST:event_updateActionPerformed
     
-    public void updatepage(MenuClass m)
-    {
-        foodid.setText(m.getFoodid());
-        foodid.setEnabled(false);
-        foodname.setText(m.getFoodname());
-   //     resname.setText(m.getResname());
-        fooddesc.setText(m.getDesc());
-        price.setText(m.getPrice());
-        jComboBox1.setSelectedItem(m.getStatus());
-        
-    }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -204,46 +213,12 @@ public class Updatefood2 extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void storeMenu(){
-        try {
-                Connection con = DriverManager.getConnection(host, user, pass);
-                String query = "Select * from UMI.MENU";
-                PreparedStatement ps = con.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-                
-                while (rs.next()) {
-                    
-      //              MenuClass m = new MenuClass(rs.getString("Foodid"),rs.getString("foodname"), rs.getString("resname"), rs.getString("foodDesc"), rs.getString("price"), rs.getString("foodstatus"),"asd");
-      //              l.add(m);
-                }
-                
-                con.close();
-                
-            }catch(Exception e)
-            {
-                System.out.println("No");
-            }
-    }
-    
-    public int findFoodIndex(String foodID){
 
-        for(int i = 0; i < l.getSize(); i ++){
-
-            if(l.get(i+1).getFoodid().equals(foodID)){
-                return i+1;
-            } 
-        }
-        return 0;
-    }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancel;
     private javax.swing.JTextField fooddesc;
     private javax.swing.JTextField foodid;
     private javax.swing.JTextField foodname;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -254,5 +229,6 @@ public class Updatefood2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField price;
     private javax.swing.JTextField resname;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
