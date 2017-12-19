@@ -174,10 +174,10 @@ public class addDeliveryMen extends javax.swing.JFrame {
        
         
         DeliveryMen d1 = new DeliveryMen(_name.getText(),_staffID.getText(),_ic.getText(), _address.getText(), _contactNo.getText(), _salary.getText());
-        DeliveryMenInterface d = d1;
         
-        if(!d.check().equals("")){
-            JOptionPane.showMessageDialog(null, d.check(), "Error", JOptionPane.ERROR_MESSAGE);
+        
+        if(!d1.check().equals("")){
+            JOptionPane.showMessageDialog(null, d1.check(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
              JOptionPane.showMessageDialog(null, "Successfull added");

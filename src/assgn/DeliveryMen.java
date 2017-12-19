@@ -31,7 +31,11 @@ public class DeliveryMen implements DeliveryMenInterface {
         this.address = address;
         this.contactNo = contactNo;
         this.tempSalary = tempSalary;
+        try{
         this.salary= Double.parseDouble(tempSalary);
+        }catch(Exception e){
+            
+        }
         this.status = "Working";
     }
     
@@ -173,7 +177,7 @@ public class DeliveryMen implements DeliveryMenInterface {
         String result = "";
         
         try{
-        salary = Double.parseDouble(tempSalary);
+            salary = Double.parseDouble(tempSalary);
         }catch(Exception E){
             return "• Please enter salary in a correct format\n";
         }
