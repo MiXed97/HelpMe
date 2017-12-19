@@ -148,6 +148,7 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int size = dMen.getSize();
+        boolean login = false;
 
         SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < size; i++) {
@@ -166,12 +167,13 @@ public class DeliveryMenLogin extends javax.swing.JFrame {
                     DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(cmp, test);
                     next.setVisible(true);
                     this.setVisible(false);
+                    login= true;
                     break;
                 } 
                   
                 
             
-        }  JOptionPane.showMessageDialog(rootPane, "Invalid ID or Password!");
+        }  if(!login){JOptionPane.showMessageDialog(rootPane, "Invalid ID or Password!");}
         
 
     }//GEN-LAST:event_jButton1ActionPerformed
