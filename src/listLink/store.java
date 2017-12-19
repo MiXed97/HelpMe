@@ -383,7 +383,6 @@ public class store {
         int check =0;
         String digit="";
         for(char x:c){
-            
             if(x == 'F')
                 check=1;
             else if(check==1)
