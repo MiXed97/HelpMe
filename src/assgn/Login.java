@@ -7,6 +7,7 @@ package assgn;
 
 import assgn.JianKai.AllAffiliatePage;
 import assgn.JianKai.RegisterAffiliate;
+import assgn.hooi.customerMenu;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
@@ -176,8 +177,7 @@ public class Login extends javax.swing.JFrame {
         }
         else if(save.determineUser()==2){
             this.setVisible(false);
-            //this here put customer login page
-            
+            customerMenu cm = new customerMenu(save);
         }
         else{
             JOptionPane.showMessageDialog(null, "Log in details does not match","Invalid User",JOptionPane.ERROR_MESSAGE);

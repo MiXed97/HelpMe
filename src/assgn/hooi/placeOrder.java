@@ -1,6 +1,7 @@
 
 package assgn.hooi;
 import assgn.JianKai.MenuClass;
+import assgn.JianKai.aff;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,10 +20,13 @@ public class placeOrder extends javax.swing.JFrame {
     store save;
     Cart cart;
     DefaultTableModel model;
+    String cartID = "CID";
     ListLinkInt<MenuClass> menu = new ListLink();
     ListLinkInt<Cart> cartList = new ListLink();
     JButton[] addCart;
     validateInt val = new validate();
+    ListLinkInt<aff> restaurant = new ListLink();
+    ListLinkInt<Cart> cartHi = new ListLink<>();
     
     public placeOrder() {
         initComponents();
@@ -40,15 +44,40 @@ public class placeOrder extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         ((javax.swing.JSpinner.DefaultEditor)jSpinner1.getEditor()).getTextField().setEditable(false);
         model = (DefaultTableModel)menuTable.getModel();
-        menu = save.getMenu();
         menuTable.setModel(model);
+        menu = save.getMenu();
+        cartHi = save.getCartHi();
         cartList = save.getCart();
+        restaurant = save.getAff();
+        String selectedAID = "";
+        String temp = "";
+        String res = save.getSelectedRes();
+        
+        //Get selectedAID to display correct restaurant menu
+        for(int a = 1;a<restaurant.getSize()+1;a++){
+            if(restaurant.get(a).getName().equals(res))
+                selectedAID = restaurant.get(a).getAid();
+        }
+        //display menu
         for(int a = 1;a<menu.getSize()+1;a++){
-            if(menu.get(a).getStatus().equals("Available")){
+            if(menu.get(a).getStatus().equals("Available") && menu.get(a).getAffID().equals(selectedAID)){
                 model.addRow(new Object[]{menu.get(a).getFoodid(),menu.get(a).getFoodname(),menu.get(a).getDesc(),menu.get(a).getPrice()});
                 
             }
         }
+        if(cartHi.getSize()==0)
+            cartID += "1";
+        else{
+            temp = cartHi.get(cartHi.getSize()).getCartID();
+            temp = temp.substring(3, temp.length());
+            int a = Integer.parseInt(temp);
+            if(a < 10)
+                cartID+="0"+(a+1);
+            else
+                cartID+=(a+1);
+            System.out.println(cartID);
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -165,7 +194,7 @@ public class placeOrder extends javax.swing.JFrame {
                 break;
             }
             else if(menuTable.getModel().getValueAt(a, 0).equals(jTextField1.getText().toUpperCase())){
-                cart = new Cart(menuTable.getModel().getValueAt(a, 0).toString(),menuTable.getModel().getValueAt(a,1).toString(),(Integer)jSpinner1.getValue(),Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()));
+                cart = new Cart(cartID,menuTable.getModel().getValueAt(a, 0).toString(),menuTable.getModel().getValueAt(a,1).toString(),(Integer)jSpinner1.getValue(),Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()),(Integer)jSpinner1.getValue()*Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()));
                 cartList.add(cart);
                 JOptionPane.showMessageDialog(this, "Added successfully");
                 break;

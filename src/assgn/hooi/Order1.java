@@ -1,0 +1,55 @@
+
+package assgn.hooi;
+
+/**
+ *
+ * @author Aphro97
+ */
+public class Order1 {
+    private String orderID;
+    private String cartID;
+    private String orderDate;
+    private String orderStatus;
+    private double totalAmount;
+    public Order1(){}
+    
+    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus){
+        this.orderID = orderID;
+        this.cartID = cartID;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.totalAmount = totalAmount;
+    }
+    
+    public void setOrderID(String orderID){
+        this.orderID = orderID;
+    }
+    public String getOrderID(){
+        return orderID;
+    }
+    public void setCartID(String cartID){
+        this.cartID = cartID;
+    }
+    public String getCartID(){
+        return cartID;
+    }
+    public void setOrderDate(String orderDate){
+        this.orderDate = orderDate;
+    }
+    public String getOrderDate(){
+        return orderDate;
+    }
+    public void setOrderStatus(String orderStatus){
+        this.orderStatus = orderStatus;
+    }
+    public String getOrderStatus(){
+        return orderStatus;
+    }
+    public void setTotalAmount(double totalAmount){
+        this.totalAmount = totalAmount;
+    }
+    public double getTotalAmount(){
+        return totalAmount;
+    }
+    
+}
