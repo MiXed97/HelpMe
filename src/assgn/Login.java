@@ -238,6 +238,9 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 new Login().setVisible(true);
                 
+                
+                
+                
             }
         });
     }
