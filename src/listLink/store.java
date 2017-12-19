@@ -198,7 +198,10 @@ public class store {
     }
     
     public void addDelivery(){
-        Delivery de1 = new Delivery();
+       if(customer.isEmpty()){
+           this.addCust();
+       }
+        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
         
         Delivery de2 = new Delivery();
         Delivery de3 = new Delivery();

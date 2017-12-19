@@ -30,4 +30,6 @@ public boolean add(T newEntry);
    public node getFirstNode();
    
    public void clear();
+   
+   public boolean isEmpty();
 }

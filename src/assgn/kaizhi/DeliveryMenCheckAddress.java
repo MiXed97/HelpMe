@@ -10,7 +10,7 @@ import assgn.ArrayListInterface;
 import assgn.Customer;
 import assgn.DeliveryMen;
 import assgn.Delivery;
-import assgn.Menu;
+import assgn.JianKai.MenuClass;
 import assgn.Order;
 import assgn.Turn;
 import assgn.TurnInterface;
@@ -30,7 +30,7 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
      * Creates new form DeliveryMenScreen
      */
     ArrayListInterface<Customer> customer = new ArrList<>();
-    ArrayListInterface<Menu> menu = new ArrList<>();
+    ArrayListInterface<MenuClass> menu = new ArrList<>();
     ArrayListInterface<Order> order = new ArrList<>();
     ArrayListInterface<Order> order1 = new ArrList<>();
     ArrayListInterface<assgn.Delivery> delivery = new ArrList<>();
@@ -57,16 +57,16 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         customer.add(c);
         customer.add(c1);
 
-        Menu m = new Menu("1", "Burger", 12.3);
-        Menu m1 = new Menu("2", "hotdog", 10.5);
-        Menu m2 = new Menu("3", "fries", 5.0);
-
-        menu.add(m);
-        menu.add(m1);
-        menu.add(m2);
-
-        Order o = new Order(m);
-        Order o1 = new Order(m1);
+         MenuClass mc1 = new MenuClass("A1F1","Burger ","asd","11","Available","A1");
+        MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
+        MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
+        
+        menu.add(mc1);
+        menu.add(mc2);
+        menu.add(mc3);
+        
+        Order o = new Order(mc1);
+        Order o1 = new Order(mc2);
 
         order.add(o);
         order.add(o1);
@@ -76,8 +76,8 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         delivery.add(d);
         //1 delivery
 
-        Order o2 = new Order(m2);
-        Order o3 = new Order(m);
+        Order o2 = new Order(mc2);
+        Order o3 = new Order(mc3);
 
         order1.add(o3);
         order1.add(o2);

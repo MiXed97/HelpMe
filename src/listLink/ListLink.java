@@ -166,4 +166,13 @@ public class ListLink<T> implements ListLinkInt<T>{
         lastNode = null;
         size = -1;
     }
+
+    @Override
+    public boolean isEmpty() {
+        if(size==-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
