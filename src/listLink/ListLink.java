@@ -53,6 +53,12 @@ public class ListLink<T> implements ListLinkInt<T>{
         entry.setNext(next);
         }
         
+        if(newPosition==1){
+            firstNode = entry;
+        }
+        else if(newPosition == getSize())
+            lastNode = entry;
+        
         return true;
     }
 
