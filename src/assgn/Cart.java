@@ -261,7 +261,7 @@ public class Cart extends javax.swing.JFrame {
     public boolean checkOrder(){
         
         for(int i =0;i<order.size();i++){
-            if(order.get(i).getMenuID().equals(_menuid.getText()))
+            if(order.get(i).getFoodid().equals(_menuid.getText()))
             {
                 index = i;
                 return true;
@@ -283,8 +283,8 @@ public class Cart extends javax.swing.JFrame {
         
         Object [] row = new Object[5];
         for(int i =0; i < order.size();i++){
-            row[0] = order.get(i).getMenuID();
-            row[1]= order.get(i).getMenuName();
+            row[0] = order.get(i).getFoodid();
+            row[1]= order.get(i).getFoodname();
             row[2] = String.format("%.2f", order.get(i).getPrice());
             row[3] = order.get(i).getQuantity();
             row[4] = String.format("%.2f", order.get(i).getTotal());

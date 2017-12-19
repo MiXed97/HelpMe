@@ -5,23 +5,27 @@
  */
 package assgn;
 
+import assgn.JianKai.MenuClass;
+
 /**
  *
  * @author Mixed_97
  */
-public class Order extends Menu{
+public class Order extends MenuClass{
     
     int quantity;
     double total;
     
     public Order(){}
     
-    public Order(Menu m){
-        this.menuID = m.menuID;
-        this.menuName = m.menuName;
-        this.price = m.price;
+    public Order(MenuClass m){
+        this.setFoodid(m.getFoodid());
+        this.setFoodname(m.getFoodname());
+        this.setPrice(m.getPrice());
         this.quantity = 1;
-        this.total= quantity*price;
+        double price;
+        price = Double.parseDouble(m.getPrice());
+        this.setTotal(quantity * price ) ;
     }
     
     public int getQuantity() {
@@ -41,7 +45,7 @@ public class Order extends Menu{
     }
     
     public void setTotal() {
-        this.total = quantity*price;
+        this.total = quantity* Double.parseDouble(this.getPrice());
     }
 
     
