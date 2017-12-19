@@ -14,11 +14,11 @@ import listLink.store;
  */
 public class displayOrder extends javax.swing.JFrame {
     store save;
-    Order o;
+    Order1 o;
     String cartID = "CID";
     ListLinkInt<Cart> cartHi = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
-    ListLinkInt<Order> order = new ListLink<>();
+    ListLinkInt<Order1> order = new ListLink<>();
     /**
      * Creates new form displayOrder
      */
@@ -66,7 +66,7 @@ public class displayOrder extends javax.swing.JFrame {
             total += cart.get(a).getTotal();
         }
         System.out.println(cart.getSize());
-        o = new Order(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed");
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed");
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";

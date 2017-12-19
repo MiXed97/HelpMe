@@ -7,7 +7,7 @@ import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
 import assgn.hooi.Cart;
-import assgn.hooi.Order;
+import assgn.hooi.Order1;
 import assgn.humanResource;
 
 public class store {
@@ -21,7 +21,7 @@ public class store {
     ListLinkInt<humanResource> hr = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
-    ListLinkInt<Order> order = new ListLink<>();
+    ListLinkInt<Order1> order = new ListLink<>();
     
     
     // keep track user
@@ -143,7 +143,7 @@ public class store {
         cartHi.add(abc1);
         cartHi.add(abc2);
         cartHi.add(abc3);
-        Order o1 = new Order("OID01","CID01","today",2.50,"Placed");
+        Order1 o1 = new Order1("OID01","CID01","today",2.50,"Placed");
         order.add(o1);
     }
     
@@ -331,10 +331,10 @@ public class store {
     public ListLinkInt<Cart> getCart(){
         return cart;
     }
-    public void setOrder(ListLinkInt<Order> order){
+    public void setOrder(ListLinkInt<Order1> order){
         this.order = order;
     }
-    public ListLinkInt<Order> getOrder(){
+    public ListLinkInt<Order1> getOrder(){
         return order;
     }
     public void resetUser(){
