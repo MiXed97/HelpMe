@@ -176,7 +176,7 @@ public class showCart extends javax.swing.JFrame {
         else{
             for(int a = 0; a<cartTable.getRowCount();a++){
                 if(jTextField1.getText().equals(cartTable.getModel().getValueAt(a, 0).toString())){
-                    cart.remove(a);
+                    cart.remove(a+1);
                     JOptionPane.showMessageDialog(this, "Remove successfully");
                     refreshTable();
                     break;
