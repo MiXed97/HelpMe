@@ -6,12 +6,15 @@
 package assgn.kaizhi;
 
 import assgn.DeliveryMen;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author KaiZhi
  */
 public class ClockInClockOut {
+
     private DeliveryMen Deliverymen;
     private String date;
     private String clock_in;
@@ -54,5 +57,25 @@ public class ClockInClockOut {
 
     public String getClock_out() {
         return clock_out;
+    }
+
+    public boolean noClockIn() {
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        String cmp = format.format(now);
+        if (cmp.equals(date)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean noClockOut() {
+
+        if (!clock_out.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

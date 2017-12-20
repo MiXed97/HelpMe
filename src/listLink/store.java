@@ -6,6 +6,7 @@ import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
 import assgn.Menu;
+import assgn.Order;
 import assgn.hooi.Cart;
 import assgn.hooi.Order1;
 import assgn.humanResource;
@@ -194,6 +195,20 @@ public class store {
         
         hr.add(hr1);
         hr.add(hr2);
+    }
+    
+    public void addDelivery(){
+       if(customer.isEmpty()){
+           this.addCust();
+       }
+        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
+        
+        Delivery de2 = new Delivery();
+        Delivery de3 = new Delivery();
+        Delivery de4 = new Delivery();
+        Delivery de5 = new Delivery();
+        Delivery de6 = new Delivery();
+        
     }
     
     public void setAffMenu(){
