@@ -32,4 +32,6 @@ public boolean add(T newEntry);
    public void clear();
    
    public boolean isEmpty();
+   
+   public void inBetween(int index, T newEntry);
 }
