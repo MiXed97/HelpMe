@@ -203,11 +203,6 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
             return false;
         }
         
-        if (iclength != 12) {
-            theerror += "Error IC length\n";
-            return false;
-        }
-        
         return result;
     }
 
@@ -228,7 +223,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
             }
         }
         
-        if (tellength != 10 || tellength != 10) {
+        if (tellength != 10) {
             theerror += "Error telephone length\n";
             return false;
         }

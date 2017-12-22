@@ -62,9 +62,10 @@ public class placeOrder extends javax.swing.JFrame {
         for(int a = 1;a<menu.getSize()+1;a++){
             if(menu.get(a).getStatus().equals("Available") && menu.get(a).getAffID().equals(selectedAID)){
                 model.addRow(new Object[]{menu.get(a).getFoodid(),menu.get(a).getFoodname(),menu.get(a).getDesc(),menu.get(a).getPrice()});
-                
+                save.getCurMenu().add(menu.get(a));
             }
         }
+       
         if(cartHi.getSize()==0)
             cartID += "1";
         else{
@@ -92,6 +93,8 @@ public class placeOrder extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         checkCart = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        sortBy = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,33 +148,53 @@ public class placeOrder extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Sort by :");
+
+        sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- None -", "Newest", "Lowest Price", "Highest Price" }));
+        sortBy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortByActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(checkCart)
-                .addGap(4, 4, 4)
-                .addComponent(addCartBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(orderBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(checkCart)
+                        .addGap(4, 4, 4)
+                        .addComponent(addCartBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(orderBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,6 +242,25 @@ public class placeOrder extends javax.swing.JFrame {
         showCart sc = new showCart(save);
     }//GEN-LAST:event_checkCartActionPerformed
 
+    private void sortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByActionPerformed
+        // TODO add your handling code here:
+        String sort = sortBy.getSelectedItem().toString();
+        if(sort.equals("Lowest Price")){
+            
+            removeDisplay();
+            save.sortPriceMenu();
+            displayMenu(1);
+        }
+        else if(sort.equals("Highest Price")){
+            removeDisplay();
+            save.sortPriceMenu();
+            displayMenu(0);
+        }
+        else if(sort.equals("Newest")){
+            
+        }
+    }//GEN-LAST:event_sortByActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,15 +295,50 @@ public class placeOrder extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void removeDisplay(){
+        DefaultTableModel model = (DefaultTableModel)menuTable.getModel();
+        
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+    }
+    
+    public void displayMenu(int x){
+        DefaultTableModel model = (DefaultTableModel)menuTable.getModel();
+        
+        Object [] row = new Object[4];
+        
+        if(x == 1){
+        for(int i =1; i <= save.getCurMenu().getSize();i++){
+            row[0] = save.getCurMenu().get(i).getFoodid();
+            row[1]= save.getCurMenu().get(i).getFoodname();
+            row[2] = save.getCurMenu().get(i).getDesc();
+            row[3] = String.format("%.2f", Double.parseDouble(save.getCurMenu().get(i).getPrice()));
+            
+            model.addRow(row);
+        }
+        }
+        else{
+            for(int i =save.getCurMenu().getSize(); i > 0;i--){
+            row[0] = save.getCurMenu().get(i).getFoodid();
+            row[1]= save.getCurMenu().get(i).getFoodname();
+            row[2] = save.getCurMenu().get(i).getDesc();
+            row[3] = String.format("%.2f", Double.parseDouble(save.getCurMenu().get(i).getPrice()));
+            
+            model.addRow(row);
+        }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCartBtn;
     private javax.swing.JButton checkCart;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable menuTable;
     private javax.swing.JButton orderBtn;
+    private javax.swing.JComboBox<String> sortBy;
     // End of variables declaration//GEN-END:variables
 }

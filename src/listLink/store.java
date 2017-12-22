@@ -395,4 +395,32 @@ public class store {
         
         return check;
     }
+    
+     public void sortPriceMenu(){
+        //add getPrice()
+        double small = Double.parseDouble(curMenu.get(1).getPrice());
+        int remove = 0;
+        ListLinkInt<MenuClass> temp = new ListLink<>();
+        ListLinkInt<MenuClass> menu = curMenu; 
+        while(menu.getSize()!=0){
+            
+            for(int i = 1;i <= menu.getSize();i++){
+                if(small >= Double.parseDouble(menu.get(i).getPrice())){
+                    small = Double.parseDouble(menu.get(i).getPrice());
+                    remove = i;
+                }
+            }
+            temp.add(menu.get(remove));
+            menu.remove(remove);
+            if(menu.getSize()!=0)
+                small = Double.parseDouble(menu.get(1).getPrice());
+            
+            else
+                curMenu = temp;
+        }
+    }
+     
+     public void sortNewestMenu(){
+         
+     }
 }

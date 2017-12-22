@@ -14,21 +14,35 @@ import java.sql.*;
 public class test {
     
     public static void main(String args[]) throws SQLException{
-        student s1 = new student("Nicholas", "123");
-        student s2 = new student("Ng Poh hooi", "456");
-        student s3 = new student("Soon Jian Kai","789");
-        ListLinkInt<student> s = new ListLink<>();
-        s.add(s1);
-        s.add(s2);
-        s.add(s3);
-        
-       store sto = new store();
-       
-       sto.setStud(s);
-       
-       System.out.println(sto.getStud().get(1).getName());
         
     }
+    
+    public static ListLinkInt<String> sortPrice(ListLinkInt<String> s){
+        ListLinkInt<String> a = s;
+        ListLinkInt<String> temp = new ListLink<>();
+        //add getPrice()
+        double small = Double.parseDouble(a.get(1));
+        int remove = 0;
+        while(a.getSize()!=0){
+            
+            for(int i = 1;i <= a.getSize();i++){
+                if(small >= Double.parseDouble(a.get(i))){
+                    small = Double.parseDouble(a.get(i));
+                    remove = i;
+                }
+            }
+            
+            
+            temp.add(a.get(remove));
+            a.remove(remove);
+            if(a.getSize()!=0)
+                small = Double.parseDouble(a.get(1));
+        }
+        return temp;
+    }
+    
+    
+        
     
     
     
