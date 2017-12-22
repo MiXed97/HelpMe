@@ -66,7 +66,6 @@ public class displayOrder extends javax.swing.JFrame {
             cartHi.add(cart.get(a));
             total += cart.get(a).getTotal();
         }
-        System.out.println(cart.getSize());
         o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Delivered",save.getCurCus().getEmail());
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
@@ -75,10 +74,8 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder date: "+dateFormat.format(date);
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
-        System.out.println("HERE");
         order.enqueue(o);
         save.setOrder(order);
-        System.out.println("After place order:"+save.getOrder().size());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

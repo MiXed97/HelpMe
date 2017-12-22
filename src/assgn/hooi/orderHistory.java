@@ -39,7 +39,6 @@ public class orderHistory extends javax.swing.JFrame {
         for(int a = 0; a<order.size();a++){
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail()) && order.get(a).getOrderStatus().equals("Delivered")){
                 o = order.get(a);
-                System.out.println("Check"+cart);
                 for(int b=1;b<cartHi.getSize()+1;b++){
                     if(cartHi.get(b).getCartID().equals(o.getCartID())){
                         //System.out.println("Checking: "+cartHi.get(b).getCartID()+"@"+o.getCartID()+"@"+o.getOrderID());

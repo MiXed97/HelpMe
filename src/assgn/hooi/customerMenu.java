@@ -124,7 +124,6 @@ public class customerMenu extends javax.swing.JFrame {
         order = save.getOrder();
         boolean checker = true;
         for(int a = 0;a<order.size();a++){
-            System.out.println("order email:"+order.get(a).getCusEmail()+"@currentEmail: "+save.getCurCus().getEmail()+" current Numb:"+a);
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail())){
                 checker = false;
                 this.setVisible(false);
