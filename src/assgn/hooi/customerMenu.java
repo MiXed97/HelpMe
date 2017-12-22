@@ -122,15 +122,19 @@ public class customerMenu extends javax.swing.JFrame {
     private void oHisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oHisBtnActionPerformed
         // order history
         order = save.getOrder();
+        boolean checker = true;
         for(int a = 0;a<order.size();a++){
             System.out.println("order email:"+order.get(a).getCusEmail()+"@currentEmail: "+save.getCurCus().getEmail()+" current Numb:"+a);
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail())){
+                checker = false;
                 this.setVisible(false);
                 orderHistory oh = new orderHistory(save);
+                break;
             }
             //order.dequeue();
         }
-        //JOptionPane.showMessageDialog(this, "You didn't place any order yet");
+        if(checker)
+            JOptionPane.showMessageDialog(this, "You didn't place any order yet");
     }//GEN-LAST:event_oHisBtnActionPerformed
 
     /**

@@ -139,7 +139,7 @@ public class store {
         Cart abc = new Cart("CID01","F01","food 1",2,2.5,5.0);
         Cart abc1 = new Cart("CID01","F01","food 1",2,2.5,5.0);
         Cart abc2 = new Cart("CID01","F01","food 1",2,2.5,5.0);
-        Cart abc3 = new Cart("CID02","F01","food 1",2,2.5,5.0);
+        Cart abc3 = new Cart("CID02","F01","foods 1",2,2.5,5.0);
         Cart abc4 = new Cart("CID02","F01","food 2",2,2.5,5.0);
         Cart abc5 = new Cart("CID02","F01","food 3",2,2.5,5.0);
                 

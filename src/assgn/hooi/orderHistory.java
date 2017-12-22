@@ -39,13 +39,16 @@ public class orderHistory extends javax.swing.JFrame {
         for(int a = 0; a<order.size();a++){
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail()) && order.get(a).getOrderStatus().equals("Delivered")){
                 o = order.get(a);
+                System.out.println("Check"+cart);
                 for(int b=1;b<cartHi.getSize()+1;b++){
                     if(cartHi.get(b).getCartID().equals(o.getCartID())){
+                        //System.out.println("Checking: "+cartHi.get(b).getCartID()+"@"+o.getCartID()+"@"+o.getOrderID());
                         cart+=cartHi.get(b).getItemName()+" x "+cartHi.get(b).getQty()+"";
                         break;
                     }
                 }
                 model.addRow(new Object[]{o.getOrderID(),cart,o.getOrderDate(),o.getTotalAmount()});
+                cart="";
                 for(int c=1;c<cartHi.getSize()+1;c++){
                     if(cartHi.get(c).getCartID().equals(o.getCartID()))
                         if(checker)
