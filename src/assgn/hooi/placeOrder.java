@@ -257,7 +257,9 @@ public class placeOrder extends javax.swing.JFrame {
             displayMenu(0);
         }
         else if(sort.equals("Newest")){
-            
+            removeDisplay();
+            save.sortNewestMenu();
+            displayMenu(1);
         }
     }//GEN-LAST:event_sortByActionPerformed
 

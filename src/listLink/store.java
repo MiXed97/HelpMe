@@ -420,6 +420,40 @@ public class store {
     }
      
      public void sortNewestMenu(){
-         
+         ListLinkInt<MenuClass> temp = new ListLink<>();
+         ListLinkInt<MenuClass> menu = curMenu; 
+         int num  = getMenuNum(menu.get(1).getFoodid());
+         int remove=0;
+         while(menu.getSize()!=0){
+         for(int i = 1;i <=menu.getSize();i++){
+             if(num <= getMenuNum(menu.get(i).getFoodid())){
+                 num=getMenuNum(menu.get(i).getFoodid());
+                 remove =i;
+             }
+         }
+         temp.add(menu.get(remove));
+         menu.remove(remove);
+        
+         if(menu.getSize()!=0)
+             num = getMenuNum(menu.get(1).getFoodid());
+         else
+             curMenu = temp;
+         }
      }
+     
+     public int getMenuNum(String s){
+        int result = 0;
+        
+        char []c = s.toCharArray();
+        String num = "";
+        int index = c.length-1;
+        while(c[index] != 'F'){
+            
+            num+=c[index];
+            index--;
+        }
+        num = new StringBuilder(num).reverse().toString();
+        result = Integer.parseInt(num);
+        return result;
+    } 
 }

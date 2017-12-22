@@ -14,7 +14,8 @@ import java.sql.*;
 public class test {
     
     public static void main(String args[]) throws SQLException{
-        
+        String s = "A1F34";
+        System.out.println(getMenuNum(s));
     }
     
     public static ListLinkInt<String> sortPrice(ListLinkInt<String> s){
@@ -41,8 +42,26 @@ public class test {
         return temp;
     }
     
-    
+    public static void sortMenu(){
         
+    }
+    
+    
+    public static int getMenuNum(String s){
+        int result = 0;
+        
+        char []c = s.toCharArray();
+        String num = "";
+        int index = c.length-1;
+        while(c[index] != 'F'){
+            
+            num+=c[index];
+            index--;
+        }
+        num = new StringBuilder(num).reverse().toString();
+        result = Integer.parseInt(num);
+        return result;
+    }   
     
     
     
