@@ -162,7 +162,7 @@ public class OrderScreen extends javax.swing.JFrame {
         else{
             if(checkOrder()){
             JOptionPane.showMessageDialog(null, "Successfully added a menu to cart");
-            Order o = new Order(m);
+            Order o = new Order();
             order.add(o);
             }else{
                 JOptionPane.showMessageDialog(null, "Order was already in the cart","Error",JOptionPane.ERROR_MESSAGE);
@@ -248,7 +248,7 @@ public class OrderScreen extends javax.swing.JFrame {
     public boolean checkOrder(){
         
         for(int i =0;i<order.size();i++){
-            if(order.get(i).getMenuID().equals(_menuid.getText()))
+            if(order.get(i).getFoodid().equals(_menuid.getText()))
                 return false;
         }
         

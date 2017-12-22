@@ -1,9 +1,5 @@
 package assgn.JianKai;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;

@@ -362,6 +362,7 @@ public class store {
     public void resetUser(){
         curAff= null;
         curCus=null;
+        curMenu.clear();
         curDelMen=null;
         curHR=null;
         selectedRes=null; 
@@ -390,7 +391,6 @@ public class store {
         int check =0;
         String digit="";
         for(char x:c){
-            
             if(x == 'F')
                 check=1;
             else if(check==1)
@@ -402,4 +402,66 @@ public class store {
         
         return check;
     }
+    
+     public void sortPriceMenu(){
+        //add getPrice()
+        double small = Double.parseDouble(curMenu.get(1).getPrice());
+        int remove = 0;
+        ListLinkInt<MenuClass> temp = new ListLink<>();
+        ListLinkInt<MenuClass> menu = curMenu; 
+        while(menu.getSize()!=0){
+            
+            for(int i = 1;i <= menu.getSize();i++){
+                if(small >= Double.parseDouble(menu.get(i).getPrice())){
+                    small = Double.parseDouble(menu.get(i).getPrice());
+                    remove = i;
+                }
+            }
+            temp.add(menu.get(remove));
+            menu.remove(remove);
+            if(menu.getSize()!=0)
+                small = Double.parseDouble(menu.get(1).getPrice());
+            
+            else
+                curMenu = temp;
+        }
+    }
+     
+     public void sortNewestMenu(){
+         ListLinkInt<MenuClass> temp = new ListLink<>();
+         ListLinkInt<MenuClass> menu = curMenu; 
+         int num  = getMenuNum(menu.get(1).getFoodid());
+         int remove=0;
+         while(menu.getSize()!=0){
+         for(int i = 1;i <=menu.getSize();i++){
+             if(num <= getMenuNum(menu.get(i).getFoodid())){
+                 num=getMenuNum(menu.get(i).getFoodid());
+                 remove =i;
+             }
+         }
+         temp.add(menu.get(remove));
+         menu.remove(remove);
+        
+         if(menu.getSize()!=0)
+             num = getMenuNum(menu.get(1).getFoodid());
+         else
+             curMenu = temp;
+         }
+     }
+     
+     public int getMenuNum(String s){
+        int result = 0;
+        
+        char []c = s.toCharArray();
+        String num = "";
+        int index = c.length-1;
+        while(c[index] != 'F'){
+            
+            num+=c[index];
+            index--;
+        }
+        num = new StringBuilder(num).reverse().toString();
+        result = Integer.parseInt(num);
+        return result;
+    } 
 }

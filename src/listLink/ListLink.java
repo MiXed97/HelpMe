@@ -175,4 +175,18 @@ public class ListLink<T> implements ListLinkInt<T>{
             return false;
         }
     }
+
+    @Override
+    public void inBetween(int index, T newEntry) {
+        
+        node next = getNode(index);
+        node entry = new node(newEntry);
+        node pre = next.getPre();
+        pre.setNext(entry);
+        next.setPre(entry);
+        entry.setNext(next);
+        entry.setPre(pre);
+        
+        size++;
+    }
 }
