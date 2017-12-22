@@ -355,6 +355,7 @@ public class store {
     public void resetUser(){
         curAff= null;
         curCus=null;
+        curMenu.clear();
         curDelMen=null;
         curHR=null;
         selectedRes=null; 

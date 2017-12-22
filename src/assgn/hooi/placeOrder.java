@@ -52,7 +52,7 @@ public class placeOrder extends javax.swing.JFrame {
         String selectedAID = "";
         String temp = "";
         String res = save.getSelectedRes();
-        
+       
         //Get selectedAID to display correct restaurant menu
         for(int a = 1;a<restaurant.getSize()+1;a++){
             if(restaurant.get(a).getName().equals(res))
@@ -260,6 +260,11 @@ public class placeOrder extends javax.swing.JFrame {
             removeDisplay();
             save.sortNewestMenu();
             displayMenu(1);
+        }
+        else{
+            removeDisplay();
+            save.sortNewestMenu();
+            displayMenu(0);
         }
     }//GEN-LAST:event_sortByActionPerformed
 
