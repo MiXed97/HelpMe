@@ -5,6 +5,8 @@
  */
 package assgn.hooi;
 
+import assgn.Order;
+import javax.swing.JOptionPane;
 import listLink.store;
 
 /**
@@ -13,6 +15,7 @@ import listLink.store;
  */
 public class customerMenu extends javax.swing.JFrame {
     store save;
+    LinkQueueInt<Order1> order = new LinkQueue<>();
     /**
      * Creates new form customerMenu
      */
@@ -52,6 +55,11 @@ public class customerMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         oHisBtn.setText("Order History");
+        oHisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oHisBtnActionPerformed(evt);
+            }
+        });
 
         orderBtn.setText("Order Now");
         orderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +118,20 @@ public class customerMenu extends javax.swing.JFrame {
         this.setVisible(false);
         selectRestaurant sr = new selectRestaurant(save);
     }//GEN-LAST:event_orderBtnActionPerformed
+
+    private void oHisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oHisBtnActionPerformed
+        // order history
+        order = save.getOrder();
+        for(int a = 0;a<order.size();a++){
+            System.out.println("order email:"+order.get(a).getCusEmail()+"@currentEmail: "+save.getCurCus().getEmail()+" current Numb:"+a);
+            if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail())){
+                this.setVisible(false);
+                orderHistory oh = new orderHistory(save);
+            }
+            //order.dequeue();
+        }
+        //JOptionPane.showMessageDialog(this, "You didn't place any order yet");
+    }//GEN-LAST:event_oHisBtnActionPerformed
 
     /**
      * @param args the command line arguments

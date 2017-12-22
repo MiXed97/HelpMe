@@ -18,7 +18,7 @@ public class displayOrder extends javax.swing.JFrame {
     String cartID = "CID";
     ListLinkInt<Cart> cartHi = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
-    ListLinkInt<Order1> order = new ListLink<>();
+    LinkQueueInt<Order1> order = new LinkQueue<>();
     /**
      * Creates new form displayOrder
      */
@@ -37,6 +37,7 @@ public class displayOrder extends javax.swing.JFrame {
     private void setup(){
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setTitle("Order Placed");
         jTextArea1.setEditable(false);
         cartHi = save.getCartHi();
         order = save.getOrder();
@@ -48,10 +49,10 @@ public class displayOrder extends javax.swing.JFrame {
         Date date = new Date();
         //System.out.println(dateFormat.format(date));
         //make OrderID
-        if(order.getSize()==0)
+        if(order.size()==0)
             orderID += "01";
         else{
-            temp = order.get(order.getSize()).getOrderID();
+            temp = order.getLast().getOrderID();
             temp = temp.substring(3, temp.length());
             int a = Integer.parseInt(temp);
             if(a < 10)
@@ -66,7 +67,7 @@ public class displayOrder extends javax.swing.JFrame {
             total += cart.get(a).getTotal();
         }
         System.out.println(cart.getSize());
-        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed");
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail());
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";
@@ -75,7 +76,7 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
         System.out.println("HERE");
-        order.add(o);
+        order.enqueue(o);
         save.setOrder(order);
     }
     @SuppressWarnings("unchecked")
@@ -93,6 +94,11 @@ public class displayOrder extends javax.swing.JFrame {
         jLabel1.setText("Order placed successfully");
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -129,6 +135,11 @@ public class displayOrder extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        customerMenu cm = new customerMenu(save);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

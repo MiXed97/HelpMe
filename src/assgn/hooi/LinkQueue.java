@@ -68,18 +68,66 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
     }
     public static void main(String args[]){
         LinkQueue<String> l = new LinkQueue();
-        l.enqueue("First");
-        l.enqueue("Second");
+        l.enqueue("1");
+        l.enqueue("2");
         l.enqueue("3");
         l.enqueue("4");
         l.enqueue("5");
         l.enqueue("6");
         l.enqueue("7");
         l.enqueue("8");
-        System.out.println(l.getFront());
-        l.enqueue("First2");
+        l.enqueue("9");
+        l.remove(4);
+        System.out.println("Size"+l.size());
+        System.out.println("Last "+l.getLast());
+        System.out.println("Getting :"+l.get(3));
         while(l.size()!=0){
             System.out.println(l.dequeue());
         }
+        
+        
     }
+
+    @Override
+    public T remove(int position) {
+        T result = (T)firstNode.data;
+        node currentNode = firstNode;
+        if(position == 0){
+            firstNode = firstNode.next;
+        }else{
+            for(int a = 0; a<position-1;a++){
+                currentNode = currentNode.next;
+            }
+        }
+        result = (T)currentNode.next.data;
+        currentNode.next = currentNode.next.next;
+        entry--;
+        return result;
+    }
+
+    @Override
+    public T getLast() {
+        T result = null;
+        node currentNode = firstNode;
+        for(int a = 0; a<size()-1;a++){
+            currentNode = currentNode.next;
+        }
+        result = (T)currentNode.data;
+        return result;
+    }
+
+    @Override
+    public T get(int position) {
+        T result = null;
+        node currentNode = firstNode;
+        
+        
+        for(int a = 0; a< position;a++){
+            currentNode = currentNode.next;
+        }
+        result = (T)currentNode.data;
+        return result;
+    }
+    
+    
 }

@@ -5,9 +5,9 @@ import assgn.Delivery;
 import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
-import assgn.Menu;
-import assgn.Order;
 import assgn.hooi.Cart;
+import assgn.hooi.LinkQueue;
+import assgn.hooi.LinkQueueInt;
 import assgn.hooi.Order1;
 import assgn.humanResource;
 
@@ -22,7 +22,7 @@ public class store {
     ListLinkInt<humanResource> hr = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
-    ListLinkInt<Order1> order = new ListLink<>();
+    LinkQueueInt<Order1> order = new LinkQueue<>();
     
     
     // keep track user
@@ -139,13 +139,20 @@ public class store {
         Cart abc = new Cart("CID01","F01","food 1",2,2.5,5.0);
         Cart abc1 = new Cart("CID01","F01","food 1",2,2.5,5.0);
         Cart abc2 = new Cart("CID01","F01","food 1",2,2.5,5.0);
-        Cart abc3 = new Cart("CID01","F01","food 1",2,2.5,5.0);
+        Cart abc3 = new Cart("CID02","F01","food 1",2,2.5,5.0);
+        Cart abc4 = new Cart("CID02","F01","food 2",2,2.5,5.0);
+        Cart abc5 = new Cart("CID02","F01","food 3",2,2.5,5.0);
+                
         cartHi.add(abc);
         cartHi.add(abc1);
         cartHi.add(abc2);
         cartHi.add(abc3);
-        Order1 o1 = new Order1("OID01","CID01","today",2.50,"Placed");
-        order.add(o1);
+        cartHi.add(abc4);
+        cartHi.add(abc5);
+        Order1 o1 = new Order1("OID01","CID01","today",2.50,"Delivered","llol@hotmail.com");
+        Order1 o2 = new Order1("OID02","CID02","today",25.50,"Delivered","lol@hotmail.com");
+        order.enqueue(o1);
+        order.enqueue(o2);
     }
     
     public void addDeliMen(){
@@ -346,10 +353,10 @@ public class store {
     public ListLinkInt<Cart> getCart(){
         return cart;
     }
-    public void setOrder(ListLinkInt<Order1> order){
+    public void setOrder(LinkQueueInt<Order1> order){
         this.order = order;
     }
-    public ListLinkInt<Order1> getOrder(){
+    public LinkQueueInt<Order1> getOrder(){
         return order;
     }
     public void resetUser(){

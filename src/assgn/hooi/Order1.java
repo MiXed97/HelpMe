@@ -8,17 +8,19 @@ package assgn.hooi;
 public class Order1 {
     private String orderID;
     private String cartID;
+    private String cusEmail;
     private String orderDate;
     private String orderStatus;
     private double totalAmount;
     public Order1(){}
     
-    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus){
+    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus,String cusEmail){
         this.orderID = orderID;
         this.cartID = cartID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.totalAmount = totalAmount;
+        this.cusEmail = cusEmail;
     }
     
     public void setOrderID(String orderID){
@@ -51,5 +53,12 @@ public class Order1 {
     public double getTotalAmount(){
         return totalAmount;
     }
+    public void setCusEmail(String cusEmail) {
+        this.cusEmail = cusEmail;
+    }
+    public String getCusEmail() {
+        return cusEmail;
+    }
+    
     
 }

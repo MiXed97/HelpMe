@@ -2,8 +2,6 @@
 package assgn.hooi;
 import assgn.JianKai.MenuClass;
 import assgn.JianKai.aff;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import listLink.ListLinkInt;
@@ -23,7 +21,7 @@ public class placeOrder extends javax.swing.JFrame {
     String cartID = "CID";
     ListLinkInt<MenuClass> menu = new ListLink();
     ListLinkInt<Cart> cartList = new ListLink();
-    JButton[] addCart;
+//    JButton[] addCart;
     validateInt val = new validate();
     ListLinkInt<aff> restaurant = new ListLink();
     ListLinkInt<Cart> cartHi = new ListLink<>();
@@ -188,18 +186,32 @@ public class placeOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCartBtnActionPerformed
+        boolean checker = true;
         for(int a = 0;a<menuTable.getRowCount();a++){
             if(val.isEmpty(jTextField1.getText())){ 
                 JOptionPane.showMessageDialog(this, "Please enter Food ID");
                 break;
             }
             else if(menuTable.getModel().getValueAt(a, 0).equals(jTextField1.getText().toUpperCase())){
-                cart = new Cart(cartID,menuTable.getModel().getValueAt(a, 0).toString(),menuTable.getModel().getValueAt(a,1).toString(),(Integer)jSpinner1.getValue(),Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()),(Integer)jSpinner1.getValue()*Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()));
-                cartList.add(cart);
-                JOptionPane.showMessageDialog(this, "Added successfully");
-                break;
+                for(int b = 1; b<cartList.getSize()+1;b++){
+                    if(cartList.get(b).getItem().equals(jTextField1.getText().toUpperCase())){
+                        cartList.get(b).setQty((Integer)jSpinner1.getValue()+cartList.get(b).getQty());
+                        cartList.get(b).setTotal((Integer)jSpinner1.getValue()*Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString())+cartList.get(b).getTotal());
+                        JOptionPane.showMessageDialog(this, "Update successfully");
+                        checker = false;
+                        break;
+                    }
+                }
+                if(checker){
+                    cart = new Cart(cartID,menuTable.getModel().getValueAt(a, 0).toString(),menuTable.getModel().getValueAt(a,1).toString(),(Integer)jSpinner1.getValue(),Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()),(Integer)jSpinner1.getValue()*Double.parseDouble(menuTable.getModel().getValueAt(a, 3).toString()));
+                    cartList.add(cart);
+                    save.setCart(cartList);
+                    JOptionPane.showMessageDialog(this, "Added successfully");
+                    break;
+                }
             }else if(a==menuTable.getRowCount()-1)
-                JOptionPane.showMessageDialog(this, "Incorrect Food ID");
+                if(checker)
+                    JOptionPane.showMessageDialog(this, "Incorrect Food ID");
         }
         
             
@@ -207,7 +219,8 @@ public class placeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_addCartBtnActionPerformed
 
     private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
-        JOptionPane.showMessageDialog(this, save.getSelectedRes());
+        this.setVisible(false);
+        confirmOrder co = new confirmOrder(save);
     }//GEN-LAST:event_orderBtnActionPerformed
 
     private void checkCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCartActionPerformed

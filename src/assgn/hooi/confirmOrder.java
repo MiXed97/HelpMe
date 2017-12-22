@@ -144,6 +144,8 @@ public class confirmOrder extends javax.swing.JFrame {
             cardPayment cp = new cardPayment(save);
         }else{
             //go to final page
+            this.setVisible(false);
+            displayOrder dO = new displayOrder(save); 
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
 
