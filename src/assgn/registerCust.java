@@ -5,6 +5,7 @@
  */
 package assgn;
 
+import javax.swing.JOptionPane;
 import listLink.store;
 
 /**
@@ -21,8 +22,12 @@ public class registerCust extends javax.swing.JFrame {
     public registerCust() {
         initComponents();
     }
+    
     public registerCust(store save){
         this.save = save;
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Register Customer");
         initComponents();
     }
 
@@ -87,6 +92,11 @@ public class registerCust extends javax.swing.JFrame {
         clear.setText("Clear");
 
         register.setText("Register");
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,6 +179,25 @@ public class registerCust extends javax.swing.JFrame {
         this.setVisible(false);
         Login a = new Login(save);
     }//GEN-LAST:event_backActionPerformed
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        // TODO add your handling code here:
+        if(save.checkEmailCA(email.getText())){
+        Customer c = new Customer(name.getText(), address.getText(), contactNo.getText(), email.getText(), pass.getText(), pass1.getText());
+        if(!c.check().equals("")){
+            JOptionPane.showMessageDialog(null, c.check(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            save.getCustomer().add(c);
+            JOptionPane.showMessageDialog(null, "Successfully Register");
+            System.out.println(save.getCustomer().getSize());
+            this.setVisible(false);
+            Login l = new Login(save);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Email already in used", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_registerActionPerformed
 
     /**
      * @param args the command line arguments

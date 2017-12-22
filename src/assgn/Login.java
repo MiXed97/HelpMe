@@ -189,7 +189,8 @@ public class Login extends javax.swing.JFrame {
 
     private void registerCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCusActionPerformed
         // TODO add your handling code here:
-        
+        this.setVisible(false);
+        registerCust c = new registerCust(save);
         
     }//GEN-LAST:event_registerCusActionPerformed
 
