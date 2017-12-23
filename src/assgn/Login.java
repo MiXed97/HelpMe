@@ -9,8 +9,6 @@ import assgn.JianKai.AllAffiliatePage;
 import assgn.JianKai.RegisterAffiliate;
 import assgn.hooi.customerMenu;
 import javax.swing.JOptionPane;
-import listLink.ListLink;
-import listLink.ListLinkInt;
 import listLink.store;
 
 /**

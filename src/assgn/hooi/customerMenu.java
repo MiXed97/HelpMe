@@ -51,6 +51,7 @@ public class customerMenu extends javax.swing.JFrame {
         orderBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cancelOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,25 +74,33 @@ public class customerMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Customer Homepage");
 
+        cancelOrder.setText("Cancel Order");
+        cancelOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(oHisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(orderBtn)
-                .addGap(60, 60, 60))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(oHisBtn)
+                        .addGap(27, 27, 27)
+                        .addComponent(cancelOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(orderBtn)
+                        .addGap(46, 46, 46))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(welcomeLbl)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(logoutBtn)
                         .addGap(25, 25, 25))))
         );
@@ -107,7 +116,8 @@ public class customerMenu extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oHisBtn)
-                    .addComponent(orderBtn))
+                    .addComponent(orderBtn)
+                    .addComponent(cancelOrder))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
 
@@ -135,6 +145,12 @@ public class customerMenu extends javax.swing.JFrame {
         if(checker)
             JOptionPane.showMessageDialog(this, "You didn't place any order yet");
     }//GEN-LAST:event_oHisBtnActionPerformed
+
+    private void cancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderActionPerformed
+        // cancel Order
+        this.setVisible(false);
+        cancelOrder co = new cancelOrder(save);
+    }//GEN-LAST:event_cancelOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +188,7 @@ public class customerMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelOrder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton oHisBtn;

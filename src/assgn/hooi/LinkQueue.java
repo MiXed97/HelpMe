@@ -1,5 +1,13 @@
 
 package assgn.hooi;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aphro97
@@ -7,12 +15,12 @@ package assgn.hooi;
 public class LinkQueue<T> implements LinkQueueInt<T>{
     
     private node firstNode;
-    private node lastNode;
+    //private node lastNode;
     private int entry;
     
     public LinkQueue(){
         firstNode = null;
-        lastNode = null;
+        //lastNode = null;
         entry = 0;
     }
     @Override
@@ -20,10 +28,15 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         node newNode = new node(newData);
         if(isEmpty()){
             firstNode = newNode;
-            lastNode = newNode;
+            //lastNode = newNode;
         }else{
-            lastNode.next = newNode;
-            lastNode = newNode;
+            node currentNode = firstNode;
+//            lastNode.next = newNode;
+//            lastNode = newNode;
+            while(currentNode.next!=null){
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
         }
         entry++;
         return true;
@@ -48,7 +61,7 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
     @Override
     public boolean clear() {
         firstNode = null;
-        lastNode = null;
+        //lastNode = null;
         entry = 0;
         return true;
     }
@@ -66,24 +79,21 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         }
         return result;
     }
-    public static void main(String args[]){
-        LinkQueue<String> l = new LinkQueue();
-        l.enqueue("1");
-        l.enqueue("2");
-        l.enqueue("3");
-        l.enqueue("4");
-        l.enqueue("5");
-        l.enqueue("6");
-        l.enqueue("7");
-        l.enqueue("8");
-        l.enqueue("9");
-        l.remove(4);
-        System.out.println("Size"+l.size());
-        System.out.println("Last "+l.getLast());
-        System.out.println("Getting :"+l.get(3));
-        while(l.size()!=0){
-            System.out.println(l.dequeue());
-        }
+    public static void main(String args[]) throws ParseException{
+//        LinkQueue<Order1> l = new LinkQueue();
+//        Order1 o;
+//        o = new Order1("oid01","cid01","2017/12/22 00:00:00",2.5,"Placed","1@g.com");
+//        l.sortedEnqueue(o);
+//        o = new Order1("oid02","cid01","2017/12/21 00:00:00",2.5,"Placed","1@g.com");
+//        l.sortedEnqueue(o);
+//        o = new Order1("oid03","cid01","2017/12/23 00:00:00",2.5,"Placed","1@g.com");
+//        l.sortedEnqueue(o);
+//        o = l.get(0);
+//        System.out.println("First: "+o.getOrderID());
+//        o = l.get(1);
+//        System.out.println("Second: "+o.getOrderID());
+//        o = l.get(2);
+//        System.out.println("Third: "+o.getOrderID());
         
         
     }
@@ -127,6 +137,61 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         }
         result = (T)currentNode.data;
         return result;
+    }
+
+    @Override
+    public boolean sortedEnqueue(Order1 newData) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date entryDate = dateFormat.parse(newData.getOrderDate());
+            Date tempDate;
+            node currentNode = firstNode;
+            node newNode = new node(newData);
+            Order1 order;
+            boolean checker = false;
+            //for(int a=0;a<entry;a++){
+            if(isEmpty()){
+                firstNode = newNode;
+                entry++;
+            }
+            else{
+                for(int a=0;a<entry;a++){
+                    order = (Order1)currentNode.data;
+                    tempDate = dateFormat.parse(order.getOrderDate());
+                    if(entryDate.before(tempDate)){
+                        if(a==0){
+                            newNode.next = currentNode;
+                            firstNode = newNode;
+                            entry++;
+                            checker = true;
+                            break;
+                        }else{
+                            node preNode = firstNode;
+                            for(int b=0;b<a-1;b++){
+                                preNode = preNode.next;
+                            }
+                            newNode.next = currentNode;
+                            preNode.next = newNode;
+                            entry++;
+                            checker = true;
+                            break;
+                        }                        
+                    }else{
+                        if(!checker && a==(entry-1)){
+                            currentNode.next = newNode;
+                            entry++;
+                            break;
+                        }
+                        currentNode = currentNode.next;
+                        
+                    }
+                }
+            }
+            
+        } catch (ParseException ex) {
+            
+        }
+        return true;
     }
     
     

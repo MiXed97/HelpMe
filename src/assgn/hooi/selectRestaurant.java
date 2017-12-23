@@ -31,7 +31,7 @@ public class selectRestaurant extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         restaurant = save.getAff();
         for(int a = 1;a<restaurant.getSize()+1;a++){
-            jComboBox1.addItem(restaurant.get(a).getName());
+            jComboBox1.addItem(restaurant.get(a).getResname());
         }
     }
         

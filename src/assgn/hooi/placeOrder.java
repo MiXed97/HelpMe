@@ -53,7 +53,7 @@ public class placeOrder extends javax.swing.JFrame {
        
         //Get selectedAID to display correct restaurant menu
         for(int a = 1;a<restaurant.getSize()+1;a++){
-            if(restaurant.get(a).getName().equals(res))
+            if(restaurant.get(a).getResname().equals(res))
                 selectedAID = restaurant.get(a).getAid();
         }
         //display menu
@@ -242,8 +242,12 @@ public class placeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_addCartBtnActionPerformed
 
     private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
-        this.setVisible(false);
-        confirmOrder co = new confirmOrder(save);
+        if(cartList.isEmpty())
+            JOptionPane.showMessageDialog(rootPane, "Your cart is empty");
+        else{
+            this.setVisible(false);
+            confirmOrder co = new confirmOrder(save);
+        }
     }//GEN-LAST:event_orderBtnActionPerformed
 
     private void checkCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCartActionPerformed

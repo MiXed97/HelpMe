@@ -66,7 +66,7 @@ public class displayOrder extends javax.swing.JFrame {
             cartHi.add(cart.get(a));
             total += cart.get(a).getTotal();
         }
-        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Delivered",save.getCurCus().getEmail());
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail());
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";
@@ -74,8 +74,10 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder date: "+dateFormat.format(date);
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
-        order.enqueue(o);
+        //order.enqueue(o);
+        order.sortedEnqueue(o);
         save.setOrder(order);
+        cart.clear();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

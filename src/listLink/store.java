@@ -149,8 +149,8 @@ public class store {
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        Order1 o1 = new Order1("OID01","CID01","today",2.50,"Delivered","llol@hotmail.com");
-        Order1 o2 = new Order1("OID02","CID02","today",25.50,"Delivered","lol@hotmail.com");
+        Order1 o1 = new Order1("OID01","CID01","2017/12/25 00:00:00",2.50,"Delivered","llol@hotmail.com");
+        Order1 o2 = new Order1("OID02","CID02","2017/12/25 00:00:00",25.50,"Delivered","lol@hotmail.com");
         order.enqueue(o1);
         order.enqueue(o2);
     }

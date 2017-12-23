@@ -27,6 +27,7 @@ public class confirmOrder extends javax.swing.JFrame {
         setup();
     }
     private void setup(){
+        cash.setSelected(true);
         double total=0.0;
         String summary="";
         this.setVisible(true);
@@ -71,6 +72,11 @@ public class confirmOrder extends javax.swing.JFrame {
         });
 
         cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(cash);
         cash.setText("Cash On Delivery");
@@ -148,6 +154,14 @@ public class confirmOrder extends javax.swing.JFrame {
             displayOrder dO = new displayOrder(save); 
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // cancel order
+        cart.clear();
+        save.setCart(cart);
+        this.setVisible(false);
+        selectRestaurant sr = new selectRestaurant(save);
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
      * @param args the command line arguments

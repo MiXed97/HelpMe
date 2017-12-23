@@ -1,5 +1,8 @@
 
 package assgn.hooi;
+
+import java.util.Date;
+
 /**
  *
  * @author Aphro97
@@ -14,5 +17,5 @@ public interface LinkQueueInt<T> {
     public int size();
     public T getLast();
     public T getFront();
-    
+    public boolean sortedEnqueue(Order1 newData);
 }

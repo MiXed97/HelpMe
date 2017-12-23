@@ -1,10 +1,12 @@
 
 package assgn.hooi;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import listLink.ListLink;
 import listLink.ListLinkInt;
 import listLink.store;
+import validate.validate;
 
 /**
  *
@@ -12,10 +14,13 @@ import listLink.store;
  */
 public class orderHistory extends javax.swing.JFrame {
     store save;
+    validate val = new validate();
     DefaultTableModel model;
     LinkQueueInt<Order1> order = new LinkQueue<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
+    ListLinkInt<Cart> cart = new ListLink<>();
     Order1 o;
+    Cart ca;
     
     public orderHistory() {
         initComponents();
@@ -93,7 +98,7 @@ public class orderHistory extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        orderIDTxt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         closeBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -113,6 +118,11 @@ public class orderHistory extends javax.swing.JFrame {
         jScrollPane1.setViewportView(orderTable);
 
         jButton1.setText("Reorder");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         closeBtn.setText("Close");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +150,7 @@ public class orderHistory extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,7 +166,7 @@ public class orderHistory extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(closeBtn)
                     .addComponent(jLabel2))
@@ -170,6 +180,50 @@ public class orderHistory extends javax.swing.JFrame {
         this.setVisible(false);
         customerMenu cm = new customerMenu(save);
     }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // customer reorder here
+        order = save.getOrder();
+        String cartID = "CID";
+        String temp = "";
+        temp = cartHi.get(cartHi.getSize()).getCartID();
+        temp = temp.substring(3, temp.length());
+        int n = Integer.parseInt(temp);
+        boolean checker = false;
+        if(n < 10)
+            cartID+="0"+(n+1);
+        else
+            cartID+=(n+1);
+        System.out.println(cartID);
+        if(val.isEmpty(orderIDTxt.getText()))
+            JOptionPane.showMessageDialog(this, "Please enter cart ID");
+        else{
+            for(int a = 0; a<orderTable.getRowCount();a++){
+                if(orderIDTxt.getText().toUpperCase().equals(orderTable.getModel().getValueAt(a, 0).toString())){
+                    for(int b=0;b<order.size();b++){
+                        if(order.get(b).getOrderID().equals(orderIDTxt.getText().toUpperCase())){    
+                            System.out.println("Order ID same");
+                            for(int c=1;c<cartHi.getSize()+1;c++){
+                                if(cartHi.get(c).getCartID().equals(order.get(b).getCartID())){
+                                    ca = new Cart(cartID,cartHi.get(c).getItem(),cartHi.get(c).getItemName(),cartHi.get(c).getQty(),cartHi.get(c).getPrice(),cartHi.get(c).getTotal());
+                                    cart.add(ca);
+                                    System.out.println(cartHi.get(c).getItemName());
+                                }
+                            }
+                            save.setCart(cart);
+                            checker = true;
+                            this.setVisible(false);
+                            confirmOrder co = new confirmOrder(save);
+                            break;
+
+                        }
+                    }
+                }else if(a == orderTable.getRowCount()-1 && checker==false)
+                    JOptionPane.showMessageDialog(this, "Incorrect Order ID");
+                
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,7 +266,7 @@ public class orderHistory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField orderIDTxt;
     private javax.swing.JTable orderTable;
     // End of variables declaration//GEN-END:variables
 }
