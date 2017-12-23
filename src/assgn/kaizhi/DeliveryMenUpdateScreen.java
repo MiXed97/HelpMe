@@ -5,9 +5,8 @@
  */
 package assgn.kaizhi;
 
-import assgn.ArrList;
-import assgn.ArrayListInterface;
 import assgn.Customer;
+import assgn.DMHome;
 import assgn.Delivery;
 import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
@@ -16,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import listLink.store;
 
 /**
  *
@@ -26,82 +26,34 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryMenUpdateScreen
      */
-    ArrayListInterface<Customer> customer = new ArrList<>();
-    ArrayListInterface<MenuClass> menu = new ArrList<>();
-    ArrayListInterface<Order> order = new ArrList<>();
-    ArrayListInterface<Order> order1 = new ArrList<>();
-    ArrayListInterface<assgn.Delivery> delivery = new ArrList<>();
-    assgn.DeliveryInterface deli = new assgn.Delivery();    
+    Delivery deli = new assgn.Delivery();
     DefaultTableModel model;
     DeliveryMen staff;
-    ClockInClockOut cico;
-    
+    store save;
+
     public DeliveryMenUpdateScreen() {
         initComponents();
-        
-        
+
     }
-    
-    public DeliveryMenUpdateScreen(DeliveryMen thatguy, ClockInClockOut cico) {
+
+    public DeliveryMenUpdateScreen(store save) {
+        this.setLocationRelativeTo(null);
+        this.setTitle("Update Status");
         initComponents();
+        this.save = save;
         model = (DefaultTableModel) jTable1.getModel();
-        this.staff = thatguy;
-        this.cico = cico;
-        
-        
-        
-        
-        
-        Customer c = new Customer("Name", "HOO LAND", "012378999","email","hello");
-        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999","email1","hello1");
-        
-        customer.add(c);
-        customer.add(c1);
-        
-        MenuClass mc1 = new MenuClass("A1F1","Burger ","asd","11","Available","A1");
-        MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
-        MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
-        
-        menu.add(mc1);
-        menu.add(mc2);
-        menu.add(mc3);
-        
-        Order o = new Order(mc1);
-        Order o1 = new Order(mc2);
-        
-        order.add(o);
-        order.add(o1);
-        
-        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, staff );
-        
-        delivery.add(d);
-        //1 delivery
-        
-        
-        Order o2 = new Order(mc3);
-        Order o3 = new Order(mc1);
-        
-        order1.add(o3);
-        order1.add(o2);
-        
-        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, staff);
-        
-        delivery.add(de1);
-        
-         
-        
-        
+        this.staff = save.getCurDelMen();
+
         //table content
-         Object row[] = new Object[4];
-        for(int i = 0; i < delivery.size();i++)
-        {
-            row[0] = delivery.get(i).getDeliveryID();
-            row[1] = delivery.get(i).getCustomer().getName();
-            row[2] = delivery.get(i).getCustomer().getAddress();
-            row[3] = delivery.get(i).getStatus();
+        Object row[] = new Object[4];
+        for (int i = 0; i < save.getDel().getSize(); i++) {
+            row[0] = save.getDel().get(i).getDeliveryID();
+            row[1] = save.getDel().get(i).getCustomer().getName();
+            row[2] = save.getDel().get(i).getCustomer().getAddress();
+            row[3] = save.getDel().get(i).getStatus();
             model.addRow(row);
         }
-        
+
     }
 
     /**
@@ -232,35 +184,33 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     private void jbtSearchAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSearchAddressActionPerformed
         // TODO add your handling code here:
 
-        if(deli.checkDeliveryID(delivery,jtfDeliveryID.getText())){
-            
-            delivery.get(deli.getIndex()).setStatus(jStatusBox.getSelectedItem().toString());
-            
-            while(model.getRowCount()!= 0){
+        if (deli.checkDeliveryID(save.getDel(), jtfDeliveryID.getText())) {
+
+            save.getDel().get(deli.getIndex()).setStatus(jStatusBox.getSelectedItem().toString());
+
+            while (model.getRowCount() != 0) {
                 model.removeRow(0);
             }
-            
-        Object row[] = new Object[4];
-             for(int i = 0; i < delivery.size();i++)
-        {
-            row[0] = delivery.get(i).getDeliveryID();
-            row[1] = delivery.get(i).getCustomer().getName();
-            row[2] = delivery.get(i).getCustomer().getAddress();
-            row[3] = delivery.get(i).getStatus();
-            model.addRow(row);
-        }
-            
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE );
+
+            Object row[] = new Object[4];
+            for (int i = 0; i < save.getDel().getSize(); i++) {
+                row[0] = save.getDel().get(i).getDeliveryID();
+                row[1] = save.getDel().get(i).getCustomer().getName();
+                row[2] = save.getDel().get(i).getCustomer().getAddress();
+                row[3] = save.getDel().get(i).getStatus();
+                model.addRow(row);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbtSearchAddressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(staff, cico);
+
+        DMHome next = new DMHome(save);
+        next.setVisible(false);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Confirm to go to main menu?");
         panel.add(label);

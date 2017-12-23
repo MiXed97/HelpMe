@@ -6,12 +6,13 @@
 package assgn;
 
 import javax.swing.table.DefaultTableModel;
+import listLink.ListLinkInt;
 
 /**
  *
  * @author Mixed_97
  */
-public class Delivery implements DeliveryInterface{
+public class Delivery{
 
     //get info from customer
     String deliveryID;
@@ -71,7 +72,7 @@ public class Delivery implements DeliveryInterface{
         this.deliveryMen = deliveryMen;
     }
     
-    @Override
+     
     public void displayTable(DefaultTableModel model, ArrayListInterface<Delivery> delivery){
         
         Object row[] = new Object[7];
@@ -88,11 +89,11 @@ public class Delivery implements DeliveryInterface{
         }
     }
 
-    @Override
-    public boolean checkDeliveryID(ArrayListInterface<Delivery> delivery,String deliveryID) {
+     
+    public boolean checkDeliveryID(ListLinkInt<Delivery> delivery,String deliveryID) {
             
 
-        for(int i = 0; i < delivery.size();i++)
+        for(int i = 0; i < delivery.getSize();i++)
             if(delivery.get(i).getDeliveryID().equals(deliveryID)){
                 index =i;
                 return true;
@@ -100,13 +101,13 @@ public class Delivery implements DeliveryInterface{
         return false;
     }
 
-    @Override
+     
     public void removeDisplay(DefaultTableModel model) {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
     }
 
-    @Override
+     
     public int getIndex() {
         return index;
     }

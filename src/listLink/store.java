@@ -8,8 +8,11 @@ import assgn.JianKai.aff;
 import assgn.hooi.Cart;
 import assgn.hooi.LinkQueue;
 import assgn.hooi.LinkQueueInt;
+import assgn.hooi.LinkStack;
+import assgn.hooi.LinkStackInt;
 import assgn.hooi.Order1;
 import assgn.humanResource;
+import assgn.kaizhi.ClockInClockOut;
 
 public class store {
     
@@ -23,6 +26,7 @@ public class store {
     ListLinkInt<Cart> cart = new ListLink<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
     LinkQueueInt<Order1> order = new LinkQueue<>();
+    LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
     
     
     // keep track user
@@ -359,6 +363,15 @@ public class store {
     public LinkQueueInt<Order1> getOrder(){
         return order;
     }
+
+    public LinkStackInt<ClockInClockOut> getCico() {
+        return cico;
+    }
+
+    public void setCico(LinkStackInt<ClockInClockOut> cico) {
+        this.cico = cico;
+    }
+
     public void resetUser(){
         curAff= null;
         curCus=null;

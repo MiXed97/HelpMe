@@ -5,20 +5,16 @@
  */
 package assgn.kaizhi;
 
-import assgn.ArrList;
-import assgn.ArrayListInterface;
-import assgn.Customer;
+import assgn.DMHome;
 import assgn.DeliveryMen;
 import assgn.Delivery;
-import assgn.JianKai.MenuClass;
-import assgn.Order;
 import assgn.Turn;
 import assgn.TurnInterface;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import listLink.ListLink;
+import listLink.ListLinkInt;
+import listLink.store;
 
 /**
  *
@@ -29,66 +25,30 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryMenScreen
      */
-    ArrayListInterface<Customer> customer = new ArrList<>();
-    ArrayListInterface<MenuClass> menu = new ArrList<>();
-    ArrayListInterface<Order> order = new ArrList<>();
-    ArrayListInterface<Order> order1 = new ArrList<>();
-    ArrayListInterface<assgn.Delivery> delivery = new ArrList<>();
-    assgn.DeliveryInterface deli = new assgn.Delivery();
+    ListLinkInt<Delivery> delivery = new ListLink<>();
+    Delivery deli = new assgn.Delivery();
     DefaultTableModel model;
     DeliveryMen staff;
     ClockInClockOut cico;
+    store save;
 
     public DeliveryMenCheckAddress() {
         initComponents();
     }
 
-    public DeliveryMenCheckAddress(DeliveryMen thatguy, ClockInClockOut cico) {
-
+    public DeliveryMenCheckAddress(store save) {
+        this.setLocationRelativeTo(null);
+        this.setTitle("Check Address");
+        this.save = save;
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
-        this.staff = thatguy;
+        this.staff = save.getCurDelMen();
         this.cico = cico;
-        jlblThatguy.setText("Name : " + thatguy.getName());
-
-        Customer c = new Customer("Name", "HOO LAND", "012378999", "email", "hello");
-        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999", "email1", "hello1");
-
-        customer.add(c);
-        customer.add(c1);
-
-         MenuClass mc1 = new MenuClass("A1F1","Burger ","asd","11","Available","A1");
-        MenuClass mc2 = new MenuClass("A1F2","Caser Salad","assd","8","Available","A1");
-        MenuClass mc3 = new MenuClass("A1F3","Goreng Mee","axsd","9","Available","A1");
-        
-        menu.add(mc1);
-        menu.add(mc2);
-        menu.add(mc3);
-        
-        Order o = new Order(mc1);
-        Order o1 = new Order(mc2);
-
-        order.add(o);
-        order.add(o1);
-
-        Delivery d = new assgn.Delivery("1", c, "Not deliver", order, this.staff);
-
-        delivery.add(d);
-        //1 delivery
-
-        Order o2 = new Order(mc2);
-        Order o3 = new Order(mc3);
-
-        order1.add(o3);
-        order1.add(o2);
-
-        Delivery de1 = new assgn.Delivery("2", c1, "Not deliver", order1, this.staff);
-
-        delivery.add(de1);
+        jlblThatguy.setText("Name : " + staff.getName());
 
         Object row[] = new Object[3];
-        for (int i = 0; i < delivery.size(); i++) {
-            if (thatguy == delivery.get(i).getDeliveryMen()) {
+        for (int i = 0; i < delivery.getSize(); i++) {
+            if (staff == delivery.get(i).getDeliveryMen()) {
                 row[0] = delivery.get(i).getDeliveryID();
                 row[1] = delivery.get(i).getCustomer().getName();
                 row[2] = delivery.get(i).getCustomer().getAddress();
@@ -238,7 +198,8 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
 
-        DeliveryMenMenuScreen next = new DeliveryMenMenuScreen(staff, cico);
+        DMHome next = new DMHome(save);
+        next.setVisible(false);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Confirm to go to main menu?");
         panel.add(label);
@@ -246,7 +207,7 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         int option = JOptionPane.showOptionDialog(null, panel, "The title",
                 JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[1]);
-        if (option == 0) {
+        if (option == JOptionPane.OK_OPTION) {
             this.setVisible(false);
             next.setVisible(true);
         }
