@@ -154,11 +154,11 @@ public class Cart extends javax.swing.JFrame {
                         .addComponent(ChangeQuan)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confrimOrder)
                     .addComponent(CancelOrder))
-                .addGap(46, 46, 46))
+                .addGap(31, 31, 31))
         );
 
         pack();
