@@ -6,6 +6,8 @@
 package assgn;
 
 import javax.swing.table.DefaultTableModel;
+import listLink.ListLink;
+import listLink.ListLinkInt;
 import listLink.store;
 
 /**
@@ -18,12 +20,12 @@ public class displayStaff extends javax.swing.JFrame {
      * Creates new form displayStaff
      */
     store save;
-    
+
     public displayStaff() {
         initComponents();
-        
+
     }
-    
+
     public displayStaff(store save) {
         this.save = save;
         this.setVisible(true);
@@ -32,7 +34,6 @@ public class displayStaff extends javax.swing.JFrame {
         initComponents();
         display();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +48,8 @@ public class displayStaff extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        sort = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,18 +73,32 @@ public class displayStaff extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel2.setText("Sort By :");
+
+        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Ascending Name", "Descending Name", "Working status", "Descending Staff ID" }));
+        sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(23, 23, 23)
-                        .addComponent(back))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(23, 23, 23)
+                            .addComponent(back))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,9 +108,13 @@ public class displayStaff extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(back))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -104,6 +125,36 @@ public class displayStaff extends javax.swing.JFrame {
         this.setVisible(false);
         HrHome a = new HrHome(save);
     }//GEN-LAST:event_backActionPerformed
+
+    private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
+        // TODO add your handling code here:
+        if(sort.getSelectedIndex()==0){
+            removeDisplay();
+            save.sortStaffIDDesc();
+            reverseDisplay();
+        }
+        else if (sort.getSelectedIndex()==1){
+            removeDisplay();
+            save.sortStaffNameAsc();
+            display();
+        }
+        else if (sort.getSelectedIndex() == 2){
+            removeDisplay();
+            save.sortStaffNameAsc();
+            reverseDisplay();
+        }
+        else if(sort.getSelectedIndex()==3){
+            removeDisplay();
+            
+            display();
+        }
+        else if(sort.getSelectedIndex()==4){
+            removeDisplay();
+            save.sortStaffIDDesc();
+            display();
+        }
+        
+    }//GEN-LAST:event_sortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,24 +190,45 @@ public class displayStaff extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void display(){
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        
-        Object [] row = new Object[3];
-        for(int i =1; i <= save.getDelMen().getSize();i++){
+
+    public void display() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        Object[] row = new Object[3];
+        for (int i = 1; i <= save.getDelMen().getSize(); i++) {
             row[0] = save.getDelMen().get(i).getStaffID();
-            row[1]= save.getDelMen().get(i).getName();
+            row[1] = save.getDelMen().get(i).getName();
             row[2] = save.getDelMen().get(i).getStatus();
-            
+
             model.addRow(row);
         }
     }
 
+    public void reverseDisplay() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        Object[] row = new Object[3];
+        for (int i = save.getDelMen().getSize(); i >= 1; i--) {
+            row[0] = save.getDelMen().get(i).getStaffID();
+            row[1] = save.getDelMen().get(i).getName();
+            row[2] = save.getDelMen().get(i).getStatus();
+
+            model.addRow(row);
+        }
+    }
+
+    public void removeDisplay() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> sort;
     // End of variables declaration//GEN-END:variables
 }
