@@ -195,6 +195,7 @@ public class AddMenu extends javax.swing.JFrame {
         {
             save.getCurMenu().add(mc);
             save.getMenu().add(mc);
+            save.getMenuReport().add(mc);
             JOptionPane.showMessageDialog(this, "Add successful");
             this.setVisible(false);
             AllAffiliatePage a = new AllAffiliatePage(save);

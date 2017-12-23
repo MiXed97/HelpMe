@@ -28,6 +28,16 @@ public class store {
     LinkQueueInt<Order1> order = new LinkQueue<>();
     LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
     
+    ListLinkInt<MenuClass> menuforreport = new ListLink<>();
+    
+    public ListLinkInt<MenuClass> getMenuReport() {
+        return menuforreport;
+    }
+
+    public void setMenuReport(ListLinkInt<MenuClass> menuforreport) {
+        this.menuforreport = menuforreport;
+    }
+    
     
     // keep track user
     Customer curCus = null;
@@ -101,8 +111,17 @@ public class store {
     
     public int findMenu(String foodID){
         
-        for(int i = 1; i<= menu.getSize();i++)
-            if(menu.get(i).getFoodid().equals(foodID))
+        for(int i = 1; i<= curMenu.getSize();i++)
+            if(curMenu.get(i).getFoodid().equals(foodID))
+                return i;
+        
+        return 0;
+    }
+    
+    public int findMenuReport(String foodID){
+        
+        for(int i = 1; i<= menuforreport.getSize();i++)
+            if(menuforreport.get(i).getFoodid().equals(foodID))
                 return i;
         
         return 0;
@@ -387,6 +406,9 @@ public class store {
         curMenu.remove(index);
         index = findMenu(foodID);
         menu.remove(index);
+        index = findMenuReport(foodID);
+        menuforreport.remove(index);
+        
     }
     
     public void UpdateMenu(String foodID, MenuClass m){
@@ -394,6 +416,8 @@ public class store {
         curMenu.add(index, m);
         index = findMenu(foodID);
         menu.add(index,m);
+        index = findMenuReport(foodID);
+        menuforreport.add(index,m);
         
     }
     

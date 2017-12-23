@@ -10,7 +10,6 @@ public class MenuClass implements AddMenuInterface{
     String price;
     String status;
     String affID;
-
         
     public MenuClass(){}
     
