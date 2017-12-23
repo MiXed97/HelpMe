@@ -16,7 +16,7 @@ import assgn.kaizhi.ClockInClockOut;
 
 public class store {
     
-    ListLinkInt<student> stud = new ListLink<>();
+    
     ListLinkInt<aff> aff = new ListLink<>();
     ListLinkInt<DeliveryMen> delMen = new ListLink<>();
     ListLinkInt<MenuClass> menu = new ListLink<>();
@@ -264,14 +264,6 @@ public class store {
 
     public void setCurMenu(ListLinkInt<MenuClass> curMenu) {
         this.curMenu = curMenu;
-    }
-    
-    public ListLinkInt<student> getStud() {
-        return stud;
-    }
-
-    public void setStud(ListLinkInt<student> stud) {
-        this.stud = stud;
     }
 
     public ListLinkInt<aff> getAff() {
