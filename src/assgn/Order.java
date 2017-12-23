@@ -49,7 +49,7 @@ public class Order extends MenuClass{
     }
 
     
-    @Override
+
     public String toString() {
         return "Order{" + "quantity=" + quantity + ", total=" + total + '}';
     }

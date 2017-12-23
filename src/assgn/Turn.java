@@ -17,7 +17,7 @@ public class Turn implements TurnInterface{
     public int getCurr() {
         return curr;    
     }
-
+/*
     public int findTurn(ArrayListInterface <DeliveryMen> deliveryMen){
         int result = curr;
         if(curr != deliveryMen.size())
@@ -29,5 +29,5 @@ public class Turn implements TurnInterface{
         }
         return result;
     }
-    
+    */
 }

@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-public class aff implements RegisterInterface{
+public class aff{
     
     String Aid;
     String name;
@@ -139,7 +139,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         this.postal = postal;
     }
 
-    @Override
+    
     public boolean checkName() {
         boolean result = true;
         
@@ -162,7 +162,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         
     }
     
-       @Override
+       
     public boolean checkPassword() {
         boolean result = true; 
            if (password.isEmpty()) {
@@ -181,7 +181,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
     
     
 
-    @Override
+    
     public boolean checkIC() {
         boolean result = true;
         char d[] = IC.toCharArray();
@@ -206,7 +206,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         return result;
     }
 
-    @Override
+    
     public boolean checkTel() {
         boolean result = true;
         if (tel.isEmpty()) {
@@ -230,7 +230,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         return result;
     }
 
-    @Override
+    
     public boolean checkEmail(){
         boolean result = true;
         if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", email))) 
@@ -246,7 +246,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         return result;
     }
 
-    @Override
+    
     public boolean checkRes() {
         boolean result = true;
         if (resname.isEmpty()) {
@@ -257,7 +257,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         return result;
     }
 
-    @Override
+    
     public boolean checkResAdd() {
         boolean result = true;
         if (resadd.isEmpty()) {
@@ -268,7 +268,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         return result;
     }
 
-    @Override
+    
     public boolean checkPostal() {
         boolean result = true;
         char c [] = postal.toCharArray();

@@ -13,8 +13,8 @@ import assgn.kaizhi.ClockInClockOut;
  *
  * @author Mixed_97
  */
-public class DeliveryMen implements DeliveryMenInterface {
-    
+public class DeliveryMen {
+
     private String name;
     private String staffID;
     private String password;
@@ -25,9 +25,10 @@ public class DeliveryMen implements DeliveryMenInterface {
     private String tempSalary;
     private String status;
     private LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
-    
-    public DeliveryMen(){}
-    
+
+    public DeliveryMen() {
+    }
+
     public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, String tempSalary) {
         this.name = name;
         this.staffID = staffID;
@@ -36,14 +37,14 @@ public class DeliveryMen implements DeliveryMenInterface {
         this.address = address;
         this.contactNo = contactNo;
         this.tempSalary = tempSalary;
-        try{
-        this.salary= Double.parseDouble(tempSalary);
-        }catch(Exception e){
-            
+        try {
+            this.salary = Double.parseDouble(tempSalary);
+        } catch (Exception e) {
+
         }
         this.status = "Working";
     }
-    
+
     public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, double salary) {
         this.name = name;
         this.staffID = staffID;
@@ -71,7 +72,7 @@ public class DeliveryMen implements DeliveryMenInterface {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public double getSalary() {
         return salary;
     }
@@ -79,7 +80,7 @@ public class DeliveryMen implements DeliveryMenInterface {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -127,98 +128,102 @@ public class DeliveryMen implements DeliveryMenInterface {
     public void setCico(LinkStackInt<ClockInClockOut> cico) {
         this.cico = cico;
     }
-    
-    
-    
-    @Override
+
     public String toString() {
         return "DeliveryMen{" + "name=" + name + ", staffID=" + staffID + ", address=" + address + ", contactNo=" + contactNo + ", salary=" + salary + '}';
     }
-    
-    public String checkName(){
-        
+
+    public String checkName() {
+
         char c[] = name.toCharArray();
         String result = "";
-        
-        if(name.isEmpty())
+
+        if (name.isEmpty()) {
             return "• Please don't left name empty\n";
-        
-        for(char x:c){
-            if(!Character.isLetter(x) && !Character.isSpace(x)){
-                result+="• Please enter all letter in Name\n";
+        }
+
+        for (char x : c) {
+            if (!Character.isLetter(x) && !Character.isSpace(x)) {
+                result += "• Please enter all letter in Name\n";
                 break;
             }
         }
-        
+
         return result;
     }
-    public String checkContact(){
+
+    public String checkContact() {
         char c[] = contactNo.toCharArray();
         String result = "";
-        if(c.length < 10)
+        if (c.length < 10) {
             return "• Contact number length is too short\n";
-        
-        if(contactNo.isEmpty())
+        }
+
+        if (contactNo.isEmpty()) {
             return "• Please don't left contact empty\n";
-        
-        for(char x:c){
-             if(!Character.isDigit(x)){
-                result+="• Please enter all digit in Contact No\n";
-                break;
-             }
         }
-        
+
+        for (char x : c) {
+            if (!Character.isDigit(x)) {
+                result += "• Please enter all digit in Contact No\n";
+                break;
+            }
+        }
+
         return result;
     }
-    public String checkIC(){
-         char c[] = ic.toCharArray();
+
+    public String checkIC() {
+        char c[] = ic.toCharArray();
         String result = "";
-        if(c.length < 12)
+        if (c.length < 12) {
             return "• IC length is too short\n";
-        
-        else if(ic.isEmpty())
+        } else if (ic.isEmpty()) {
             return "• Please don't left ic empty\n";
-        
-        for(char x:c){
-             if(!Character.isDigit(x)){
-                result+="• Please enter all digit in IC\n";
-                break;
-             }
         }
-        
+
+        for (char x : c) {
+            if (!Character.isDigit(x)) {
+                result += "• Please enter all digit in IC\n";
+                break;
+            }
+        }
+
         return result;
     }
-    public String checkSalary(){
+
+    public String checkSalary() {
         String result = "";
-        
-        try{
+
+        try {
             salary = Double.parseDouble(tempSalary);
-        }catch(Exception E){
+        } catch (Exception E) {
             return "• Please enter salary in a correct format\n";
         }
         return result;
     }
-    public String checkAddress(){
-        String result ="";
-        
-        if(address.isEmpty())
-            return "• Please don't left the address empty";
-        
-        return result;
-    }
-    
-    @Override
-    public String check() {
-        
+
+    public String checkAddress() {
         String result = "";
-        
-        result+= checkName();
-        result+=checkContact();
-        result+= checkIC();
-        result+=checkSalary();
-        result+=checkAddress();
-        
+
+        if (address.isEmpty()) {
+            return "• Please don't left the address empty";
+        }
+
         return result;
     }
-    
+
+    public String check() {
+
+        String result = "";
+
+        result += checkName();
+        result += checkContact();
+        result += checkIC();
+        result += checkSalary();
+        result += checkAddress();
+
+        return result;
+    }
+
 }

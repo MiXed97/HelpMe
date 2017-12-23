@@ -6,6 +6,7 @@
 package assgn;
 
 import javax.swing.table.DefaultTableModel;
+import listLink.ListLink;
 import listLink.ListLinkInt;
 
 /**
@@ -18,13 +19,13 @@ public class Delivery{
     String deliveryID;
     Customer customer;
     String status;
-    ArrayListInterface<Order> order = new ArrList<>();
+    ListLinkInt<Order> order = new ListLink<>();
     DeliveryMen deliveryMen;
     int index;
 
     public Delivery(){}
     
-    public Delivery(String deliveryID, Customer customer, String status, ArrayListInterface<Order> order, DeliveryMen deliveryMen){
+    public Delivery(String deliveryID, Customer customer, String status, ListLinkInt<Order> order, DeliveryMen deliveryMen){
         this.deliveryID = deliveryID;
         this.customer= customer;
         this.status = status;
@@ -56,11 +57,11 @@ public class Delivery{
         this.status = status;
     }
 
-    public ArrayListInterface<Order> getOrder() {
+    public ListLinkInt<Order> getOrder() {
         return order;
     }
 
-    public void setOrder(ArrayListInterface<Order> order) {
+    public void setOrder(ListLinkInt<Order> order) {
         this.order = order;
     }
     
@@ -73,10 +74,10 @@ public class Delivery{
     }
     
      
-    public void displayTable(DefaultTableModel model, ArrayListInterface<Delivery> delivery){
+    public void displayTable(DefaultTableModel model, ListLinkInt<Delivery> delivery){
         
         Object row[] = new Object[7];
-        for(int i = 0; i < delivery.size();i++)
+        for(int i = 0; i < delivery.getSize();i++)
         {
             row[0] = delivery.get(i).getCustomer().getName();
             row[1] = delivery.get(i).getCustomer().getAddress();

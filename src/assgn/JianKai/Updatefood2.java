@@ -166,9 +166,9 @@ public class Updatefood2 extends javax.swing.JFrame {
 
         
         MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddesc.getText(),price.getText(),jComboBox1.getSelectedItem().toString(),save.getCurAff().getAid());
-        AddMenuInterface p = mc;
+       
         
-       if (p.checkfn()  && p.checkdesc() && p.checkprice()) 
+       if (mc.checkfn()  && mc.checkdesc() && mc.checkprice()) 
         {
             save.UpdateMenu(foodid.getText(), mc);
             JOptionPane.showMessageDialog(this, "Update successful");
@@ -177,7 +177,7 @@ public class Updatefood2 extends javax.swing.JFrame {
         }            
         else
         {
-             JOptionPane.showMessageDialog(this, "" + p.toString());
+             JOptionPane.showMessageDialog(this, "" + mc.toString());
         }
     }//GEN-LAST:event_updateActionPerformed
     

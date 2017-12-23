@@ -19,9 +19,7 @@ import listLink.store;
 public class Login extends javax.swing.JFrame {
     
     store save;
-    Customer c;
     boolean result = false;
-    MainMenu m;
     /**
      * Creates new form Login
      */

@@ -19,10 +19,6 @@ public class Assgn {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ListLinkInt<DeliveryMen> delivery = new ListLink<>();
-        ListLinkInt<Menu> menu = new ListLink<>();
-        ListLinkInt<Customer> customer = new ListLink<>();
-        
         
         
         Login l = new Login();

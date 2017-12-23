@@ -2,7 +2,7 @@ package assgn.JianKai;
 
 import javax.swing.JOptionPane;
 
-public class MenuClass implements AddMenuInterface{
+public class MenuClass{
     
     String foodid;
     String foodname;
@@ -77,7 +77,7 @@ public class MenuClass implements AddMenuInterface{
     
 
 
-    @Override
+    
     public boolean checkfn() {
         boolean result = true;
         char c[] = foodname.toCharArray();
@@ -99,7 +99,7 @@ public class MenuClass implements AddMenuInterface{
         
     }
 
-    @Override
+    
     public boolean checkdesc() {
         boolean result = true;
         if (desc.isEmpty()) {
@@ -111,7 +111,7 @@ public class MenuClass implements AddMenuInterface{
         
     }
 
-    @Override
+    
     public boolean checkprice() {
         boolean result = true;
         if (price.isEmpty()) {
