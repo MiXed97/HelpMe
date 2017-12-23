@@ -6,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import listLink.ListLink;
 import listLink.ListLinkInt;
 import listLink.store;
-import validate.validate;
 
 /**
  *
@@ -14,7 +13,7 @@ import validate.validate;
  */
 public class orderHistory extends javax.swing.JFrame {
     store save;
-    validate val = new validate();
+
     DefaultTableModel model;
     LinkQueueInt<Order1> order = new LinkQueue<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
@@ -195,7 +194,7 @@ public class orderHistory extends javax.swing.JFrame {
         else
             cartID+=(n+1);
         System.out.println(cartID);
-        if(val.isEmpty(orderIDTxt.getText()))
+        if(orderIDTxt.getText().isEmpty())
             JOptionPane.showMessageDialog(this, "Please enter cart ID");
         else{
             for(int a = 0; a<orderTable.getRowCount();a++){

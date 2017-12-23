@@ -5,9 +5,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import listLink.ListLinkInt;
 import listLink.store;
-import validate.validate;
-import validate.validateInt;
-
 /**
  * 
  * @author Aphro97
@@ -16,7 +13,7 @@ public class showCart extends javax.swing.JFrame {
     store save;
     DefaultTableModel model;
     ListLinkInt<Cart> cart;
-    validateInt val = new validate();
+
     public showCart() {
         initComponents();
         save = new store(1);
@@ -171,7 +168,7 @@ public class showCart extends javax.swing.JFrame {
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        if(val.isEmpty(jTextField1.getText()))
+        if(jTextField1.getText().isEmpty())
             JOptionPane.showMessageDialog(this, "Please enter cart ID");
         else{
             for(int a = 0; a<cartTable.getRowCount();a++){

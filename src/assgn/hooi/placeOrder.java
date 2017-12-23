@@ -7,8 +7,6 @@ import javax.swing.table.DefaultTableModel;
 import listLink.ListLinkInt;
 import listLink.store;
 import listLink.ListLink;
-import validate.validate;
-import validate.validateInt;
 /**
  *
  * @author Aphro97
@@ -22,7 +20,7 @@ public class placeOrder extends javax.swing.JFrame {
     ListLinkInt<MenuClass> menu = new ListLink();
     ListLinkInt<Cart> cartList = new ListLink();
 //    JButton[] addCart;
-    validateInt val = new validate();
+
     ListLinkInt<aff> restaurant = new ListLink();
     ListLinkInt<Cart> cartHi = new ListLink<>();
     
@@ -211,7 +209,7 @@ public class placeOrder extends javax.swing.JFrame {
     private void addCartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCartBtnActionPerformed
         boolean checker = true;
         for(int a = 0;a<menuTable.getRowCount();a++){
-            if(val.isEmpty(jTextField1.getText())){ 
+            if(jTextField1.getText().isEmpty()){ 
                 JOptionPane.showMessageDialog(this, "Please enter Food ID");
                 break;
             }
