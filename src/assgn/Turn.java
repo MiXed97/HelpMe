@@ -9,7 +9,7 @@ package assgn;
  *
  * @author Mixed_97
  */
-public class Turn implements TurnInterface{
+public class Turn{
     int curr = 1;
     
     public Turn(){}

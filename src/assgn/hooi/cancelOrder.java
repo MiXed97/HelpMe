@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import listLink.ListLink;
 import listLink.ListLinkInt;
 import listLink.store;
-import validate.validate;
+
 
 /**
  *
@@ -14,7 +14,6 @@ import validate.validate;
 public class cancelOrder extends javax.swing.JFrame {
     store save;
     DefaultTableModel model;
-    validate val = new validate();
     LinkQueueInt<Order1> order = new LinkQueue<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
     public cancelOrder() {
@@ -160,7 +159,7 @@ public class cancelOrder extends javax.swing.JFrame {
         cartHi = save.getCartHi();
         String cartID = "";
         int del = 0;
-        if(val.isEmpty(orderIDTxt.getText()))
+        if(orderIDTxt.getText().isEmpty())
             JOptionPane.showMessageDialog(this, "Please enter cart ID");
         else{
             for(int a = 0; a<orderTable.getRowCount();a++){
