@@ -417,7 +417,7 @@ public class store {
         index = findMenu(foodID);
         menu.add(index,m);
         index = findMenuReport(foodID);
-        menuforreport.add(index,m);
+        menuforreport.add(m);
         
     }
     
