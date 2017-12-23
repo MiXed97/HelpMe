@@ -15,16 +15,16 @@ import assgn.kaizhi.ClockInClockOut;
  */
 public class DeliveryMen implements DeliveryMenInterface {
     
-    String name;
-    String staffID;
-    String password;
-    String ic;
-    String address;
-    String contactNo;
-    double salary;
-    String tempSalary;
-    String status;
-    LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
+    private String name;
+    private String staffID;
+    private String password;
+    private String ic;
+    private String address;
+    private String contactNo;
+    private double salary;
+    private String tempSalary;
+    private String status;
+    private LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
     
     public DeliveryMen(){}
     

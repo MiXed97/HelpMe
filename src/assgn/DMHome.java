@@ -39,7 +39,6 @@ public class DMHome extends javax.swing.JFrame {
         if (!save.getCurDelMen().getCico().peek().noClockOut()) {
             clockStaff.setEnabled(false);
         }
-
     }
 
     /**
@@ -174,14 +173,14 @@ public class DMHome extends javax.swing.JFrame {
     private void jbtnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnStatusActionPerformed
         // TODO add your handling code here:
 
-         if (!save.getCurDelMen().getCico().peek().noClockIn() && save.getCurDelMen().getCico().peek().noClockOut()) {
+        if (!save.getCurDelMen().getCico().peek().noClockIn() && save.getCurDelMen().getCico().peek().noClockOut()) {
             DeliveryMenUpdateScreen next = new DeliveryMenUpdateScreen(save);
             this.setVisible(false);
             next.setVisible(true);
-        } else if(save.getCurDelMen().getCico().peek().noClockIn()){
+        } else if (save.getCurDelMen().getCico().peek().noClockIn()) {
             JOptionPane.showMessageDialog(null, "Clock in first");
         } else {
-            JOptionPane.showMessageDialog(null,"Already clock out");
+            JOptionPane.showMessageDialog(null, "Already clock out");
         }
     }//GEN-LAST:event_jbtnStatusActionPerformed
 
@@ -191,10 +190,10 @@ public class DMHome extends javax.swing.JFrame {
             DeliveryMenCheckAddress next = new DeliveryMenCheckAddress(save);
             this.setVisible(false);
             next.setVisible(true);
-        } else if(save.getCurDelMen().getCico().peek().noClockIn()){
+        } else if (save.getCurDelMen().getCico().peek().noClockIn()) {
             JOptionPane.showMessageDialog(null, "Clock in first");
         } else {
-            JOptionPane.showMessageDialog(null,"Already clock out");
+            JOptionPane.showMessageDialog(null, "Already clock out");
         }
     }//GEN-LAST:event_jbtnCheckAddressActionPerformed
 
@@ -234,11 +233,14 @@ public class DMHome extends javax.swing.JFrame {
         });
     }
 
-    public boolean checkClock() {
+    private boolean checkClock() {
         boolean result = false;
 
         try {
             if (save.getCurDelMen().getCico().peek().noClockIn()) {
+
+                ClockInClockOut c = new ClockInClockOut();
+                save.getCurDelMen().getCico().push(c);
                 return true;
             } else {
                 return false;
