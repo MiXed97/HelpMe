@@ -9,6 +9,8 @@ import assgn.JianKai.MenuClass;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import listLink.ListLink;
+import listLink.ListLinkInt;
 
 /**
  *
@@ -25,8 +27,8 @@ public class DeliveryTable extends javax.swing.JFrame {
     ArrayListInterface<MenuClass> menu = new ArrList<>();
     ArrayListInterface<Order> order = new ArrList<>();
     ArrayListInterface<Order> order1 = new ArrList<>();
-    ArrayListInterface<Delivery> delivery = new ArrList<>();
-    DeliveryInterface deli = new Delivery();    
+    ListLinkInt<Delivery> delivery = new ListLink<>();
+    Delivery deli = new Delivery();    
     DefaultTableModel model;
     
     public DeliveryTable() {

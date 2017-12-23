@@ -5,6 +5,10 @@
  */
 package assgn;
 
+import assgn.kaizhi.ClockInClockOut;
+import assgn.kaizhi.DeliveryMenCheckAddress;
+import assgn.kaizhi.DeliveryMenUpdateScreen;
+import javax.swing.JOptionPane;
 import listLink.store;
 
 /**
@@ -17,17 +21,25 @@ public class DMHome extends javax.swing.JFrame {
      * Creates new form DMHome
      */
     store save;
-    
+
     public DMHome() {
         initComponents();
     }
-    
-    public DMHome(store save){
-        this.save=save;
+
+    public DMHome(store save) {
+        this.save = save;
         this.setVisible(true);
         this.setTitle("Delivery Men Hompage");
         this.setLocationRelativeTo(null);
         initComponents();
+        if (!checkClock()) {
+            clockStaff.setSelected(true);
+            clockStaff.setText("Clock Out");
+        }
+        if (!save.getCurDelMen().getCico().peek().noClockOut()) {
+            clockStaff.setEnabled(false);
+        }
+
     }
 
     /**
@@ -42,6 +54,9 @@ public class DMHome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
         updateDetails = new javax.swing.JButton();
+        clockStaff = new javax.swing.JToggleButton();
+        jbtnStatus = new javax.swing.JButton();
+        jbtnCheckAddress = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,19 +77,48 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
+        clockStaff.setText("Clock In");
+        clockStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clockStaffActionPerformed(evt);
+            }
+        });
+
+        jbtnStatus.setText("Udpate Delivery Status");
+        jbtnStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnStatusActionPerformed(evt);
+            }
+        });
+
+        jbtnCheckAddress.setText("Check Delivery Address");
+        jbtnCheckAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCheckAddressActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(logOut)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(logOut))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clockStaff)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateDetails)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnCheckAddress)
+                    .addComponent(jbtnStatus)
+                    .addComponent(updateDetails))
                 .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
@@ -84,9 +128,15 @@ public class DMHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(logOut))
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clockStaff)
+                .addGap(26, 26, 26)
                 .addComponent(updateDetails)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtnStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtnCheckAddress)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
@@ -101,9 +151,52 @@ public class DMHome extends javax.swing.JFrame {
     private void updateDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDetailsActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        updateDeliveryMen  a = new updateDeliveryMen(save);
-        
+        updateDeliveryMen a = new updateDeliveryMen(save);
+
     }//GEN-LAST:event_updateDetailsActionPerformed
+
+    private void clockStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockStaffActionPerformed
+        // TODO add your handling code here:
+
+        if (clockStaff.isSelected()) {
+            clockStaff.setText("Clock Out");
+            save.getCurDelMen().getCico().peek().clockIn();
+
+        } else {
+            save.getCurDelMen().getCico().peek().clockOut();
+            JOptionPane.showMessageDialog(null, "clock in : " + save.getCurDelMen().getCico().peek().getClock_in() + "\nclock out : " + save.getCurDelMen().getCico().peek().getClock_out());
+            clockStaff.setEnabled(false);
+
+        }
+
+    }//GEN-LAST:event_clockStaffActionPerformed
+
+    private void jbtnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnStatusActionPerformed
+        // TODO add your handling code here:
+
+         if (!save.getCurDelMen().getCico().peek().noClockIn() && save.getCurDelMen().getCico().peek().noClockOut()) {
+            DeliveryMenUpdateScreen next = new DeliveryMenUpdateScreen(save);
+            this.setVisible(false);
+            next.setVisible(true);
+        } else if(save.getCurDelMen().getCico().peek().noClockIn()){
+            JOptionPane.showMessageDialog(null, "Clock in first");
+        } else {
+            JOptionPane.showMessageDialog(null,"Already clock out");
+        }
+    }//GEN-LAST:event_jbtnStatusActionPerformed
+
+    private void jbtnCheckAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCheckAddressActionPerformed
+        // TODO add your handling code here:
+        if (!save.getCurDelMen().getCico().peek().noClockIn() && save.getCurDelMen().getCico().peek().noClockOut()) {
+            DeliveryMenCheckAddress next = new DeliveryMenCheckAddress(save);
+            this.setVisible(false);
+            next.setVisible(true);
+        } else if(save.getCurDelMen().getCico().peek().noClockIn()){
+            JOptionPane.showMessageDialog(null, "Clock in first");
+        } else {
+            JOptionPane.showMessageDialog(null,"Already clock out");
+        }
+    }//GEN-LAST:event_jbtnCheckAddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,12 +229,33 @@ public class DMHome extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DMHome().setVisible(true);
+
             }
         });
     }
 
+    public boolean checkClock() {
+        boolean result = false;
+
+        try {
+            if (save.getCurDelMen().getCico().peek().noClockIn()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            result = true;
+            ClockInClockOut c = new ClockInClockOut();
+            save.getCurDelMen().getCico().push(c);
+        }
+        return result;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton clockStaff;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbtnCheckAddress;
+    private javax.swing.JButton jbtnStatus;
     private javax.swing.JButton logOut;
     private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,10 @@
  */
 package assgn;
 
+import assgn.hooi.LinkStack;
+import assgn.hooi.LinkStackInt;
+import assgn.kaizhi.ClockInClockOut;
+
 /**
  *
  * @author Mixed_97
@@ -20,6 +24,7 @@ public class DeliveryMen implements DeliveryMenInterface {
     double salary;
     String tempSalary;
     String status;
+    LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
     
     public DeliveryMen(){}
     
@@ -114,6 +119,16 @@ public class DeliveryMen implements DeliveryMenInterface {
     public void setIc(String ic) {
         this.ic = ic;
     }
+
+    public LinkStackInt<ClockInClockOut> getCico() {
+        return cico;
+    }
+
+    public void setCico(LinkStackInt<ClockInClockOut> cico) {
+        this.cico = cico;
+    }
+    
+    
     
     @Override
     public String toString() {

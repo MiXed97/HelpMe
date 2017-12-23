@@ -15,21 +15,13 @@ import java.util.Date;
  */
 public class ClockInClockOut {
 
-    private DeliveryMen Deliverymen;
     private String date;
-    private String clock_in;
-    private String clock_out;
+    private String clock_in = "";
+    private String clock_out = "";
 
-    public ClockInClockOut(DeliveryMen Deliverymen, String date) {
-        this.Deliverymen = Deliverymen;
-        this.date = date;
-        this.clock_in = "";
-        this.clock_out = "";
+    public ClockInClockOut() {
     }
-
-    public void setDeliverymen(DeliveryMen Deliverymen) {
-        this.Deliverymen = Deliverymen;
-    }
+    
 
     public void setDate(String date) {
         this.date = date;
@@ -41,10 +33,6 @@ public class ClockInClockOut {
 
     public void setClock_out(String clock_out) {
         this.clock_out = clock_out;
-    }
-
-    public DeliveryMen getDeliverymen() {
-        return Deliverymen;
     }
 
     public String getDate() {
@@ -63,16 +51,33 @@ public class ClockInClockOut {
         Date now = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String cmp = format.format(now);
-        if (cmp.equals(date)) {
-            return true;
-        } else {
+        
+        if (cmp.equals(date) && !clock_in.isEmpty()) {
             return false;
+            //clock in before
+        } else {
+            return true;
+            // didnt clock in at all
         }
+    }
+
+    public void clockIn() {
+        Date now = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat dateF = new SimpleDateFormat("dd-MM-yyyy");
+        clock_in = timeFormat.format(now);
+        date = dateF.format(now);
+
+    }
+    public void clockOut(){
+        Date now = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        clock_out = timeFormat.format(now);
     }
 
     public boolean noClockOut() {
 
-        if (!clock_out.isEmpty()) {
+        if (clock_out.isEmpty()) {
             return true;
         } else {
             return false;
