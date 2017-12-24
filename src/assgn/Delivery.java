@@ -5,6 +5,7 @@
  */
 package assgn;
 
+import assgn.hooi.Order1;
 import javax.swing.table.DefaultTableModel;
 import listLink.ListLink;
 import listLink.ListLinkInt;
@@ -19,13 +20,13 @@ public class Delivery{
     String deliveryID;
     Customer customer;
     String status;
-    ListLinkInt<Order> order = new ListLink<>();
+    ListLinkInt<Order1> order = new ListLink<>();
     DeliveryMen deliveryMen;
     int index;
 
     public Delivery(){}
     
-    public Delivery(String deliveryID, Customer customer, String status, ListLinkInt<Order> order, DeliveryMen deliveryMen){
+    public Delivery(String deliveryID, Customer customer, String status, ListLinkInt<Order1> order, DeliveryMen deliveryMen){
         this.deliveryID = deliveryID;
         this.customer= customer;
         this.status = status;
@@ -57,11 +58,11 @@ public class Delivery{
         this.status = status;
     }
 
-    public ListLinkInt<Order> getOrder() {
+    public ListLinkInt<Order1> getOrder() {
         return order;
     }
 
-    public void setOrder(ListLinkInt<Order> order) {
+    public void setOrder(ListLinkInt<Order1> order) {
         this.order = order;
     }
     

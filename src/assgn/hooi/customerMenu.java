@@ -5,7 +5,6 @@
  */
 package assgn.hooi;
 
-import assgn.Order;
 import javax.swing.JOptionPane;
 import listLink.store;
 
