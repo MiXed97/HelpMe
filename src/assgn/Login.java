@@ -29,14 +29,22 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("User Login");
         initComponents();
+        test();
     }
     
-        public Login(store save) {
+    public Login(store save) {
         this.save =save;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("User Login");
         initComponents();
+        test();
+    }
+    
+    public void test(){
+        for(int i = 1; i <= save.getCartHi().getSize();i++){
+            System.out.println(save.getCartHi().get(i).toString());
+        }
     }
 
     /**

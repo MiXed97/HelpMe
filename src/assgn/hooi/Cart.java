@@ -65,5 +65,10 @@ public class Cart {
     public double getTotal(){
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" + "cartID=" + cartID + ", item=" + item + ", itemName=" + itemName + ", qty=" + qty + ", price=" + price + ", total=" + total + '}';
+    }
     
 }
