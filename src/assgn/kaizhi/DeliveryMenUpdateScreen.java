@@ -47,10 +47,10 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         //table content
         Object row[] = new Object[4];
         for (int i = 0; i < save.getDel().getSize(); i++) {
-            row[0] = save.getDel().get(i).getDeliveryID();
+            row[0] = save.getDel().get(i).getOrder().getOrderID();
             row[1] = save.getDel().get(i).getCustomer().getName();
             row[2] = save.getDel().get(i).getCustomer().getAddress();
-            row[3] = save.getDel().get(i).getStatus();
+            row[3] = save.getDel().get(i).getOrder().getOrderID();
             model.addRow(row);
         }
 

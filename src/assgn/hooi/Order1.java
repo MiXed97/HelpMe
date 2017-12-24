@@ -12,9 +12,10 @@ public class Order1 {
     private String orderDate;
     private String orderStatus;
     private double totalAmount;
+    private String affID;
     public Order1(){}
     
-    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus,String cusEmail){
+    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus,String cusEmail, String affID){
         this.orderID = orderID;
         this.cartID = cartID;
         this.orderDate = orderDate;

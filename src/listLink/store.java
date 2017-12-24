@@ -176,12 +176,12 @@ public class store {
         aff.add(a);
         aff.add(b);
         //Add to do testing, can remove
-        Cart abc = new Cart("CID01", "F01", "food 1", 2, 2.5, 5.0);
-        Cart abc1 = new Cart("CID01", "F01", "food 1", 2, 2.5, 5.0);
-        Cart abc2 = new Cart("CID01", "F01", "food 1", 2, 2.5, 5.0);
-        Cart abc3 = new Cart("CID02", "F01", "foods 1", 2, 2.5, 5.0);
-        Cart abc4 = new Cart("CID02", "F01", "food 2", 2, 2.5, 5.0);
-        Cart abc5 = new Cart("CID02", "F01", "food 3", 2, 2.5, 5.0);
+        Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
+        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
+        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
         cartHi.add(abc);
         cartHi.add(abc1);
@@ -189,8 +189,8 @@ public class store {
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com","A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com","A1");
         order.enqueue(o1);
         order.enqueue(o2);
     }
@@ -242,7 +242,7 @@ public class store {
         hr.add(hr1);
         hr.add(hr2);
     }
-
+    
     public void addDelivery() {
         if (customer.isEmpty()) {
             this.addCust();

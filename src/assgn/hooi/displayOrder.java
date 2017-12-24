@@ -35,6 +35,7 @@ public class displayOrder extends javax.swing.JFrame {
     }
     
     private void setup(){
+        System.out.println(save.getCurAff().getAid());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Order Placed");
@@ -66,7 +67,7 @@ public class displayOrder extends javax.swing.JFrame {
             cartHi.add(cart.get(a));
             total += cart.get(a).getTotal();
         }
-        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail());
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail(), save.getCurAff().getAid());
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";

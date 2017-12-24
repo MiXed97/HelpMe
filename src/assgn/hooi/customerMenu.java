@@ -5,6 +5,7 @@
  */
 package assgn.hooi;
 
+import assgn.Login;
 import javax.swing.JOptionPane;
 import listLink.store;
 
@@ -69,6 +70,11 @@ public class customerMenu extends javax.swing.JFrame {
         });
 
         logoutBtn.setText("Log Out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Customer Homepage");
@@ -89,7 +95,7 @@ public class customerMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(oHisBtn)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addComponent(cancelOrder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(orderBtn)
@@ -99,7 +105,7 @@ public class customerMenu extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addComponent(logoutBtn)
                         .addGap(25, 25, 25))))
         );
@@ -150,6 +156,12 @@ public class customerMenu extends javax.swing.JFrame {
         this.setVisible(false);
         cancelOrder co = new cancelOrder(save);
     }//GEN-LAST:event_cancelOrderActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Login l = new Login(save);
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     /**
      * @param args the command line arguments

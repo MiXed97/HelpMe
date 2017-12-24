@@ -14,34 +14,22 @@ import listLink.ListLinkInt;
  *
  * @author Mixed_97
  */
-public class Delivery{
+public class Delivery {
 
     //get info from customer
-    String deliveryID;
     Customer customer;
-    String status;
-    ListLinkInt<Order1> order = new ListLink<>();
+    Order1 order = new Order1();
     DeliveryMen deliveryMen;
-    int index;
+    int index = 0;
+    public Delivery() {
+    }
 
-    public Delivery(){}
-    
-    public Delivery(String deliveryID, Customer customer, String status, ListLinkInt<Order1> order, DeliveryMen deliveryMen){
-        this.deliveryID = deliveryID;
-        this.customer= customer;
-        this.status = status;
+    public Delivery(Customer customer, Order1 order, DeliveryMen deliveryMen) {
+        this.customer = customer;
         this.order = order;
         this.deliveryMen = deliveryMen;
     }
-    
-    public String getDeliveryID() {
-        return deliveryID;
-    }
 
-    public void setDeliveryID(String deliveryID) {
-        this.deliveryID = deliveryID;
-    }
-    
     public Customer getCustomer() {
         return customer;
     }
@@ -50,22 +38,14 @@ public class Delivery{
         this.customer = customer;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public ListLinkInt<Order1> getOrder() {
+    public Order1 getOrder() {
         return order;
     }
 
-    public void setOrder(ListLinkInt<Order1> order) {
+    public void setOrder(Order1 order) {
         this.order = order;
     }
-    
+
     public DeliveryMen getDeliveryMen() {
         return deliveryMen;
     }
@@ -73,45 +53,19 @@ public class Delivery{
     public void setDeliveryMen(DeliveryMen deliveryMen) {
         this.deliveryMen = deliveryMen;
     }
-    
-     
-    public void displayTable(DefaultTableModel model, ListLinkInt<Delivery> delivery){
-        
-        Object row[] = new Object[7];
-        for(int i = 0; i < delivery.getSize();i++)
-        {
-            row[0] = delivery.get(i).getCustomer().getName();
-            row[1] = delivery.get(i).getCustomer().getAddress();
-            row[2] = delivery.get(i).getCustomer().getContactNo();
-            row[3] = delivery.get(i).getDeliveryID();
-            row[4] = delivery.get(i).getStatus();
-            row[5] = delivery.get(i).getDeliveryMen().getStaffID();
-            row[6] = delivery.get(i).getDeliveryMen().getName();
-            model.addRow(row);
-        }
-    }
 
-     
-    public boolean checkDeliveryID(ListLinkInt<Delivery> delivery,String deliveryID) {
-            
-
-        for(int i = 0; i < delivery.getSize();i++)
-            if(delivery.get(i).getDeliveryID().equals(deliveryID)){
-                index =i;
-                return true;
-            }
-        return false;
-    }
-
-     
-    public void removeDisplay(DefaultTableModel model) {
-        model.getDataVector().removeAllElements();
-        model.fireTableDataChanged();
-    }
-
-     
     public int getIndex() {
         return index;
     }
-    
+
+    public boolean checkDeliveryID(ListLinkInt<Delivery> delivery, String deliveryID) {
+
+        for (int i = 0; i < delivery.getSize(); i++) {
+            if (delivery.get(i).getOrder().getOrderID().equals(deliveryID)) {
+                index = i;
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -12,7 +12,7 @@ import listLink.store;
 public class selectRestaurant extends javax.swing.JFrame {
 
     store save;
-    ListLinkInt<aff> restaurant = new ListLink();
+    //ListLinkInt<aff> restaurant = new ListLink();
     
     public selectRestaurant() {
         initComponents();
@@ -29,9 +29,9 @@ public class selectRestaurant extends javax.swing.JFrame {
         this.setTitle("Place Order");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        restaurant = save.getAff();
-        for(int a = 1;a<restaurant.getSize()+1;a++){
-            jComboBox1.addItem(restaurant.get(a).getResname());
+  
+        for(int a = 1;a<save.getAff().getSize()+1;a++){
+            jComboBox1.addItem(save.getAff().get(a).getResname());
         }
     }
         
@@ -100,7 +100,7 @@ public class selectRestaurant extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a restaurant","Message",JOptionPane.INFORMATION_MESSAGE);
         else{
             this.setVisible(false);
-            save.setSelectedRes(jComboBox1.getSelectedItem().toString());
+            save.setCurAff(save.getAff().get(jComboBox1.getSelectedIndex()));
             placeOrder po = new placeOrder(save);
         }
     }//GEN-LAST:event_proceedBtnActionPerformed

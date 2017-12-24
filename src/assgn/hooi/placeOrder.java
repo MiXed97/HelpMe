@@ -17,11 +17,10 @@ public class placeOrder extends javax.swing.JFrame {
     Cart cart;
     DefaultTableModel model;
     String cartID = "CID";
-    ListLinkInt<MenuClass> menu = new ListLink();
+  //  ListLinkInt<MenuClass> menu = new ListLink();
     ListLinkInt<Cart> cartList = new ListLink();
 //    JButton[] addCart;
 
-    ListLinkInt<aff> restaurant = new ListLink();
     ListLinkInt<Cart> cartHi = new ListLink<>();
     
     public placeOrder() {
@@ -41,24 +40,21 @@ public class placeOrder extends javax.swing.JFrame {
         ((javax.swing.JSpinner.DefaultEditor)jSpinner1.getEditor()).getTextField().setEditable(false);
         model = (DefaultTableModel)menuTable.getModel();
         menuTable.setModel(model);
-        menu = save.getMenu();
+        save.setAffMenu();
         cartHi = save.getCartHi();
         cartList = save.getCart();
-        restaurant = save.getAff();
-        String selectedAID = "";
+        String selectedAID = save.getCurAff().getAid();
         String temp = "";
         String res = save.getSelectedRes();
-       
         //Get selectedAID to display correct restaurant menu
-        for(int a = 1;a<restaurant.getSize()+1;a++){
-            if(restaurant.get(a).getResname().equals(res))
-                selectedAID = restaurant.get(a).getAid();
-        }
+       // for(int a = 1;a<restaurant.getSize()+1;a++){
+           // if(restaurant.get(a).getResname().equals(res))
+          //      selectedAID = restaurant.get(a).getAid();
+        //}
         //display menu
-        for(int a = 1;a<menu.getSize()+1;a++){
-            if(menu.get(a).getStatus().equals("Available") && menu.get(a).getAffID().equals(selectedAID)){
-                model.addRow(new Object[]{menu.get(a).getFoodid(),menu.get(a).getFoodname(),menu.get(a).getDesc(),menu.get(a).getPrice()});
-                save.getCurMenu().add(menu.get(a));
+        for(int a = 1;a<save.getCurMenu().getSize()+1;a++){
+            if(save.getCurMenu().get(a).getStatus().equals("Available")){
+                model.addRow(new Object[]{save.getCurMenu().get(a).getFoodid(),save.getCurMenu().get(a).getFoodname(),save.getCurMenu().get(a).getDesc(),save.getCurMenu().get(a).getPrice()});
             }
         }
        

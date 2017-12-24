@@ -48,7 +48,7 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         Object row[] = new Object[3];
         for (int i = 0; i < delivery.getSize(); i++) {
             if (staff == delivery.get(i).getDeliveryMen()) {
-                row[0] = delivery.get(i).getDeliveryID();
+                row[0] = delivery.get(i).getOrder().getOrderID();
                 row[1] = delivery.get(i).getCustomer().getName();
                 row[2] = delivery.get(i).getCustomer().getAddress();
                 model.addRow(row);
