@@ -5,6 +5,7 @@
  */
 package assgn;
 
+import assgn.hooi.retrieveCusDetails;
 import assgn.kaizhi.ClockInClockOut;
 import assgn.kaizhi.DeliveryMenCheckAddress;
 import assgn.kaizhi.DeliveryMenUpdateScreen;
@@ -28,7 +29,6 @@ public class DMHome extends javax.swing.JFrame {
 
     public DMHome(store save) {
         this.save = save;
-        this.setVisible(true);
         this.setTitle("Delivery Men Hompage");
         this.setLocationRelativeTo(null);
         initComponents();
@@ -84,7 +84,7 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
-        jbtnStatus.setText("Udpate Delivery Status");
+        jbtnStatus.setText("Update Delivery Status");
         jbtnStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnStatusActionPerformed(evt);
@@ -95,6 +95,13 @@ public class DMHome extends javax.swing.JFrame {
         jbtnCheckAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCheckAddressActionPerformed(evt);
+            }
+        });
+
+        retrieveCusBtn.setText("Retrieve Customer Details");
+        retrieveCusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retrieveCusBtnActionPerformed(evt);
             }
         });
 
@@ -210,7 +217,7 @@ public class DMHome extends javax.swing.JFrame {
 
     private void retrieveCusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrieveCusBtnActionPerformed
         this.setVisible(false);
-        
+        retrieveCusDetails rcd = new retrieveCusDetails(save);
     }//GEN-LAST:event_retrieveCusBtnActionPerformed
 
     /**

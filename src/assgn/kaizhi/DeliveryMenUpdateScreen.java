@@ -192,7 +192,6 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         //back button
         DMHome next = new DMHome(save);
-        next.setVisible(false);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Confirm to go to main menu?");
         panel.add(label);

@@ -198,7 +198,6 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         DMHome next = new DMHome(save);
-        next.setVisible(false);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Confirm to go to main menu?");
         panel.add(label);

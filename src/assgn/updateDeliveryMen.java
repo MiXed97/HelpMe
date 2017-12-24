@@ -188,6 +188,7 @@ public class updateDeliveryMen extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Successfull updated");
             this.setVisible(false);
             DMHome a = new DMHome(save);
+            a.setVisible(true);
         }
         
     }//GEN-LAST:event_updateActionPerformed
@@ -197,6 +198,7 @@ public class updateDeliveryMen extends javax.swing.JFrame {
         
         this.setVisible(false);
         DMHome d = new DMHome(save);
+        d.setVisible(true);
         
     }//GEN-LAST:event_backActionPerformed
 

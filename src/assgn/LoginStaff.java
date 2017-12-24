@@ -143,6 +143,7 @@ public class LoginStaff extends javax.swing.JFrame {
         {
             this.setVisible(false);
             DMHome a = new DMHome(save);
+            a.setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(null, "Invalid Account name","Error",JOptionPane.ERROR_MESSAGE);
