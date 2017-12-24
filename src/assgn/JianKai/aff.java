@@ -18,7 +18,7 @@ public class aff{
     String rescat;
     String postal;
     String theerror="";
-
+    double distance;
     
     public aff(){}
     
@@ -34,6 +34,7 @@ public class aff{
         this.resadd = resadd;
         this.postal = postal;
         this.rescat = rescat;
+        this.distance = -1;
     }
     
 public aff(String Aid,String name,String password,String password2,String IC,String tel,String email,String resname,String resadd,String postal,String rescat)
@@ -139,7 +140,14 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         this.postal = postal;
     }
 
-    
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public boolean checkName() {
         boolean result = true;
         

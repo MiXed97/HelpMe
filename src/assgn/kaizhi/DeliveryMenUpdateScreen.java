@@ -41,6 +41,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         
         initComponents();
         this.save = save;
+        addOID();
         model = (DefaultTableModel) jTable1.getModel();
         this.staff = save.getCurDelMen();
 
@@ -68,11 +69,12 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jtfDeliveryID = new javax.swing.JTextField();
-        jbtSearchAddress = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jStatusBox = new javax.swing.JComboBox<>();
+        status = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        orderID = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,22 +96,16 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jtfDeliveryID.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update Status");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDeliveryIDActionPerformed(evt);
-            }
-        });
-
-        jbtSearchAddress.setText("Update Status");
-        jbtSearchAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtSearchAddressActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Enter Delivery ID:");
 
-        jStatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Picked Up", "Delivering", "Delivered" }));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Picked Up", "Delivering", "Delivered" }));
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,23 +114,34 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Status :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfDeliveryID, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jStatusBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtSearchAddress, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(update)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,24 +151,28 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfDeliveryID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtSearchAddress)
+                    .addComponent(jLabel1)
+                    .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(update)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,10 +182,8 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfDeliveryIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDeliveryIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDeliveryIDActionPerformed
-
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    }
     private void jbtSearchAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSearchAddressActionPerformed
         // TODO add your handling code here:
 
@@ -202,7 +211,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        //back button
         DMHome next = new DMHome(save);
         next.setVisible(false);
         JPanel panel = new JPanel();
@@ -252,15 +261,24 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void addOID(){
+        for(int i = 0; i < save.getOrder().size();i++){
+            if(!save.getOrder().get(i).getOrderStatus().equals("Order Placed")){
+                orderID.addItem(save.getOrder().get(i).getOrderID());
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jStatusBox;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton jbtSearchAddress;
-    private javax.swing.JTextField jtfDeliveryID;
+    private javax.swing.JComboBox<String> orderID;
+    private javax.swing.JComboBox<String> status;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

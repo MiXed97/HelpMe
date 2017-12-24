@@ -53,7 +53,7 @@ public class displayOrder extends javax.swing.JFrame {
         if(order.size()==0)
             orderID += "01";
         else{
-            temp = order.getLast().getOrderID();
+            temp = order.getOID();
             temp = temp.substring(3, temp.length());
             int a = Integer.parseInt(temp);
             if(a < 10)
@@ -76,7 +76,7 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
         //order.enqueue(o);
-        order.sortedEnqueue(o);
+        order.enqueue(o);
         save.setOrder(order);
         cart.clear();
     }
