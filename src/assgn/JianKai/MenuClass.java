@@ -1,5 +1,9 @@
 package assgn.JianKai;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class MenuClass{
@@ -10,17 +14,20 @@ public class MenuClass{
     String price;
     String status;
     String affID;
-        
+    DateFormat dateFormat = new SimpleDateFormat("MMYY");
+    
+    String date;
     public MenuClass(){}
     
     public MenuClass(String foodid, String foodname, String desc, String price, String status, String affID) {
         this.foodid = foodid;
         this.foodname = foodname;
-
         this.desc = desc;
         this.price = price;
         this.status = status;
         this.affID = affID;
+        Date date = new Date();
+        this.date = dateFormat.format(date).toString();
     }
    
     
@@ -73,11 +80,7 @@ public class MenuClass{
     public void setAffID(String affID) {
         this.affID = affID;
     }
-    
-    
-
-
-    
+   
     public boolean checkfn() {
         boolean result = true;
         char c[] = foodname.toCharArray();
