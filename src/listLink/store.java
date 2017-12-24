@@ -56,6 +56,7 @@ public class store {
         addMenu();
         addHR();
         addAff();
+        addDelivery();
 
     }
 
@@ -244,9 +245,6 @@ public class store {
     }
     
     public void addDelivery() {
-        if (customer.isEmpty()) {
-            this.addCust();
-        }
         //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
 
         Delivery de2 = new Delivery();

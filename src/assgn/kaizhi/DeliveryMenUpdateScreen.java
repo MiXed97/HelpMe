@@ -180,7 +180,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
         if (deli.checkDeliveryID(save.getDel(), jtfDeliveryID.getText())) {
 
-            save.getDel().get(deli.getIndex()).setStatus(jStatusBox.getSelectedItem().toString());
+            save.getDel().get(deli.getIndex()).getOrder().setOrderStatus(jStatusBox.getSelectedItem().toString());
 
             while (model.getRowCount() != 0) {
                 model.removeRow(0);
@@ -188,10 +188,10 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
             Object row[] = new Object[4];
             for (int i = 0; i < save.getDel().getSize(); i++) {
-                row[0] = save.getDel().get(i).getDeliveryID();
+                row[0] = save.getDel().get(i).getOrder().getOrderID();
                 row[1] = save.getDel().get(i).getCustomer().getName();
                 row[2] = save.getDel().get(i).getCustomer().getAddress();
-                row[3] = save.getDel().get(i).getStatus();
+                row[3] = save.getDel().get(i).getOrder().getOrderStatus();
                 model.addRow(row);
             }
 
