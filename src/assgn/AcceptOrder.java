@@ -132,7 +132,14 @@ public class AcceptOrder extends javax.swing.JFrame {
             // complete the task 
             JOptionPane.showMessageDialog(null, "Order "+orderID.getSelectedItem().toString()+ " has Completed");
             int index = save.findOrderIndex(orderID.getSelectedItem().toString());
+            // index is to find the correct Order
             save.getOrder().get(index).setOrderStatus("Completed");
+            // get the customer with the order -> email
+            String email = save.getOrder().get(index).getCusEmail();
+            Customer c = save.findCustomer(email);
+            // nid a method to assign delivery Men
+            // right here not yet do
+            save.getDel().add(null);
             orderID.removeAllItems();
             addOID();
             removeDisplay();

@@ -41,6 +41,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         
         initComponents();
         this.save = save;
+        addOID();
         model = (DefaultTableModel) jTable1.getModel();
         this.staff = save.getCurDelMen();
 
