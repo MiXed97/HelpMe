@@ -18,4 +18,5 @@ public interface LinkQueueInt<T> {
     public T getLast();
     public T getFront();
     public boolean sortedEnqueue(Order1 newData);
+    public String getOID();
 }

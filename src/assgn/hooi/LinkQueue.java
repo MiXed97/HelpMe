@@ -80,20 +80,26 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         return result;
     }
     public static void main(String args[]) throws ParseException{
-//        LinkQueue<Order1> l = new LinkQueue();
-//        Order1 o;
-//        o = new Order1("oid01","cid01","2017/12/22 00:00:00",2.5,"Placed","1@g.com");
-//        l.sortedEnqueue(o);
-//        o = new Order1("oid02","cid01","2017/12/21 00:00:00",2.5,"Placed","1@g.com");
-//        l.sortedEnqueue(o);
-//        o = new Order1("oid03","cid01","2017/12/23 00:00:00",2.5,"Placed","1@g.com");
-//        l.sortedEnqueue(o);
-//        o = l.get(0);
-//        System.out.println("First: "+o.getOrderID());
-//        o = l.get(1);
-//        System.out.println("Second: "+o.getOrderID());
-//        o = l.get(2);
-//        System.out.println("Third: "+o.getOrderID());
+        LinkQueue<Order1> l = new LinkQueue();
+        Order1 o;
+        o = new Order1("oid03","cid03","2017/12/24 17:51:07",11.0,"Order Placed","1ol@hotmail.com","A1");
+        l.sortedEnqueue(o);
+        o = new Order1("oid03","cid04","2017/12/24 17:52:46",8.0,"Order Placed","1ol@hotmail.com","A1");
+        l.sortedEnqueue(o);
+        o = new Order1("oid01","cid01","2017/12/25 00:00:00",2.5,"Order Placed","1ol@hotmail.com","A1");
+        l.sortedEnqueue(o);
+        o = new Order1("oid02","cid02","2017/12/25 00:00:00",25.5,"Order Placed","1ol@hotmail.com","A1");
+        l.sortedEnqueue(o);
+        System.out.println("Size: "+l.size());
+        o = l.get(0);
+        System.out.println("First: "+o.getOrderID()+" , "+o.getCartID());
+        o = l.get(1);
+        System.out.println("Second: "+o.getOrderID()+" , "+o.getCartID());
+        o = l.get(2);
+        System.out.println("Third: "+o.getOrderID()+" , "+o.getCartID());
+        o = l.get(3);
+        System.out.println("Fourth: "+o.getOrderID()+" , "+o.getCartID());
+        System.out.println(l.getOID());
         
         
     }
@@ -194,6 +200,28 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         }
         return true;
     }
-    
+    public String getOID(){
+        String id = "";
+        String oid = "OID";
+        node currentNode = firstNode;
+        Order1 o;
+        o = (Order1)currentNode.data;
+        id = o.getOrderID();
+        int highest = Integer.parseInt(id.substring(3, id.length()));
+        int temp = 0;
+        while(currentNode.next != null){
+            currentNode = currentNode.next;
+            o = (Order1)currentNode.data;
+            id = o.getOrderID();
+            temp = Integer.parseInt(id.substring(3, id.length()));
+            if(temp>highest)
+                highest = temp;
+        }
+        if(highest < 10)
+            oid+="0"+highest;
+        else
+            oid+=highest;
+        return oid;
+    }
     
 }

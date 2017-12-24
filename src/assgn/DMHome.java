@@ -56,6 +56,7 @@ public class DMHome extends javax.swing.JFrame {
         clockStaff = new javax.swing.JToggleButton();
         jbtnStatus = new javax.swing.JButton();
         jbtnCheckAddress = new javax.swing.JButton();
+        retrieveCusBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +98,13 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
+        retrieveCusBtn.setText("Retrieve Customer Details");
+        retrieveCusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retrieveCusBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,6 +123,7 @@ public class DMHome extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(retrieveCusBtn)
                     .addComponent(jbtnCheckAddress)
                     .addComponent(jbtnStatus)
                     .addComponent(updateDetails))
@@ -135,7 +144,9 @@ public class DMHome extends javax.swing.JFrame {
                 .addComponent(jbtnStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnCheckAddress)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(retrieveCusBtn)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,6 +207,11 @@ public class DMHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Already clock out");
         }
     }//GEN-LAST:event_jbtnCheckAddressActionPerformed
+
+    private void retrieveCusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrieveCusBtnActionPerformed
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_retrieveCusBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +275,7 @@ public class DMHome extends javax.swing.JFrame {
     private javax.swing.JButton jbtnCheckAddress;
     private javax.swing.JButton jbtnStatus;
     private javax.swing.JButton logOut;
+    private javax.swing.JButton retrieveCusBtn;
     private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }

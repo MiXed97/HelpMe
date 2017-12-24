@@ -53,7 +53,7 @@ public class displayOrder extends javax.swing.JFrame {
         if(order.size()==0)
             orderID += "01";
         else{
-            temp = order.getLast().getOrderID();
+            temp = order.getOID();
             temp = temp.substring(3, temp.length());
             int a = Integer.parseInt(temp);
             if(a < 10)
