@@ -50,6 +50,7 @@ public aff(String Aid,String name,String password,String password2,String IC,Str
         this.resadd = resadd;
         this.postal = postal;
         this.rescat = rescat;
+        this.distance = -1;
     }
 
     public String getAid() {
