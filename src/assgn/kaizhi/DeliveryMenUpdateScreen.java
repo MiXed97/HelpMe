@@ -182,32 +182,11 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {                                       
-    }
-    private void jbtSearchAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSearchAddressActionPerformed
-        // TODO add your handling code here:
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
 
-        if (deli.checkDeliveryID(save.getDel(), jtfDeliveryID.getText())) {
-
-            save.getDel().get(deli.getIndex()).getOrder().setOrderStatus(jStatusBox.getSelectedItem().toString());
-
-            while (model.getRowCount() != 0) {
-                model.removeRow(0);
-            }
-
-            Object row[] = new Object[4];
-            for (int i = 0; i < save.getDel().getSize(); i++) {
-                row[0] = save.getDel().get(i).getOrder().getOrderID();
-                row[1] = save.getDel().get(i).getCustomer().getName();
-                row[2] = save.getDel().get(i).getCustomer().getAddress();
-                row[3] = save.getDel().get(i).getOrder().getOrderStatus();
-                model.addRow(row);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jbtSearchAddressActionPerformed
+        
+        
+    }//GEN-LAST:event_updateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
