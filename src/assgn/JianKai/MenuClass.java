@@ -14,24 +14,35 @@ public class MenuClass{
     String price;
     String status;
     String affID;
-    DateFormat dateFormat = new SimpleDateFormat("MMYY");
+    
+    String themonth;
+    String theyear;
     
     String date;
     public MenuClass(){}
     
-    public MenuClass(String foodid, String foodname, String desc, String price, String status, String affID) {
+    public MenuClass(String foodid, String foodname, String desc, String price, String status, String affID,String themonth,String theyear) {
         this.foodid = foodid;
         this.foodname = foodname;
         this.desc = desc;
         this.price = price;
         this.status = status;
         this.affID = affID;
-        Date date = new Date();
-        this.date = dateFormat.format(date).toString();
+        this.themonth = themonth;
+        this.theyear = theyear;
+        
     }
    
     
     private String theerror="";
+    
+    public String getthemonth() {
+        return themonth;
+    }
+
+    public void setthemonth(String themonth) {
+        this.themonth = themonth;
+    }
     
     public String getFoodid() {
         return foodid;
@@ -39,6 +50,14 @@ public class MenuClass{
 
     public void setFoodid(String foodid) {
         this.foodid = foodid;
+    }
+    
+    public String gettheyear() {
+        return theyear;
+    }
+
+    public void settheyear(String theyear) {
+        this.theyear = theyear;
     }
 
     public String getFoodname() {

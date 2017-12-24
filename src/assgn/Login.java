@@ -6,6 +6,7 @@
 package assgn;
 
 import assgn.JianKai.AllAffiliatePage;
+import assgn.JianKai.Manager;
 import assgn.JianKai.RegisterAffiliate;
 import assgn.JianKai.report;
 import assgn.hooi.customerMenu;
@@ -202,7 +203,12 @@ public class Login extends javax.swing.JFrame {
         } else if (save.determineUser() == 2) {
             this.setVisible(false);
             customerMenu cm = new customerMenu(save);
-        } else {
+        } 
+        else if(_email.getText().equals("manager@hotmail.com") && _password.getText().equals("123"))
+        {
+                    this.setVisible(false);
+                    Manager m = new Manager(save);
+        }else {
             JOptionPane.showMessageDialog(null, "Log in details does not match", "Invalid User", JOptionPane.ERROR_MESSAGE);
         }
 

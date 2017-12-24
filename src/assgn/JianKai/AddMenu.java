@@ -1,5 +1,7 @@
 package assgn.JianKai;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
@@ -187,15 +189,16 @@ public class AddMenu extends javax.swing.JFrame {
 
     private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbuttonActionPerformed
         // TODO add your handling code here:
-        
-        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString(),save.getCurAff().getAid());
+        Calendar now = Calendar.getInstance();
+        String themonth = new SimpleDateFormat("MMM").format(now.getTime());
+        String theyear = new SimpleDateFormat("YYYY").format(now.getTime());
+        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddescription.getText(),foodprice.getText(),foodstatus.getSelectedItem().toString(),save.getCurAff().getAid(),themonth,theyear);
         
         
        if (mc.checkfn()  && mc.checkdesc() && mc.checkprice()) 
         {
             save.getCurMenu().add(mc);
             save.getMenu().add(mc);
-            save.getMenuReport().add(mc);
             JOptionPane.showMessageDialog(this, "Add successful");
             this.setVisible(false);
             AllAffiliatePage a = new AllAffiliatePage(save);
