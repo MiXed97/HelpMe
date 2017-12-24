@@ -108,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnStatus">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Udpate Delivery Status"/>
+        <Property name="text" type="java.lang.String" value="Update Delivery Status"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnStatusActionPerformed"/>

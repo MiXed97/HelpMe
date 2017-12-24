@@ -165,7 +165,7 @@ public class cancelOrder extends javax.swing.JFrame {
             for(int a = 0; a<orderTable.getRowCount();a++){
                 if(orderIDTxt.getText().toUpperCase().equals(orderTable.getModel().getValueAt(a, 0).toString())){
                     String temp = orderTable.getModel().getValueAt(a, 2).toString();
-                    if(temp.equals("Accepted") || temp.equals("Order Placed")){
+                    if(temp.equals("Order Placed")){
                         for(int n =0;n<order.size();n++){
                             if(orderIDTxt.getText().toUpperCase().equals(order.get(n).getOrderID())){
                                 cartID = order.get(n).getCartID();

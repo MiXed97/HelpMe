@@ -22,6 +22,7 @@ public class Order1 {
         this.orderStatus = orderStatus;
         this.totalAmount = totalAmount;
         this.cusEmail = cusEmail;
+        this.affID = affID;
     }
     
     public void setOrderID(String orderID){
@@ -60,6 +61,10 @@ public class Order1 {
     public String getCusEmail() {
         return cusEmail;
     }
-    
-    
+    public String getAffID() {
+        return affID;
+    }
+    public void setAffID(String affID) {
+        this.affID = affID;
+    }
 }
