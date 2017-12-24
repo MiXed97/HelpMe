@@ -76,7 +76,7 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
         //order.enqueue(o);
-        order.sortedEnqueue(o);
+        order.enqueue(o);
         save.setOrder(order);
         cart.clear();
     }

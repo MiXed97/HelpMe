@@ -17,9 +17,10 @@ import listLink.store;
  * @author Mixed_97
  */
 public class Login extends javax.swing.JFrame {
-    
+
     store save;
     boolean result = false;
+
     /**
      * Creates new form Login
      */
@@ -31,19 +32,23 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         test();
     }
-    
+
     public Login(store save) {
-        this.save =save;
+        this.save = save;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("User Login");
         initComponents();
         test();
     }
-    
-    public void test(){
-        for(int i = 1; i <= save.getCartHi().getSize();i++){
+
+    public void test() {
+        for (int i = 1; i <= save.getCartHi().getSize(); i++) {
             System.out.println(save.getCartHi().get(i).toString());
+        }
+        System.out.println();
+        for (int i = 0; i < save.getOrder().size(); i++) {
+            System.out.println(save.getOrder().get(i).toString());
         }
     }
 
@@ -185,33 +190,30 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void _loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event__loginActionPerformed
-        
+
         // do login shit ok :D
         save.resetUser();
         save.findAff(_email.getText(), _password.getText());
         save.findCus(_email.getText(), _password.getText());
-        if(save.determineUser()==1){
+        if (save.determineUser() == 1) {
             this.setVisible(false);
             save.setAffMenu();
             AllAffiliatePage l = new AllAffiliatePage(save);
-        }
-        else if(save.determineUser()==2){
+        } else if (save.determineUser() == 2) {
             this.setVisible(false);
             customerMenu cm = new customerMenu(save);
+        } else {
+            JOptionPane.showMessageDialog(null, "Log in details does not match", "Invalid User", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Log in details does not match","Invalid User",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
-        
+
+
     }//GEN-LAST:event__loginActionPerformed
 
     private void registerCusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCusActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         registerCust c = new registerCust(save);
-        
+
     }//GEN-LAST:event_registerCusActionPerformed
 
     private void registerAffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerAffActionPerformed
@@ -240,7 +242,7 @@ public class Login extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -263,7 +265,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
-                
+
             }
         });
     }

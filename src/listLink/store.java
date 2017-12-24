@@ -555,4 +555,28 @@ public class store {
         result = Integer.parseInt(num);
         return result;
     }
+    
+    
+    public int findOrderIndex(String orderID){
+        int index = -1;
+        for(int i = 0; i < order.size();i++){
+            if(order.get(i).getOrderID().equals(orderID)){
+                index = i;
+            }
+        }
+        // if cannot find match return -1
+        return index;
+    }
+    
+    public Customer findCustomer(String email){
+       Customer c = null;
+        for (int i = 1; i <= customer.getSize(); i++) {
+            if (customer.get(i).getEmail().equals(email)) {
+                c = customer.get(i);
+                break;
+            }
+        }
+        return c;
+    }
+   
 }
