@@ -19,31 +19,29 @@ public class updateStaffStatus extends javax.swing.JFrame {
     /**
      * Creates new form updateStaffStatus
      */
-    ListLinkInt <DeliveryMen> l = new ListLink<>();
-    int result;
+    ListLinkInt<DeliveryMen> l = new ListLink<>();
+    int result;// this the index of the selected delivery men
     store save;
+
     public updateStaffStatus() {
-        
-        
-        DeliveryMen d1 = new DeliveryMen("Nicholas","D1","192","Somewhere","01234567",123.00);
-        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai","D2","999","No where","01899997",223.00);
-        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi","D3","456","LoL","01934567",323.00);
-        
+
+        DeliveryMen d1 = new DeliveryMen("Nicholas", "D1", "192", "Somewhere", "01234567", 123.00);
+        DeliveryMen d2 = new DeliveryMen("Soon Jian Kai", "D2", "999", "No where", "01899997", 223.00);
+        DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi", "D3", "456", "LoL", "01934567", 323.00);
+
         l.add(d1);
         l.add(d2);
         l.add(d3);
-        
-        
-        
+
     }
-    
-    public updateStaffStatus(store save){
+
+    public updateStaffStatus(store save) {
         this.save = save;
-        
+
         this.setVisible(true);
         this.setTitle("Update staff status");
         this.setLocationRelativeTo(null);
-        
+
         initComponents();
         status.setVisible(false);
     }
@@ -155,50 +153,57 @@ public class updateStaffStatus extends javax.swing.JFrame {
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
         // TODO add your handling code here:
         result = save.findStaff(staffID.getText());
-        if( result > 0){
+        if (result > 0) {
             status.setVisible(true);
-            
-            if(save.getDelMen().get(result).getStatus().equals("Retired")){
+
+            if (save.getDelMen().get(result).getStatus().equals("Retired")) {
                 status.setSelectedIndex(1);// retired
-            }
-            else{
+            } else {
                 status.setSelectedIndex(0);// working
             }
-                
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Staff id not found", "404 ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
+
     }//GEN-LAST:event_selectActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-       
-        if(!staffID.getText().isEmpty()){
-            
-            if(staffID.getText().equals(save.getDelMen().get(result).getStaffID()))            
-                if(!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())){
+
+        if (!staffID.getText().isEmpty()) {
+            //make sure the text field is the same id as the selected staff else dispaly error
+            if (staffID.getText().equals(save.getDelMen().get(result).getStaffID())) {
+                if (save.getDelMen().get(result).getStatus().equals("On Delivery")) {
+                    JOptionPane.showMessageDialog(null, "Staff is still on a delivery", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    if (save.getDelMen().get(result).getStatus().equals("Working") 
+                            || save.getDelMen().get(result).getStatus().equals("On Delivery")) {
+                        status.setSelectedIndex(0);
+                    } else {
+                        status.setSelectedIndex(1);
+                    }
+                } else if (!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())) {
+                    //if the status is different then it able to sent it 
                     save.getDelMen().get(result).setStatus(status.getSelectedItem().toString());
-                    JOptionPane.showMessageDialog(null, "Sucessfully updated staff "+ staffID.getText()+" status to "+ status.getSelectedItem().toString());
-                }else{  
-                JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sucessfully updated staff " + staffID.getText() + " status to " + status.getSelectedItem().toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            else{
-                JOptionPane.showMessageDialog(null, staffID.getText()+" this staff id in the field is not selected yet", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, staffID.getText() + " this staff id in the field is not selected yet", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Staff id is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-                
+
     }//GEN-LAST:event_updateActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         HrHome a = new HrHome(save);
-        
+
     }//GEN-LAST:event_backActionPerformed
 
     /**
@@ -235,8 +240,6 @@ public class updateStaffStatus extends javax.swing.JFrame {
             }
         });
     }
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -205,6 +205,7 @@ public class store {
     public void addDeliMen() {
         DeliveryMen d1 = new DeliveryMen("Nicholas", "D1", "192", "Somewhere", "01234567", 123.00);
         d1.setPassword("1212");
+        d1.setStatus("On Delivery");
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai", "D2", "999", "No where", "01899997", 223.00);
         d2.setPassword("abcd");
         DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi", "D3", "456", "LoL", "01934567", 323.00);
@@ -562,4 +563,28 @@ public class store {
         result = Integer.parseInt(num);
         return result;
     }
+    
+    
+    public int findOrderIndex(String orderID){
+        int index = -1;
+        for(int i = 0; i < order.size();i++){
+            if(order.get(i).getOrderID().equals(orderID)){
+                index = i;
+            }
+        }
+        // if cannot find match return -1
+        return index;
+    }
+    
+    public Customer findCustomer(String email){
+       Customer c = null;
+        for (int i = 1; i <= customer.getSize(); i++) {
+            if (customer.get(i).getEmail().equals(email)) {
+                c = customer.get(i);
+                break;
+            }
+        }
+        return c;
+    }
+   
 }

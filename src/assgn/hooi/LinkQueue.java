@@ -127,6 +127,7 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         node currentNode = firstNode;
         for(int a = 0; a<size()-1;a++){
             currentNode = currentNode.next;
+            System.out.println(currentNode.data);
         }
         result = (T)currentNode.data;
         return result;

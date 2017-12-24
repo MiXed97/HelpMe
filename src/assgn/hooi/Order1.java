@@ -22,7 +22,7 @@ public class Order1 {
         this.orderStatus = orderStatus;
         this.totalAmount = totalAmount;
         this.cusEmail = cusEmail;
-        this.affID = affID;
+        this.affID= affID;
     }
     
     public void setOrderID(String orderID){
@@ -61,10 +61,20 @@ public class Order1 {
     public String getCusEmail() {
         return cusEmail;
     }
+
     public String getAffID() {
         return affID;
     }
+
     public void setAffID(String affID) {
         this.affID = affID;
     }
+
+    @Override
+    public String toString() {
+        return "Order1{" + "orderID=" + orderID + ", cartID=" + cartID + ", cusEmail=" + cusEmail + ", orderDate=" + orderDate + ", orderStatus=" + orderStatus + ", totalAmount=" + totalAmount + ", affID=" + affID + '}';
+    }
+    
+    
+    
 }

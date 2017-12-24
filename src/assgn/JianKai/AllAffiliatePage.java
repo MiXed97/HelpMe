@@ -1,4 +1,5 @@
 package assgn.JianKai;
+import assgn.AcceptOrder;
 import assgn.Login;
 import listLink.store;
 
@@ -38,6 +39,7 @@ public class AllAffiliatePage extends javax.swing.JFrame {
         rm = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
+        viewOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +76,13 @@ public class AllAffiliatePage extends javax.swing.JFrame {
             }
         });
 
+        viewOrder.setText("View Order");
+        viewOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewOrderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,13 +92,15 @@ public class AllAffiliatePage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logOut)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(am)
                             .addGap(31, 31, 31)
-                            .addComponent(um)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(viewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(um, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(30, 30, 30)
-                            .addComponent(rm))
-                        .addComponent(logOut))
+                            .addComponent(rm)))
                     .addComponent(jLabel2))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -107,7 +118,9 @@ public class AllAffiliatePage extends javax.swing.JFrame {
                     .addComponent(am)
                     .addComponent(um)
                     .addComponent(rm))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(viewOrder)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,6 +147,12 @@ public class AllAffiliatePage extends javax.swing.JFrame {
         Login l = new Login(save);
         
     }//GEN-LAST:event_logOutActionPerformed
+
+    private void viewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewOrderActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        AcceptOrder a = new AcceptOrder(save);
+    }//GEN-LAST:event_viewOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,5 +196,6 @@ public class AllAffiliatePage extends javax.swing.JFrame {
     private javax.swing.JButton logOut;
     private javax.swing.JButton rm;
     private javax.swing.JButton um;
+    private javax.swing.JButton viewOrder;
     // End of variables declaration//GEN-END:variables
 }
