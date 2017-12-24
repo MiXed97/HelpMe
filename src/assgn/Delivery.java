@@ -18,7 +18,7 @@ public class Delivery {
 
     //get info from customer
     Customer customer;
-    Order1 order = new Order1();
+    Order1 order;
     DeliveryMen deliveryMen;
     int index = 0;
     public Delivery() {

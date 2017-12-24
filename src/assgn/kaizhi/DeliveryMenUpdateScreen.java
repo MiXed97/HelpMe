@@ -38,23 +38,15 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     public DeliveryMenUpdateScreen(store save) {
         this.setLocationRelativeTo(null);
         this.setTitle("Update Deliver Status");
-        
+
         initComponents();
         this.save = save;
         addOID();
-        model = (DefaultTableModel) jTable1.getModel();
+        display();
         this.staff = save.getCurDelMen();
 
         //table content
-        Object row[] = new Object[4];
-        for (int i = 0; i < save.getDel().getSize(); i++) {
-            row[0] = save.getDel().get(i).getOrder().getOrderID();
-            row[1] = save.getDel().get(i).getCustomer().getName();
-            row[2] = save.getDel().get(i).getCustomer().getAddress();
-            row[3] = save.getDel().get(i).getOrder().getOrderID();
-            model.addRow(row);
-        }
-
+        // only the staff responsible can take in
     }
 
     /**
@@ -71,10 +63,8 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         update = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        status = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         orderID = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,11 +73,11 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery ID", "Customer Name", "Address", "Status"
+                "Delivery ID", "DeliveryMen ID", "Customer Name", "Address", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -105,16 +95,12 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
         jLabel1.setText("Enter Delivery ID:");
 
-        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Picked Up", "Delivering", "Delivered" }));
-
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Status :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,25 +109,16 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(update)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(update, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,10 +130,6 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(update)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -184,8 +157,29 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
 
-        
-        
+        //only can update to one status cannot return back to previous state
+        //set it ur self with a method if can
+        String oID = orderID.getSelectedItem().toString();
+        int index = save.findOrderIndex(oID);
+        String status = save.getOrder().get(index).getOrderStatus();
+
+        if (status.equals("Completed")) {
+            save.getOrder().get(index).setOrderStatus("Delivering");
+            // change del
+            // find aff distance exist a not 
+
+            save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+        } else if (status.equals("Delivering")) {
+            save.getOrder().get(index).setOrderStatus("Delivered");
+            // find customer distance from our shop 
+            
+            save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+        }
+
+        removeDisplay();
+        display();
+
+
     }//GEN-LAST:event_updateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -239,24 +233,47 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void addOID(){
-        for(int i = 0; i < save.getOrder().size();i++){
-            if(!save.getOrder().get(i).getOrderStatus().equals("Order Placed")){
-                orderID.addItem(save.getOrder().get(i).getOrderID());
+
+    public void addOID() {
+        for (int i = 0; i < save.getOrder().size(); i++) {
+            for (int x = 1; x <= save.getDel().getSize(); x++) {
+                if (!save.getOrder().get(i).getOrderStatus().equals("Order Placed")
+                        && save.getDel().get(x).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())
+                        && !save.getOrder().get(i).getOrderStatus().equals("Delivered")) {
+                    orderID.addItem(save.getOrder().get(i).getOrderID());
+                }
             }
         }
     }
 
+    public void display() {
+        model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[5];
+        for (int i = 0; i < save.getDel().getSize(); i++) {
+            row[0] = save.getDel().get(i).getOrder().getOrderID();
+            row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
+            row[2] = save.getDel().get(i).getCustomer().getName();
+            row[3] = save.getDel().get(i).getCustomer().getAddress();
+            row[4] = save.getDel().get(i).getOrder().getOrderStatus();
+            model.addRow(row);
+        }
+    }
+
+    public void removeDisplay() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> orderID;
-    private javax.swing.JComboBox<String> status;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

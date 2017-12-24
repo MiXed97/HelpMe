@@ -19,6 +19,7 @@ public class Customer{
     String email;
     String password;
     String tempPass;
+    double distance;
     public Customer(){}
     
     public Customer(String name, String address, String contactNo, String email, String password, String tempPass) {
@@ -28,6 +29,7 @@ public class Customer{
         this.email = email;
         this.password = password;
         this.tempPass = tempPass;
+        this.distance= -1;
     }
     
     public Customer(String name, String address, String contactNo, String email, String password) {
@@ -78,6 +80,16 @@ public class Customer{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+    
+    
     
     public boolean logIn(String email, String password){
         

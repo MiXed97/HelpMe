@@ -71,7 +71,7 @@ public class store {
 
     public void findDeliMen(String email, String pass) {
         for (int i = 1; i <= delMen.getSize(); i++) {
-             if (delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && delMen.get(i).getStatus().equals("Working")) {
+            if (delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && !delMen.get(i).getStatus().equals("Retired")) {
                 curDelMen = delMen.get(i);
                 break;
             }
@@ -551,6 +551,28 @@ public class store {
             }
         }
         return c;
+    }
+    
+    public int findFreeDelMen(){
+        //get the free deliveryMen
+        for(int i = 1; i <= delMen.getSize();i++){
+            if(delMen.get(i).getStatus().equals("Working")){
+                return i;
+            }
+        }
+        return 0;
+    }
+    
+    public int findDelivery(String orderID){
+        //get delivery
+        for(int i = 1;i <= del.getSize();i++){
+            if(del.get(i).getOrder().getOrderID().equals(orderID)){
+                return i;
+            }
+        }
+        
+        
+        return 0;
     }
    
 }
