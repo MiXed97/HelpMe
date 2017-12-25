@@ -38,13 +38,6 @@ public class JKLL<T> implements JKLLI<T>{
         return updatetry;
     }
     
-    public node getIndex(int index){
-        node n = firstNode;
-        for(int i =1; i < index;i++){
-            n = n.getNext();
-        }
-        return n;
-    }
 
     @Override
     public boolean remove(int index) {
