@@ -21,6 +21,8 @@ public class Delivery {
     Order1 order;
     DeliveryMen deliveryMen;
     int index = 0;
+    
+    double distanceIB;
     public Delivery() {
     }
 

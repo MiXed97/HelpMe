@@ -60,7 +60,7 @@ public class LinkStack<T> implements LinkStackInt<T> {
 
     @Override
     public int size() {
-        return 1;
+        return entry;
     }
 //    public static void main(String args[]){
 //        LinkStack<String> l = new LinkStack();

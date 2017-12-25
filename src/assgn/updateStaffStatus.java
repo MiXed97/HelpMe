@@ -175,10 +175,10 @@ public class updateStaffStatus extends javax.swing.JFrame {
         if (!staffID.getText().isEmpty()) {
             //make sure the text field is the same id as the selected staff else dispaly error
             if (staffID.getText().equals(save.getDelMen().get(result).getStaffID())) {
-                if (save.getDelMen().get(result).getStatus().equals("On Delivery")) {
+                if (save.getDelMen().get(result).getStatus().equals("On Delivery") || save.getDelMen().get(result).getStatus().equals("Assigned")) {
                     JOptionPane.showMessageDialog(null, "Staff is still on a delivery", "ERROR", JOptionPane.ERROR_MESSAGE);
                     if (save.getDelMen().get(result).getStatus().equals("Working") 
-                            || save.getDelMen().get(result).getStatus().equals("On Delivery")) {
+                            || save.getDelMen().get(result).getStatus().equals("On Delivery")||save.getDelMen().get(result).getStatus().equals("Assigned") ) {
                         status.setSelectedIndex(0);
                     } else {
                         status.setSelectedIndex(1);

@@ -10,6 +10,7 @@ import assgn.DMHome;
 import assgn.Delivery;
 import assgn.DeliveryMen;
 import assgn.JianKai.MenuClass;
+import assgn.JianKai.aff;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -162,18 +163,26 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         String oID = orderID.getSelectedItem().toString();
         int index = save.findOrderIndex(oID);
         String status = save.getOrder().get(index).getOrderStatus();
-
+        String affID = save.getOrder().get(index).getAffID();
+        int affIndex = save.findAffByID(affID);
         if (status.equals("Completed")) {
             save.getOrder().get(index).setOrderStatus("Delivering");
-            // change del
             // find aff distance exist a not 
+            if (save.getAff().get(affIndex).getDistance() <= 0) {
+                //answer how many km/h it take to deliver the order
+            }
 
+            //change staff status
+            // change del
             save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+            save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("On Delivery");
+
         } else if (status.equals("Delivering")) {
             save.getOrder().get(index).setOrderStatus("Delivered");
             // find customer distance from our shop 
-            
+
             save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+            save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("Working");
         }
 
         removeDisplay();
@@ -235,21 +244,19 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     }
 
     public void addOID() {
-        for (int i = 0; i < save.getOrder().size(); i++) {
-            for (int x = 1; x <= save.getDel().getSize(); x++) {
-                if (!save.getOrder().get(i).getOrderStatus().equals("Order Placed")
-                        && save.getDel().get(x).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())
-                        && !save.getOrder().get(i).getOrderStatus().equals("Delivered")) {
-                    orderID.addItem(save.getOrder().get(i).getOrderID());
-                }
+        for (int i = 1; i <= save.getDel().getSize(); i++) {
+            if (save.getDel().get(i).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())) {
+                orderID.addItem(save.getDel().get(i).getOrder().getOrderID());
             }
+
         }
+
     }
 
     public void display() {
         model = (DefaultTableModel) jTable1.getModel();
         Object row[] = new Object[5];
-        for (int i = 0; i < save.getDel().getSize(); i++) {
+        for (int i = 1; i <= save.getDel().getSize(); i++) {
             row[0] = save.getDel().get(i).getOrder().getOrderID();
             row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
             row[2] = save.getDel().get(i).getCustomer().getName();

@@ -125,28 +125,53 @@ public class AcceptOrder extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(orderID.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(null, "Please select a OrderID","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            // complete the task 
-            JOptionPane.showMessageDialog(null, "Order "+orderID.getSelectedItem().toString()+ " has Completed");
+        if (orderID.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a OrderID", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
             int index = save.findOrderIndex(orderID.getSelectedItem().toString());
             // index is to find the correct Order (done)
-            save.getOrder().get(index).setOrderStatus("Completed");
-            // get the customer with the order -> email (done)
+
             String email = save.getOrder().get(index).getCusEmail();
             Customer c = save.findCustomer(email);
-            // nid a method to assign delivery Men (done)
-            Delivery d = new Delivery(c, save.getOrder().get(index), save.getDelMen().get(save.findFreeDelMen()));
-            // done added into delivery
-            save.getDel().add(d);
+            int availableDeliveryMen = save.AvailableDeliveryMen();
+            if (availableDeliveryMen > 0) {
+                // if they is a deliveryMen that has clock in 
+                // get the customer with the order -> email (done)
+                save.getOrder().get(index).setOrderStatus("Completed");
+                //get the distance from Aff and Customer
+                //compare them with previous Del AND the delivery must not be 
+                //previous order must be in the state of completed
+                //if true then assign else assign to another freee delivery Men
+
+                /**
+                 * ***************************************************************************
+                 */
+                // nid a method to assign delivery Men (done)
+                if (save.findFreeDelMen() != 0) {
+                    // done added into delivery
+                    
+                    Delivery d = new Delivery(c, save.getOrder().get(index), save.getDelMen().get(save.findFreeDelMen()));
+                    save.getDelMen().get(save.findFreeDelMen()).setStatus("Assigned");
+                    save.getDel().add(d);
+                }
+                else{
+                    //find last deliveryMen
+                    Delivery d = new Delivery(c, save.getOrder().get(index), save.delMenByTurn());
+                    save.getDel().add(d);
+                }
+                JOptionPane.showMessageDialog(null, "Order " + orderID.getSelectedItem().toString() + " has Completed");
+            } else {
+                // they is no deliveryMen clock in but we set it inside without a deliveryMen
+                JOptionPane.showMessageDialog(null, "Please change the status later now there is no available deliveryMen", "Sorry", JOptionPane.INFORMATION_MESSAGE);
+
+            }
             orderID.removeAllItems();
             addOID();
             removeDisplay();
             display();
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -191,9 +216,9 @@ public class AcceptOrder extends javax.swing.JFrame {
         for (int x = 0; x < save.getOrder().size(); x++) {
             for (int i = 1; i <= save.getCartHi().getSize(); i++) {
                 // find the same cart ID and also same 
-                if (save.getOrder().get(x).getCartID().equals(save.getCartHi().get(i).getCartID()) 
+                if (save.getOrder().get(x).getCartID().equals(save.getCartHi().get(i).getCartID())
                         && save.getOrder().get(x).getAffID().equals(save.getCurAff().getAid())
-                            && save.getOrder().get(x).getOrderStatus().equals("Order Placed")) {
+                        && save.getOrder().get(x).getOrderStatus().equals("Order Placed")) {
                     row[0] = save.getOrder().get(x).getOrderID();
                     row[1] = save.getCartHi().get(i).getCartID();
                     row[2] = save.getCartHi().get(i).getItem();
@@ -205,24 +230,24 @@ public class AcceptOrder extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public void removeDisplay() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
     }
-    
-    public void addOID(){
+
+    public void addOID() {
         orderID.addItem("----");
         for (int x = 0; x < save.getOrder().size(); x++) {
-            if(save.getOrder().get(x).getAffID().equals(save.getCurAff().getAid()) 
-                    && save.getOrder().get(x).getOrderStatus().equals("Order Placed")){
+            if (save.getOrder().get(x).getAffID().equals(save.getCurAff().getAid())
+                    && save.getOrder().get(x).getOrderStatus().equals("Order Placed")) {
                 orderID.addItem(save.getOrder().get(x).getOrderID());
             }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JButton jButton1;
