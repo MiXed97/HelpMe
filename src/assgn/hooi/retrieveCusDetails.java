@@ -2,6 +2,7 @@
 package assgn.hooi;
 
 import assgn.Customer;
+import assgn.DMHome;
 import javax.swing.JOptionPane;
 import listLink.ListLink;
 import listLink.ListLinkInt;
@@ -40,6 +41,7 @@ public class retrieveCusDetails extends javax.swing.JFrame {
         phoneTxt = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jbtnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +53,13 @@ public class retrieveCusDetails extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Enter customer's phone number");
+
+        jbtnBack.setText("Back");
+        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,15 +73,26 @@ public class retrieveCusDetails extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel1)))
-                .addGap(32, 32, 32)
-                .addComponent(searchBtn)
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(searchBtn)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnBack)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jbtnBack)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,6 +119,13 @@ public class retrieveCusDetails extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
+        // TODO add your handling code here:
+        DMHome next = new DMHome(save);
+        next.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jbtnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +164,7 @@ public class retrieveCusDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbtnBack;
     private javax.swing.JTextField phoneTxt;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables

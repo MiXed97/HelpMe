@@ -38,9 +38,9 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     public DeliveryMenUpdateScreen(store save) {
         this.setLocationRelativeTo(null);
         this.setTitle("Update Deliver Status");
-        addOID();
         initComponents();
         this.save = save;
+        addOID();
         display();
         this.staff = save.getCurDelMen();
 

@@ -588,7 +588,8 @@ public class store {
 
         return 0;
     }
-
+    //dont remove this one !!!
+/*
     public void assignDelivery() {
         for (int i = 0; i < del.getSize(); i++) {
             Delivery delivery = del.get(i);
@@ -596,34 +597,34 @@ public class store {
                 delivery.setDeliveryMen(delMen.get(turn()));
             }
         }
-    }
+    }//dont remove this one !!!
 
     public int turn() {
         int result = 0;
         int checking = 0;
         do {
             result = hi;
-            if(checking == delMen.getSize())
+            if(checking == delMen.getSize())//dont remove this one !!!
                 break;
             checking++;
         } while (turnStuff(hi));
         return result;
     }
-
-    public boolean turnStuff(int a) {
+//dont remove this one !!!
+    public boolean turnStuff(int a) {//dont remove this one !!!
         boolean result;
         if (!delMen.get(a).getCico().peek().noClockIn()
-                && delMen.get(a).getCico().peek().noClockOut()) {
+                && delMen.get(a).getCico().peek().noClockOut()) {//dont remove this one !!!
             hi++;
-            result = false;
-        } else {
+            result = false;//dont remove this one !!!
+        } else {//dont remove this one !!!
             hi++;
-            if (hi == delMen.getSize()) {
+            if (hi == delMen.getSize()) {//dont remove this one !!!
                 hi = 0;
             }
-            result = true;
-        }
+            result = true;//dont remove this one !!!
+        }//dont remove this one !!!
         return result;
-    }
-
+    }//dont remove this one !!!
+*///dont remove this one !!!
 }
