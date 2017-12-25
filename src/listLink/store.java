@@ -39,6 +39,9 @@ public class store {
     MenuClass curMenuForUpdate = new MenuClass();
     String selectedRes = null;
 
+    //dont remove(KaiZhi)
+    static int hi;
+
     public store() {
     }
 
@@ -172,10 +175,16 @@ public class store {
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
+
         Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
         Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
+
         order.enqueue(o1);
         order.enqueue(o2);
+//      Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
+//        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2");
+//        order.enqueue(o3);
+//        order.enqueue(o4);
     }
 
     public void addDeliMen() {
@@ -228,14 +237,21 @@ public class store {
     }
 
     public void addDelivery() {
-        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
+        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",); Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
+        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
+        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
-        Delivery de2 = new Delivery();
-        Delivery de3 = new Delivery();
-        Delivery de4 = new Delivery();
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1");
+        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1");
+
+        Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
+        Delivery de2 = new Delivery(c, o1);
         Delivery de5 = new Delivery();
         Delivery de6 = new Delivery();
-
     }
 
     public void setAffMenu() {
@@ -557,13 +573,15 @@ public class store {
 
     public int findFreeDelMen() {
         //get the free deliveryMen
+
         try {
             for (int i = 1; i <= delMen.getSize(); i++) {
                 if (delMen.get(i).getStatus().equals("Working") && !delMen.get(i).getCico().peek().noClockIn()) {
                     return i;
                 }
-            }
-        } catch (Exception e) {
+
+        
+        }}catch (Exception e) {
         }
         return 0;
     }
@@ -578,7 +596,6 @@ public class store {
 
         return 0;
     }
-
     public int AvailableDeliveryMen() {
         try {
             for (int i = 1; i <= delMen.getSize(); i++) {
@@ -663,4 +680,5 @@ public class store {
 
         return result;
     }
+
 }

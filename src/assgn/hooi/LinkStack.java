@@ -43,6 +43,7 @@ public class LinkStack<T> implements LinkStackInt<T> {
             result = peek();
             topNode = topNode.next;
         }
+        entry--;
         return result;
     }
 

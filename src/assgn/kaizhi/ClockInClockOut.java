@@ -47,19 +47,7 @@ public class ClockInClockOut {
         return clock_out;
     }
 
-    public boolean noClockIn() {
-        Date now = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        String cmp = format.format(now);
-        
-        if (cmp.equals(date) && !clock_in.isEmpty()) {
-            return false;
-            //clock in before
-        } else {
-            return true;
-            // didnt clock in at all
-        }
-    }
+   
 
     public void clockIn() {
         Date now = new Date();
@@ -74,7 +62,19 @@ public class ClockInClockOut {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         clock_out = timeFormat.format(now);
     }
-
+ public boolean noClockIn() {
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        String cmp = format.format(now);
+        
+        if (cmp.equals(date) && !clock_in.isEmpty()) {
+            return false;
+            //clock in before
+        } else {
+            return true;
+            // didnt clock in at all
+        }
+    }
     public boolean noClockOut() {
 
         if (clock_out.isEmpty()) {

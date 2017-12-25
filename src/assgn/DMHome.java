@@ -182,7 +182,32 @@ public class DMHome extends javax.swing.JFrame {
 
         } else {
             save.getCurDelMen().getCico().peek().clockOut();
-            JOptionPane.showMessageDialog(null, "clock in : " + save.getCurDelMen().getCico().peek().getClock_in() + "\nclock out : " + save.getCurDelMen().getCico().peek().getClock_out());
+            String worked_hour="";
+            String input="";
+            input =""+ save.getCurDelMen().getCico().peek().getClock_in().charAt(0)+save.getCurDelMen().getCico().peek().getClock_in().charAt(1);
+            int in_hour = Integer.parseInt(input);
+            input =""+ save.getCurDelMen().getCico().peek().getClock_in().charAt(3)+save.getCurDelMen().getCico().peek().getClock_in().charAt(4);
+            int in_min = Integer.parseInt(input);
+            input =""+ save.getCurDelMen().getCico().peek().getClock_out().charAt(0)+save.getCurDelMen().getCico().peek().getClock_out().charAt(1);
+            int out_hour = Integer.parseInt(input);
+            input =""+ save.getCurDelMen().getCico().peek().getClock_out().charAt(3)+save.getCurDelMen().getCico().peek().getClock_out().charAt(4);
+            int out_min = Integer.parseInt(input);
+            int result_min;
+            int result_hour;
+            if(out_min < in_min){
+                out_min += 60;
+                out_hour --;
+                result_min = out_min - in_min;
+            }else{
+                result_min = out_min - in_min;
+            }
+            result_hour = out_hour - in_hour;
+            worked_hour = result_hour + " hour " + result_min +" minute";
+
+            JOptionPane.showMessageDialog(null, "clock in : " + save.getCurDelMen().getCico().peek().getClock_in()
+                    + "\nclock out : " + save.getCurDelMen().getCico().peek().getClock_out()
+                    + "\nTotal hour worked : " + worked_hour);
+
             clockStaff.setEnabled(false);
 
         }

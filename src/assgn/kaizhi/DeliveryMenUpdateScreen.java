@@ -39,7 +39,6 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     public DeliveryMenUpdateScreen(store save) {
         this.setLocationRelativeTo(null);
         this.setTitle("Update Deliver Status");
-
         initComponents();
         this.save = save;
         addOID();
@@ -64,7 +63,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         update = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbtnBack = new javax.swing.JButton();
         orderID = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,10 +95,10 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
         jLabel1.setText("Enter Delivery ID:");
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnBack.setText("Back");
+        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnBackActionPerformed(evt);
             }
         });
 
@@ -114,7 +113,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jButton1))
+                        .addComponent(jbtnBack))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -126,7 +125,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(jbtnBack)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -191,7 +190,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_updateActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
         //back button
         DMHome next = new DMHome(save);
@@ -206,7 +205,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
             this.setVisible(false);
             next.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,11 +274,11 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbtnBack;
     private javax.swing.JComboBox<String> orderID;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables

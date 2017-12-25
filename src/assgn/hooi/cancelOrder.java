@@ -45,7 +45,8 @@ public class cancelOrder extends javax.swing.JFrame {
         for(int a = 0;a<order.size();a++){
             System.out.println(order.size());
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail())){
-                model.addRow(new Object[]{order.get(a).getOrderID(),order.get(a).getOrderDate(),order.get(a).getOrderStatus()});
+                if(order.get(a).getOrderStatus().equals("Order Placed"))
+                    model.addRow(new Object[]{order.get(a).getOrderID(),order.get(a).getOrderDate(),order.get(a).getOrderStatus()});
             }
         }
     }

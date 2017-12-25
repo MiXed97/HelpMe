@@ -1,6 +1,7 @@
 
 package assgn.hooi;
 
+import assgn.Delivery;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,7 +77,7 @@ public class displayOrder extends javax.swing.JFrame {
         temp += "\nOrder status: "+o.getOrderStatus();
         jTextArea1.setText(temp);
         //order.enqueue(o);
-        order.enqueue(o);
+        order.sortedEnqueue(o);
         save.setOrder(order);
         cart.clear();
     }
