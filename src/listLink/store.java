@@ -688,26 +688,11 @@ public class store {
         return 0;
     }
     
-    public void sortDescDeliveryID(){
-        ListLinkInt<Delivery> temp = new ListLink<>();
-        String id = tempDel.get(1).getOrder().getOrderID();
-        int remove = 0;
-        while (!tempDel.isEmpty()) {
-            for (int i = 1; i <= tempDel.getSize(); i++) {
-                if (id.compareTo(tempDel.get(1).getOrder().getOrderID()) <= 0) {
-                    id = tempDel.get(i).getOrder().getOrderID();
-                    remove = i;
-                }
-            }
-            temp.add(tempDel.get(remove));
-            tempDel.remove(remove);
-
-            if (!tempDel.isEmpty()) {
-                id = tempDel.get(1).getOrder().getOrderID();
-            }
-        }
-
-        tempDel = temp;
+    public void sortAscDeliveryID(){
+        
+        tempDel.clear();
+        setTempDel();
+        
     }
     
     public void sortAcsDelPrice(){

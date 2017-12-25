@@ -127,13 +127,13 @@ public class MonthlyDelRep extends javax.swing.JFrame {
         cash = 0;
         total = 0;
         if (sort.getSelectedIndex() == 0) {
-            save.sortDescDeliveryID();
-            removeDisplay();
-            Redisplay();
-        } else if (sort.getSelectedIndex() == 1) {
-            save.sortDescDeliveryID();
+            save.sortAscDeliveryID();
             removeDisplay();
             display();
+        } else if (sort.getSelectedIndex() == 1) {
+            save.sortAscDeliveryID();
+            removeDisplay();
+            Redisplay();
         } else if (sort.getSelectedIndex() == 2) {
             save.sortAcsDelPrice();
             removeDisplay();
