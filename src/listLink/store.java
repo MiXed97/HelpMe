@@ -241,12 +241,6 @@ public class store {
 
         Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
         Delivery de2 = new Delivery(c, o1);
-        de2.setDeliveryMen(delMen.get(0));
-        del.add(de2);
-        Delivery de3 = new Delivery(c, o2);
-        del.add(de3);
-        Delivery de4 = new Delivery(c,o3);
-        del.add(de4);
         Delivery de5 = new Delivery();
         Delivery de6 = new Delivery();
     }
@@ -588,43 +582,4 @@ public class store {
 
         return 0;
     }
-    //dont remove this one !!!
-/*
-    public void assignDelivery() {
-        for (int i = 0; i < del.getSize(); i++) {
-            Delivery delivery = del.get(i);
-            if (delivery.getDeliveryMen() == null&&!delivery.getOrder().getOrderStatus().equals("Delivered")) {
-                delivery.setDeliveryMen(delMen.get(turn()));
-            }
-        }
-    }//dont remove this one !!!
-
-    public int turn() {
-        int result = 0;
-        int checking = 0;
-        do {
-            result = hi;
-            if(checking == delMen.getSize())//dont remove this one !!!
-                break;
-            checking++;
-        } while (turnStuff(hi));
-        return result;
-    }
-//dont remove this one !!!
-    public boolean turnStuff(int a) {//dont remove this one !!!
-        boolean result;
-        if (!delMen.get(a).getCico().peek().noClockIn()
-                && delMen.get(a).getCico().peek().noClockOut()) {//dont remove this one !!!
-            hi++;
-            result = false;//dont remove this one !!!
-        } else {//dont remove this one !!!
-            hi++;
-            if (hi == delMen.getSize()) {//dont remove this one !!!
-                hi = 0;
-            }
-            result = true;//dont remove this one !!!
-        }//dont remove this one !!!
-        return result;
-    }//dont remove this one !!!
-*///dont remove this one !!!
 }

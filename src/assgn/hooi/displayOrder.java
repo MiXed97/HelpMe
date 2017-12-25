@@ -79,8 +79,6 @@ public class displayOrder extends javax.swing.JFrame {
         //order.enqueue(o);
         order.enqueue(o);
         save.setOrder(order);
-        Delivery de = new Delivery(save.getCurCus(),o);
-        save.getDel().add(de);
         cart.clear();
     }
     @SuppressWarnings("unchecked")
