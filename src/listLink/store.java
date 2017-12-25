@@ -176,8 +176,8 @@ public class store {
         cartHi.add(abc4);
         cartHi.add(abc5);
 
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1","cash");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1","cash");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1", "cash");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1", "cash");
 
         order.enqueue(o1);
         order.enqueue(o2);
@@ -244,9 +244,9 @@ public class store {
         Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
         Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1","cash");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1","cash");
-        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1","cash");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1", "cash");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1", "cash");
+        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1", "cash");
 
         Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
         Delivery de2 = new Delivery(c, o1);
@@ -576,12 +576,12 @@ public class store {
 
         try {
             for (int i = 1; i <= delMen.getSize(); i++) {
-                if (delMen.get(i).getStatus().equals("Working") && !delMen.get(i).getCico().peek().noClockIn()) {
+                if (delMen.get(i).getStatus().equals("Working") && delMen.get(i).isClock()) {
                     return i;
                 }
 
-        
-        }}catch (Exception e) {
+            }
+        } catch (Exception e) {
         }
         return 0;
     }
@@ -596,6 +596,7 @@ public class store {
 
         return 0;
     }
+
     public int AvailableDeliveryMen() {
         try {
             for (int i = 1; i <= delMen.getSize(); i++) {
@@ -643,13 +644,14 @@ public class store {
 
     public ListLinkInt<DeliveryMen> activeDelMen() {
         ListLinkInt<DeliveryMen> temp = new ListLink<DeliveryMen>();
-        try{
-        for (int i = 1; i <= delMen.getSize(); i++) {
-            if (!delMen.get(i).getCico().peek().noClockIn()) {
-                temp.add(delMen.get(i));
+        try {
+            for (int i = 1; i <= delMen.getSize(); i++) {
+                if (delMen.get(i).isClock()) {
+                    temp.add(delMen.get(i));
+                }
             }
+        } catch (Exception e) {
         }
-        }catch(Exception e){}
         System.out.println(temp.getSize());
         return temp;
     }
@@ -679,6 +681,16 @@ public class store {
         }
 
         return result;
+    }
+
+    public int findCustomerIndex(String email) {
+
+        for (int i = 1; i <= customer.getSize(); i++) {
+            if (customer.get(i).getEmail().equals(email)) {
+                return i;
+            }
+        }
+        return 0;
     }
 
 }

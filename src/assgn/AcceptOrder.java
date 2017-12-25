@@ -131,9 +131,23 @@ public class AcceptOrder extends javax.swing.JFrame {
 
             int index = save.findOrderIndex(orderID.getSelectedItem().toString());
             // index is to find the correct Order (done)
-
+            
             String email = save.getOrder().get(index).getCusEmail();
             Customer c = save.findCustomer(email);
+            String affID = save.getOrder().get(index).getAffID();
+            int affIndex = save.findAffByID(affID);
+            int custIndex = save.findCustomerIndex(save.getOrder().get(index).getCusEmail());
+            double affDis = save.getAff().get(affIndex).getDistance();
+            double cusDis = save.getCustomer().get(custIndex).getDistance();
+            double disInBet = Math.abs(affDis - cusDis);
+            
+            System.out.println(affDis);
+            System.out.println(cusDis);
+            System.out.println(disInBet);
+            if(affDis > 0  && cusDis > 0){
+                
+            }
+            
             int availableDeliveryMen = save.AvailableDeliveryMen();
             if (availableDeliveryMen > 0) {
                 // if they is a deliveryMen that has clock in 

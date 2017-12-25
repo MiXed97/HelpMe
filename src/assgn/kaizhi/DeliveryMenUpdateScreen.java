@@ -157,31 +157,71 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
 
-        //only can update to one status cannot return back to previous state
-        //set it ur self with a method if can
-        String oID = orderID.getSelectedItem().toString();
-        int index = save.findOrderIndex(oID);
-        String status = save.getOrder().get(index).getOrderStatus();
-        String affID = save.getOrder().get(index).getAffID();
-        int affIndex = save.findAffByID(affID);
-        if (status.equals("Completed")) {
-            save.getOrder().get(index).setOrderStatus("Delivering");
-            // find aff distance exist a not 
-            if (save.getAff().get(affIndex).getDistance() <= 0) {
-                //answer how many km/h it take to deliver the order
+        if (orderID.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Please select a DeliveryID", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            //only can update to one status cannot return back to previous state
+            //set it ur self with a method if can
+            String oID = orderID.getSelectedItem().toString();
+            int index = save.findOrderIndex(oID);
+            String status = save.getOrder().get(index).getOrderStatus();
+            String affID = save.getOrder().get(index).getAffID();
+            int affIndex = save.findAffByID(affID);
+            int custIndex = save.findCustomerIndex(save.getOrder().get(index).getCusEmail());
+            if (status.equals("Completed")) {
+                save.getOrder().get(index).setOrderStatus("Delivering");
+                // find aff distance exist a not 
+                if (save.getAff().get(affIndex).getDistance() < 0) {
+                    //answer how many km/h it take to deliver the order
+                    double distance = 0;
+                    do {
+                        String s = JOptionPane.showInputDialog(null, "Enter the km to the affiliate");
+                        try {
+                            distance = Double.parseDouble(s);
+                        } catch (Exception e) {
+                            distance = 0;
+                        }
+                        if (distance == 0) {
+                            JOptionPane.showMessageDialog(null, "Error invalid distance entered", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } while (distance == 0);
+
+                    save.getAff().get(affIndex).setDistance(distance);
+                }
+
+                //change staff status
+                // change del
+                save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+                save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("On Delivery");
+
+            } else if (status.equals("Delivering")) {
+                save.getOrder().get(index).setOrderStatus("Delivered");
+                // find customer distance from our shop 
+                if (save.getCustomer().get(custIndex).getDistance() < 0) {
+                    //answer how many km/h it take to deliver the order
+                    double distance = 0;
+                    do {
+                        String s = JOptionPane.showInputDialog(null, "Enter the km to the affiliate");
+                        try {
+                            distance = Double.parseDouble(s);
+                        } catch (Exception e) {
+                            distance = 0;
+                        }
+                        if (distance == 0) {
+                            JOptionPane.showMessageDialog(null, "Error invalid distance entered", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } while (distance == 0);
+
+                    save.getCustomer().get(custIndex).setDistance(distance);
+                }
+
+                save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
+                save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("Working");
+            } else {
+                JOptionPane.showMessageDialog(null, "can't be udpated", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            //change staff status
-            // change del
-            save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
-            save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("On Delivery");
-
-        } else if (status.equals("Delivering")) {
-            save.getOrder().get(index).setOrderStatus("Delivered");
-            // find customer distance from our shop 
-
-            save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
-            save.getDelMen().get(save.findDelMenByID(save.getCurDelMen().getStaffID())).setStatus("Working");
         }
 
         removeDisplay();
@@ -243,6 +283,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     }
 
     public void addOID() {
+        orderID.addItem("----");
         for (int i = 1; i <= save.getDel().getSize(); i++) {
             if (save.getDel().get(i).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())) {
                 orderID.addItem(save.getDel().get(i).getOrder().getOrderID());

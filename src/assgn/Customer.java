@@ -38,6 +38,7 @@ public class Customer{
         this.contactNo = contactNo;
         this.email = email;
         this.password = password;
+        this.distance=-1;
     }
     
     

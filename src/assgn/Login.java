@@ -51,6 +51,9 @@ public class Login extends javax.swing.JFrame {
         for (int i = 0; i < save.getOrder().size(); i++) {
             System.out.println(save.getOrder().get(i).toString()+"Index:"+i);
         }
+        System.out.println();
+        System.out.println(save.getCustomer().get(1).getDistance());
+        System.out.println(save.getAff().get(1).getDistance());
     }
 
     /**
