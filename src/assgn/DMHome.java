@@ -201,7 +201,7 @@ public class DMHome extends javax.swing.JFrame {
             }
             result_hour = out_hour - in_hour;
             worked_hour = result_hour + " hour " + result_min +" minute";
-
+            save.getCurDelMen().getCico().peek().setWorked_hour(worked_hour);
             JOptionPane.showMessageDialog(null, "clock in : " + save.getCurDelMen().getCico().peek().getClock_in()
                     + "\nclock out : " + save.getCurDelMen().getCico().peek().getClock_out()
                     + "\nTotal hour worked : " + worked_hour);
