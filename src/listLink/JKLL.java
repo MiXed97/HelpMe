@@ -2,17 +2,17 @@ package listLink;
 
 public class JKLL<T> implements JKLLI<T>{
 
-    node<T> firstNode;
+    node firstNode;
     int size = 0;
     
     @Override
     public boolean add(T newNode) {
-        node<T> currNode = new node(newNode);
+        node currNode = new node(newNode);
         if(isEmpty()){
             firstNode = currNode;
         }
         else{
-            node<T> lastNode = getLatest();
+            node lastNode = getLatest();
             lastNode.setNext(currNode);
         }
         size++;
@@ -49,8 +49,8 @@ public class JKLL<T> implements JKLLI<T>{
     @Override
     public boolean remove(int index) {
         if(firstNode != null){
-            node<T> be4Node = getBefore(index);
-            node<T> currNode = getElement(index);
+            node be4Node = getBefore(index);
+            node currNode = getElement(index);
             if(currNode== firstNode){
                 firstNode = currNode.getNext();
             }
@@ -79,14 +79,14 @@ public class JKLL<T> implements JKLLI<T>{
     @Override
     public T get(int index) {
         T result;
-        result = getElement(index).getData();
+        result = (T) getElement(index).getData();
         
         return result;
     }
      
-    public node<T> getLatest() {
+    public node getLatest() {
        
-        node<T> c = firstNode;
+        node c = firstNode;
         
         for(int i =0;i<size-1;i++){
            c = c.getNext();
@@ -94,16 +94,16 @@ public class JKLL<T> implements JKLLI<T>{
         return c;
     }
     
-    public node<T> getBefore(int index){
-        node<T> c = firstNode;
+    public node getBefore(int index){
+        node c = firstNode;
         for(int i = 0; i < index-2;i++){
             c = c.getNext();
         }
         return c;
     }
     
-    public node<T> getElement(int index){
-        node<T> c = firstNode;
+    public node getElement(int index){
+        node c = firstNode;
         
         for(int i=1;i<index;i++)
         {
