@@ -202,7 +202,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                     //answer how many km/h it take to deliver the order
                     double distance = 0;
                     do {
-                        String s = JOptionPane.showInputDialog(null, "Enter the km to the affiliate");
+                        String s = JOptionPane.showInputDialog(null, "Enter the km to the customer");
                         try {
                             distance = Double.parseDouble(s);
                         } catch (Exception e) {
@@ -285,7 +285,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
     public void addOID() {
         orderID.addItem("----");
         for (int i = 1; i <= save.getDel().getSize(); i++) {
-            if (save.getDel().get(i).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())) {
+            if (save.getDel().get(i).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID()) && !save.getDel().get(i).getOrder().getOrderStatus().equals("Delivered")) {
                 orderID.addItem(save.getDel().get(i).getOrder().getOrderID());
             }
 
@@ -297,13 +297,16 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         model = (DefaultTableModel) jTable1.getModel();
         Object row[] = new Object[5];
         for (int i = 1; i <= save.getDel().getSize(); i++) {
-            row[0] = save.getDel().get(i).getOrder().getOrderID();
-            row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
-            row[2] = save.getDel().get(i).getCustomer().getName();
-            row[3] = save.getDel().get(i).getCustomer().getAddress();
-            row[4] = save.getDel().get(i).getOrder().getOrderStatus();
+            if (!save.getDel().get(i).getOrder().getOrderStatus().equals("Delivered")) {
+                row[0] = save.getDel().get(i).getOrder().getOrderID();
+                row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
+                row[2] = save.getDel().get(i).getCustomer().getName();
+                row[3] = save.getDel().get(i).getCustomer().getAddress();
+                row[4] = save.getDel().get(i).getOrder().getOrderStatus();
+            }
             model.addRow(row);
         }
+        
     }
 
     public void removeDisplay() {

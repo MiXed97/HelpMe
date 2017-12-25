@@ -131,7 +131,7 @@ public class AcceptOrder extends javax.swing.JFrame {
 
             int index = save.findOrderIndex(orderID.getSelectedItem().toString());
             // index is to find the correct Order (done)
-            
+
             String email = save.getOrder().get(index).getCusEmail();
             Customer c = save.findCustomer(email);
             String affID = save.getOrder().get(index).getAffID();
@@ -140,50 +140,65 @@ public class AcceptOrder extends javax.swing.JFrame {
             double affDis = save.getAff().get(affIndex).getDistance();
             double cusDis = save.getCustomer().get(custIndex).getDistance();
             double disInBet = Math.abs(affDis - cusDis);
-            
+            int delSize = save.getDel().getSize();
+            String lastDelStat = "";
+
+            if (delSize != 0) {
+                lastDelStat = save.getDel().get(delSize).getOrder().getOrderStatus();
+
+            }
             System.out.println(affDis);
             System.out.println(cusDis);
             System.out.println(disInBet);
-            if(affDis > 0  && cusDis > 0){
-                
-            }
-            
-            int availableDeliveryMen = save.AvailableDeliveryMen();
-            if (availableDeliveryMen > 0) {
-                // if they is a deliveryMen that has clock in 
-                // get the customer with the order -> email (done)
+            System.out.println(lastDelStat);
+
+            if (affDis > 0 && cusDis > 0 && disInBet <= 2 && lastDelStat.equals("Completed")) {
+                System.out.println("yes");
                 save.getOrder().get(index).setOrderStatus("Completed");
-                //get the distance from Aff and Customer
-                //compare them with previous Del AND the delivery must not be 
-                //previous order must be in the state of completed
-                //if true then assign else assign to another freee delivery Men
-
-                /**
-                 * ***************************************************************************
-                 */
-                // nid a method to assign delivery Men (done)
-                if (save.findFreeDelMen() != 0) {
-                    // done added into delivery
-                    
-                    Delivery d = new Delivery(c, save.getOrder().get(index), save.getDelMen().get(save.findFreeDelMen()));
-                    save.getDelMen().get(save.findFreeDelMen()).setStatus("Assigned");
-                    save.getDel().add(d);
-                }
-                else{
-                    //find last deliveryMen
-                    Delivery d = new Delivery(c, save.getOrder().get(index), save.delMenByTurn());
-                    save.getDel().add(d);
-                }
+                System.out.println(save.getDel().get(delSize).getDeliveryMen().getStaffID());
+                System.out.println(save.getCustomer().get(custIndex).getName());
+                Delivery d = new Delivery(save.getCustomer().get(custIndex), save.getOrder().get(index),save.getDel().get(delSize).getDeliveryMen());
+                save.getDel().add(d);
                 JOptionPane.showMessageDialog(null, "Order " + orderID.getSelectedItem().toString() + " has Completed");
+
             } else {
-                // they is no deliveryMen clock in but we set it inside without a deliveryMen
-                JOptionPane.showMessageDialog(null, "Please change the status later now there is no available deliveryMen", "Sorry", JOptionPane.INFORMATION_MESSAGE);
+                int availableDeliveryMen = save.AvailableDeliveryMen();
+                if (availableDeliveryMen > 0) {
+                    // if they is a deliveryMen that has clock in 
+                    // get the customer with the order -> email (done)
+                    save.getOrder().get(index).setOrderStatus("Completed");
+                    //get the distance from Aff and Customer
+                    //compare them with previous Del AND the delivery must not be 
+                    //previous order must be in the state of completed
+                    //if true then assign else assign to another freee delivery Men
+
+                    /**
+                     * ***************************************************************************
+                     */
+                    // nid a method to assign delivery Men (done)
+                    if (save.findFreeDelMen() != 0) {
+                        // done added into delivery
+
+                        Delivery d = new Delivery(c, save.getOrder().get(index), save.getDelMen().get(save.findFreeDelMen()));
+                        save.getDelMen().get(save.findFreeDelMen()).setStatus("Assigned");
+                        save.getDel().add(d);
+                    } else {
+                        //find last deliveryMen
+                        Delivery d = new Delivery(c, save.getOrder().get(index), save.delMenByTurn());
+                        save.getDel().add(d);
+                    }
+                    JOptionPane.showMessageDialog(null, "Order " + orderID.getSelectedItem().toString() + " has Completed");
+                } else {
+                    // they is no deliveryMen clock in but we set it inside without a deliveryMen
+                    JOptionPane.showMessageDialog(null, "Please change the status later now there is no available deliveryMen", "Sorry", JOptionPane.INFORMATION_MESSAGE);
+
+                }
 
             }
-            orderID.removeAllItems();
-            addOID();
-            removeDisplay();
-            display();
+                orderID.removeAllItems();
+                addOID();
+                removeDisplay();
+                display();
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
