@@ -56,7 +56,7 @@ public class DMHome extends javax.swing.JFrame {
         clockStaff = new javax.swing.JToggleButton();
         jbtnStatus = new javax.swing.JButton();
         jbtnCheckAddress = new javax.swing.JButton();
-        retrieveCusBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,17 +98,10 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
-        retrieveCusBtn.setText("Retrieve Customer Details");
-        retrieveCusBtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Retrieve Customer Details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retrieveCusBtnActionPerformed(evt);
-            }
-        });
-
-        retrieveCusBtn.setText("Retrieve Customer Details");
-        retrieveCusBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retrieveCusBtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -130,11 +123,11 @@ public class DMHome extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(retrieveCusBtn)
+                    .addComponent(jButton1)
                     .addComponent(jbtnCheckAddress)
                     .addComponent(jbtnStatus)
                     .addComponent(updateDetails))
-                .addGap(92, 92, 92))
+                .addGap(104, 104, 104))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +145,7 @@ public class DMHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnCheckAddress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(retrieveCusBtn)
+                .addComponent(jButton1)
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
@@ -240,10 +233,11 @@ public class DMHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnCheckAddressActionPerformed
 
-    private void retrieveCusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrieveCusBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
         this.setVisible(false);
         retrieveCusDetails rcd = new retrieveCusDetails(save);
-    }//GEN-LAST:event_retrieveCusBtnActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,11 +297,11 @@ public class DMHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton clockStaff;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jbtnCheckAddress;
     private javax.swing.JButton jbtnStatus;
     private javax.swing.JButton logOut;
-    private javax.swing.JButton retrieveCusBtn;
     private javax.swing.JButton updateDetails;
     // End of variables declaration//GEN-END:variables
 }

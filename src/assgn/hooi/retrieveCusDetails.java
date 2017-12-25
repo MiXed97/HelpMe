@@ -122,9 +122,10 @@ public class retrieveCusDetails extends javax.swing.JFrame {
 
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         DMHome next = new DMHome(save);
         next.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jbtnBackActionPerformed
 
     /**
