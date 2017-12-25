@@ -35,6 +35,9 @@ public class store {
     JKLLI<MenuClass> curMenu = new JKLL<>();
     MenuClass curMenuForUpdate = new MenuClass();
     String selectedRes = null;
+    
+    //dont remove(KaiZhi)
+    static int hi;
 
     public store() {
     }
@@ -225,14 +228,23 @@ public class store {
     }
     
     public void addDelivery() {
-        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
+        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",); Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
+        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
+        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
-        Delivery de2 = new Delivery();
-        Delivery de3 = new Delivery();
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com","A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com","A1");
+       
+        Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
+        Delivery de2 = new Delivery(c,o1);
+        del.add(de2);
+        Delivery de3 = new Delivery(c,o2);
         Delivery de4 = new Delivery();
         Delivery de5 = new Delivery();
         Delivery de6 = new Delivery();
-
     }
 
     public void setAffMenu() {
@@ -571,8 +583,26 @@ public class store {
             }
         }
         
-        
         return 0;
+    }
+    public void assignDelivery(){
+        for(int i = 0; i < del.getSize(); i++){
+            Delivery delivery = del.get(i);
+            if(delivery.getDeliveryMen()==null ){
+                delivery.setDeliveryMen(delMen.get(turn()));
+            }
+        }
+    }
+    public int turn(){
+        int result = 0;
+        hi=0;
+        if(hi!= del.getSize()){
+            result= hi;
+            hi++;
+        }else{
+            hi=0;
+        }
+        return result;
     }
    
 }

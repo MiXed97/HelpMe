@@ -41,7 +41,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
 
         initComponents();
         this.save = save;
-        addOID();
+        save.assignDelivery();
         display();
         this.staff = save.getCurDelMen();
 
@@ -172,7 +172,7 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         } else if (status.equals("Delivering")) {
             save.getOrder().get(index).setOrderStatus("Delivered");
             // find customer distance from our shop 
-            
+
             save.getDel().get(save.findDelivery(oID)).setOrder(save.getOrder().get(index));
         }
 
@@ -234,17 +234,6 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
         });
     }
 
-    public void addOID() {
-        for (int i = 0; i < save.getOrder().size(); i++) {
-            for (int x = 1; x <= save.getDel().getSize(); x++) {
-                if (!save.getOrder().get(i).getOrderStatus().equals("Order Placed")
-                        && save.getDel().get(x).getDeliveryMen().getStaffID().equals(save.getCurDelMen().getStaffID())
-                        && !save.getOrder().get(i).getOrderStatus().equals("Delivered")) {
-                    orderID.addItem(save.getOrder().get(i).getOrderID());
-                }
-            }
-        }
-    }
 
     public void display() {
         model = (DefaultTableModel) jTable1.getModel();

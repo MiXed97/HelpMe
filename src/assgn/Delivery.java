@@ -21,6 +21,7 @@ public class Delivery {
     Order1 order;
     DeliveryMen deliveryMen;
     int index = 0;
+
     public Delivery() {
     }
 
@@ -28,6 +29,11 @@ public class Delivery {
         this.customer = customer;
         this.order = order;
         this.deliveryMen = deliveryMen;
+    }
+
+    public Delivery(Customer customer, Order1 order) {
+        this.customer = customer;
+        this.order = order;
     }
 
     public Customer getCustomer() {
