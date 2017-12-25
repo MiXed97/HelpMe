@@ -31,6 +31,7 @@ public class MonthlyDelRep extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Monthly Delivery Report");
+        save.setTempDel();
         this.save = save;
         initComponents();
         display();
@@ -184,22 +185,22 @@ public class MonthlyDelRep extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         Object[] row = new Object[6];
-        for (int i = 1; i <= save.getDel().getSize(); i++) {
-            if (save.getDel().get(i).getOrder().getOrderDate().substring(0, 7).equals(save.getDateNow())) {
-                row[0] = save.getDel().get(i).getOrder().getOrderID();
-                row[1] = save.getDel().get(i).getCustomer().getName();
-                row[2] = save.getDel().get(i).getDeliveryMen().getStaffID();
-                row[3] = save.getDel().get(i).getDeliveryMen().getName();
-                row[4] = save.getDel().get(i).getOrder().getPaymentType();
-                row[5] = save.getDel().get(i).getOrder().getTotalAmount();
-                total += save.getDel().get(i).getOrder().getTotalAmount();
-                if (save.getDel().get(i).getOrder().getPaymentType().equals("cash")) {
+        for (int i = 1; i <= save.getTempDel().getSize(); i++) {
+            
+                row[0] = save.getTempDel().get(i).getOrder().getOrderID();
+                row[1] = save.getTempDel().get(i).getCustomer().getName();
+                row[2] = save.getTempDel().get(i).getDeliveryMen().getStaffID();
+                row[3] = save.getTempDel().get(i).getDeliveryMen().getName();
+                row[4] = save.getTempDel().get(i).getOrder().getPaymentType();
+                row[5] = save.getTempDel().get(i).getOrder().getTotalAmount();
+                total += save.getTempDel().get(i).getOrder().getTotalAmount();
+                if (save.getTempDel().get(i).getOrder().getPaymentType().equals("cash")) {
                     cash++;
                 } else {
                     card++;
                 }
                 model.addRow(row);
-            }
+            
         }
 
         row[0] = "";
@@ -232,15 +233,15 @@ public class MonthlyDelRep extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         Object[] row = new Object[6];
-        for (int i = save.getDel().getSize(); i >= 1; i--) {
-            row[0] = save.getDel().get(i).getOrder().getOrderID();
-            row[1] = save.getDel().get(i).getCustomer().getName();
-            row[2] = save.getDel().get(i).getDeliveryMen().getStaffID();
-            row[3] = save.getDel().get(i).getDeliveryMen().getName();
-            row[4] = save.getDel().get(i).getOrder().getPaymentType();
-            row[5] = save.getDel().get(i).getOrder().getTotalAmount();
-            total += save.getDel().get(i).getOrder().getTotalAmount();
-            if (save.getDel().get(i).getOrder().getPaymentType().equals("cash")) {
+        for (int i = save.getTempDel().getSize(); i >= 1; i--) {
+            row[0] = save.getTempDel().get(i).getOrder().getOrderID();
+            row[1] = save.getTempDel().get(i).getCustomer().getName();
+            row[2] = save.getTempDel().get(i).getDeliveryMen().getStaffID();
+            row[3] = save.getTempDel().get(i).getDeliveryMen().getName();
+            row[4] = save.getTempDel().get(i).getOrder().getPaymentType();
+            row[5] = save.getTempDel().get(i).getOrder().getTotalAmount();
+            total += save.getTempDel().get(i).getOrder().getTotalAmount();
+            if (save.getTempDel().get(i).getOrder().getPaymentType().equals("cash")) {
                 cash++;
             } else {
                 card++;

@@ -20,14 +20,6 @@ public boolean add(T newEntry);
   public T get(int index);
   
   public int getSize();
-  
-  public node getPre();
-  
-  public node getNode(int index);
-  
-   public node getLastNode();
-   
-   public node getFirstNode();
    
    public void clear();
    

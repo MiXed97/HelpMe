@@ -29,7 +29,7 @@ public class store {
     ListLinkInt<Cart> cartHi = new ListLink<>();
     LinkQueueInt<Order1> order = new LinkQueue<>();
     LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
-
+    ListLinkInt<Delivery> tempDel = new ListLink<>();
     // keep track user
     Customer curCus = null;
     aff curAff = null;
@@ -181,16 +181,11 @@ public class store {
 
         order.enqueue(o1);
         order.enqueue(o2);
-//      Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
-//        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2");
-//        order.enqueue(o3);
-//        order.enqueue(o4);
     }
 
     public void addDeliMen() {
         DeliveryMen d1 = new DeliveryMen("Nicholas", "D1", "192", "Somewhere", "01234567", 123.00);
         d1.setPassword("123");
-        d1.setStatus("On Delivery");
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai", "D2", "999", "No where", "01899997", 223.00);
         d2.setPassword("123");
         DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi", "D3", "456", "LoL", "01934567", 323.00);
@@ -695,45 +690,45 @@ public class store {
     
     public void sortDescDeliveryID(){
         ListLinkInt<Delivery> temp = new ListLink<>();
-        String id = del.get(1).getOrder().getOrderID();
+        String id = tempDel.get(1).getOrder().getOrderID();
         int remove = 0;
-        while (!del.isEmpty()) {
-            for (int i = 1; i <= del.getSize(); i++) {
-                if (id.compareTo(del.get(1).getOrder().getOrderID()) <= 0) {
-                    id = del.get(i).getOrder().getOrderID();
+        while (!tempDel.isEmpty()) {
+            for (int i = 1; i <= tempDel.getSize(); i++) {
+                if (id.compareTo(tempDel.get(1).getOrder().getOrderID()) <= 0) {
+                    id = tempDel.get(i).getOrder().getOrderID();
                     remove = i;
                 }
             }
-            temp.add(del.get(remove));
-            del.remove(remove);
+            temp.add(tempDel.get(remove));
+            tempDel.remove(remove);
 
-            if (!del.isEmpty()) {
-                id = del.get(1).getOrder().getOrderID();
+            if (!tempDel.isEmpty()) {
+                id = tempDel.get(1).getOrder().getOrderID();
             }
         }
 
-        del = temp;
+        tempDel = temp;
     }
     
     public void sortAcsDelPrice(){
         ListLinkInt<Delivery> temp = new ListLink<>();
-        double price = del.get(1).getOrder().getTotalAmount();
+        double price = tempDel.get(1).getOrder().getTotalAmount();
         int remove = 0;
-        while (!del.isEmpty()) {
-            for (int i = 1; i <= del.getSize(); i++) {
-                if (price >= del.get(i).getOrder().getTotalAmount()) {
-                    price = del.get(i).getOrder().getTotalAmount();
+        while (!tempDel.isEmpty()) {
+            for (int i = 1; i <= tempDel.getSize(); i++) {
+                if (price >= tempDel.get(i).getOrder().getTotalAmount()) {
+                    price = tempDel.get(i).getOrder().getTotalAmount();
                     remove = i;
                 }
             }
-            temp.add(del.get(remove));
-            del.remove(remove);
+            temp.add(tempDel.get(remove));
+            tempDel.remove(remove);
 
-            if (!del.isEmpty()) {
-                price = del.get(1).getOrder().getTotalAmount();
+            if (!tempDel.isEmpty()) {
+                price = tempDel.get(1).getOrder().getTotalAmount();
             }
         }
-        del = temp;
+        tempDel = temp;
     }
     
     public String getYearMonthNow(){
@@ -749,5 +744,21 @@ public class store {
             }
         }
     }
+    
+    public void setTempDel(){
+        tempDel.clear();
+        for(int i = 1; i<= del.getSize();i++){
+            if(del.get(i).getOrder().getOrderDate().substring(0, 7).equals(getYearMonthNow())){
+                tempDel.add(del.get(i));
+            }
+        }
+    }
+    
+    
+
+    public ListLinkInt<Delivery> getTempDel() {
+        return tempDel;
+    }
+
 
 }

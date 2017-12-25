@@ -121,7 +121,6 @@ public class ListLink<T> implements ListLinkInt<T> {
         return size + 1;
     }
 
-    @Override
     public node getPre() {
         node cur = firstNode;
         //1
@@ -132,23 +131,13 @@ public class ListLink<T> implements ListLinkInt<T> {
         return cur;
     }
 
-    @Override
+   
     public node getNode(int index) {
         node n = firstNode;
         for (int i = 0; i < index - 1; i++) {
             n = n.getNext();
         }
         return n;
-    }
-
-    @Override
-    public node getLastNode() {
-        return lastNode;
-    }
-
-    @Override
-    public node getFirstNode() {
-        return firstNode;
     }
 
     public node getIndex(int index) {
