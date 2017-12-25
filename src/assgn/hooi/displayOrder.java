@@ -26,16 +26,21 @@ public class displayOrder extends javax.swing.JFrame {
     public displayOrder() {
         initComponents();
         save = new store(1);
-        setup();
+        setup("cash");
     }
 
     public displayOrder(store save) {
         initComponents();
         this.save = save;
-        setup();
+        setup("cash");
+    }
+    public displayOrder(store save,String pay) {
+        initComponents();
+        this.save = save;
+        setup(pay);
     }
     
-    private void setup(){
+    private void setup(String pay){
         System.out.println(save.getCurAff().getAid());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -68,13 +73,14 @@ public class displayOrder extends javax.swing.JFrame {
             cartHi.add(cart.get(a));
             total += cart.get(a).getTotal();
         }
-        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail(), save.getCurAff().getAid());
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail(), save.getCurAff().getAid(),pay);
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";
         temp += "Order ID: "+orderID;
         temp += "\nOrder date: "+dateFormat.format(date);
         temp += "\nOrder status: "+o.getOrderStatus();
+        temp += "\nPayment type: "+o.getPaymentType();
         jTextArea1.setText(temp);
         //order.enqueue(o);
         order.sortedEnqueue(o);
@@ -95,7 +101,7 @@ public class displayOrder extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Order placed successfully");
 
-        jButton1.setText("Back");
+        jButton1.setText("Close");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -113,7 +119,7 @@ public class displayOrder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -132,7 +138,7 @@ public class displayOrder extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

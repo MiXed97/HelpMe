@@ -36,7 +36,7 @@
                   <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="163" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancel order while &quot;Order Placed&quot; or &quot;Accepted&quot; status only"/>
+        <Property name="text" type="java.lang.String" value="Cancel order while &quot;Order Placed&quot; status only"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="backBtn">

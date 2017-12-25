@@ -13,9 +13,10 @@ public class Order1 {
     private String orderStatus;
     private double totalAmount;
     private String affID;
+    private String paymentType;
     public Order1(){}
     
-    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus,String cusEmail, String affID){
+    public Order1(String orderID,String cartID,String orderDate,double totalAmount,String orderStatus,String cusEmail, String affID,String paymentType){
         this.orderID = orderID;
         this.cartID = cartID;
         this.orderDate = orderDate;
@@ -23,6 +24,7 @@ public class Order1 {
         this.totalAmount = totalAmount;
         this.cusEmail = cusEmail;
         this.affID= affID;
+        this.paymentType = paymentType;
     }
     
     public void setOrderID(String orderID){
@@ -73,6 +75,14 @@ public class Order1 {
     @Override
     public String toString() {
         return "Order1{" + "orderID=" + orderID + ", cartID=" + cartID + ", cusEmail=" + cusEmail + ", orderDate=" + orderDate + ", orderStatus=" + orderStatus + ", totalAmount=" + totalAmount + ", affID=" + affID + '}';
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
     
     

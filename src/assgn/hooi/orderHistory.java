@@ -1,6 +1,7 @@
 
 package assgn.hooi;
 
+import assgn.JianKai.aff;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import listLink.ListLink;
@@ -136,23 +137,23 @@ public class orderHistory extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(orderIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                         .addComponent(closeBtn)))
                 .addContainerGap())
         );
@@ -195,13 +196,21 @@ public class orderHistory extends javax.swing.JFrame {
             cartID+=(n+1);
         System.out.println(cartID);
         if(orderIDTxt.getText().isEmpty())
-            JOptionPane.showMessageDialog(this, "Please enter cart ID");
+            JOptionPane.showMessageDialog(this, "Please enter Order ID");
         else{
             for(int a = 0; a<orderTable.getRowCount();a++){
                 if(orderIDTxt.getText().toUpperCase().equals(orderTable.getModel().getValueAt(a, 0).toString())){
                     for(int b=0;b<order.size();b++){
                         if(order.get(b).getOrderID().equals(orderIDTxt.getText().toUpperCase())){    
                             System.out.println("Order ID same");
+                            aff curAff;
+                            for(int c=1;c<save.getAff().getSize()+1;c++){
+                                curAff = save.getAff().get(c);
+                                if(curAff.getAid().equals(order.get(b).getAffID())){
+                                    save.setCurAff(save.getAff().get(c));
+                                    System.out.println(curAff.getAid());
+                                }
+                            }
                             for(int c=1;c<cartHi.getSize()+1;c++){
                                 if(cartHi.get(c).getCartID().equals(order.get(b).getCartID())){
                                     ca = new Cart(cartID,cartHi.get(c).getItem(),cartHi.get(c).getItemName(),cartHi.get(c).getQty(),cartHi.get(c).getPrice(),cartHi.get(c).getTotal());

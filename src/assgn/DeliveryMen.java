@@ -24,6 +24,7 @@ public class DeliveryMen {
     private double salary;
     private String tempSalary;
     private String status;
+    private boolean clock;
     private LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
 
     public DeliveryMen() {
@@ -43,6 +44,7 @@ public class DeliveryMen {
 
         }
         this.status = "Working";
+        this.clock=false;
     }
 
     public DeliveryMen(String name, String staffID, String ic, String address, String contactNo, double salary) {
@@ -55,6 +57,7 @@ public class DeliveryMen {
         this.tempSalary = String.valueOf(salary);
         this.salary = salary;
         this.status = "Working";
+        this.clock=false;
     }
 
     public String getStatus() {
@@ -132,7 +135,20 @@ public class DeliveryMen {
     public String toString() {
         return "DeliveryMen{" + "name=" + name + ", staffID=" + staffID + ", address=" + address + ", contactNo=" + contactNo + ", salary=" + salary + '}';
     }
+    
+    public void setClockT(){
+        this.clock=true;
+    }
+    
+    public void setClockF(){
+        this.clock=false;
+    }
 
+    public boolean isClock() {
+        return clock;
+    }
+
+    
     public String checkName() {
 
         char c[] = name.toCharArray();
