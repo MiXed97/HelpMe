@@ -26,16 +26,21 @@ public class displayOrder extends javax.swing.JFrame {
     public displayOrder() {
         initComponents();
         save = new store(1);
-        setup();
+        setup("cash");
     }
 
     public displayOrder(store save) {
         initComponents();
         this.save = save;
-        setup();
+        setup("cash");
+    }
+    public displayOrder(store save,String pay) {
+        initComponents();
+        this.save = save;
+        setup(pay);
     }
     
-    private void setup(){
+    private void setup(String pay){
         System.out.println(save.getCurAff().getAid());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -68,13 +73,14 @@ public class displayOrder extends javax.swing.JFrame {
             cartHi.add(cart.get(a));
             total += cart.get(a).getTotal();
         }
-        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail(), save.getCurAff().getAid());
+        o = new Order1(orderID,cart.get(cart.getSize()).getCartID(),dateFormat.format(date),total,"Order Placed",save.getCurCus().getEmail(), save.getCurAff().getAid(),pay);
         //System.out.println(cart.get(cart.getSize()).getCartID());
         //System.out.println(o.getCartID()+"@"+o.getOrderID()+"@"+o.getTotalAmount());
         temp = "";
         temp += "Order ID: "+orderID;
         temp += "\nOrder date: "+dateFormat.format(date);
         temp += "\nOrder status: "+o.getOrderStatus();
+        temp += "\nPayment type: "+o.getPaymentType();
         jTextArea1.setText(temp);
         //order.enqueue(o);
         order.sortedEnqueue(o);

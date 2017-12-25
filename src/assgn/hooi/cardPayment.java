@@ -167,7 +167,7 @@ public class cardPayment extends javax.swing.JFrame {
                 //display order
                 //System.out.println("Inside, Card and month same and year");
                 this.setVisible(false);
-                displayOrder dO = new displayOrder(save); 
+                displayOrder dO = new displayOrder(save,"Credit card"); 
             }
             else
                 JOptionPane.showMessageDialog(this, "Incorrect card details");//HERE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

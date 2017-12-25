@@ -158,7 +158,7 @@ public class store {
 
     public void addAff() {
         aff a = new aff("A1", "Glaz", "123", "970802445566", "0123456789", "glaz@hotmail.com", "Yes Restaurant", "Somewhere", "53300", "Local Cuisine");
-        aff b = new aff("A2", "Test2", "123", "970802445566", "0123456789", "test2@hotmail.com", "No Restaurant", "Somewhere else", "53330", "Fast food");
+        aff b = new aff("A2", "AliBaba", "123", "970802445566", "0123456789", "test2@hotmail.com", "No Restaurant", "Somewhere else", "53330", "Fast food");
         aff.add(a);
         aff.add(b);
         //Add to do testing, can remove
@@ -176,8 +176,8 @@ public class store {
         cartHi.add(abc4);
         cartHi.add(abc5);
 
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1","cash");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1","cash");
 
         order.enqueue(o1);
         order.enqueue(o2);
@@ -205,17 +205,17 @@ public class store {
     }
 
     public void addCust() {
-        Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
-        Customer c1 = new Customer("Name1", "no MAN LAND", "014378999", "lol1@hotmail.com", "1234");
+        Customer c = new Customer("Abu", "HOO LAND", "012378999", "lol@hotmail.com", "123");
+        Customer c1 = new Customer("Ah Meng", "no MAN LAND", "014378999", "lol1@hotmail.com", "1234");
 
         customer.add(c);
         customer.add(c1);
     }
 
     public void addMenu() {
-        MenuClass mc1 = new MenuClass("A1F1", "Burger ", "asd", "11", "Available", "A1", "Dec", "2017");
-        MenuClass mc2 = new MenuClass("A1F2", "Caser Salad", "assd", "8", "Available", "A1", "Dec", "2017");
-        MenuClass mc3 = new MenuClass("A1F3", "Goreng Mee", "axsd", "9", "Available", "A1", "Dec", "2017");
+        MenuClass mc1 = new MenuClass("A1F1", "Burger ", "Delicious burger", "11", "Available", "A1", "Dec", "2017");
+        MenuClass mc2 = new MenuClass("A1F2", "Caser Salad", "Delicious salad", "8", "Available", "A1", "Dec", "2017");
+        MenuClass mc3 = new MenuClass("A1F3", "Goreng Mee", "Delicious Goreng Mee", "9", "Available", "A1", "Dec", "2017");
         MenuClass mc4 = new MenuClass("A2F1", "Test1 ", "asd", "11", "Available", "A2", "Dec", "2017");
         MenuClass mc5 = new MenuClass("A2F2", "T2", "assd", "8", "Available", "A2", "Dec", "2017");
         MenuClass mc6 = new MenuClass("A2F3", "t3", "axsd", "9", "Available", "A2", "Dec", "2017");
@@ -244,9 +244,9 @@ public class store {
         Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
         Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1");
-        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1","cash");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1","cash");
+        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1","cash");
 
         Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
         Delivery de2 = new Delivery(c, o1);

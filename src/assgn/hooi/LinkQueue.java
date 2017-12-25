@@ -82,15 +82,15 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
     public static void main(String args[]) throws ParseException{
         LinkQueue<Order1> l = new LinkQueue();
         Order1 o;
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/26 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/26 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/26 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1","cash");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/26 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1","cash");
         l.enqueue(o1);
         l.enqueue(o2);
-        Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
-        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2");
+        Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1","cash");
+        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2","cash");
         l.enqueue(o3);
         l.enqueue(o4);
-        o = new Order1("oid05","cid05","2017/12/24 17:51:07",11.0,"Order Placed","1ol@hotmail.com","A1");
+        o = new Order1("oid05","cid05","2017/12/24 17:51:07",11.0,"Order Placed","1ol@hotmail.com","A1","cash");
         l.sortedEnqueue(o);
 //        o = new Order1("oid03","cid04","2017/12/24 17:52:46",8.0,"Order Placed","1ol@hotmail.com","A1");
 //        l.sortedEnqueue(o);

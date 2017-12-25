@@ -90,7 +90,7 @@ public class cancelOrder extends javax.swing.JFrame {
             orderTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabel2.setText("Cancel order while \"Order Placed\" or \"Accepted\" status only");
+        jLabel2.setText("Cancel order while \"Order Placed\" status only");
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class cancelOrder extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 94, Short.MAX_VALUE))
+                        .addGap(0, 163, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel3)
@@ -161,7 +161,7 @@ public class cancelOrder extends javax.swing.JFrame {
         String cartID = "";
         int del = 0;
         if(orderIDTxt.getText().isEmpty())
-            JOptionPane.showMessageDialog(this, "Please enter cart ID");
+            JOptionPane.showMessageDialog(this, "Please enter Order ID");
         else{
             for(int a = 0; a<orderTable.getRowCount();a++){
                 if(orderIDTxt.getText().toUpperCase().equals(orderTable.getModel().getValueAt(a, 0).toString())){
