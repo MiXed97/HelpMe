@@ -49,7 +49,7 @@ public class Login extends javax.swing.JFrame {
         }
         System.out.println();
         for (int i = 0; i < save.getOrder().size(); i++) {
-            System.out.println(save.getOrder().get(i).toString());
+            System.out.println(save.getOrder().get(i).toString()+"Index:"+i);
         }
     }
 

@@ -172,14 +172,14 @@ public class store {
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/26 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/26 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1");
         order.enqueue(o1);
         order.enqueue(o2);
-        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
-        Order1 o4 = new Order1("OID04", "CID04", "2017/12/25 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2");
-        order.enqueue(o3);
-        order.enqueue(o4);
+//      Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
+//        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2");
+//        order.enqueue(o3);
+//        order.enqueue(o4);
     }
 
     public void addDeliMen() {
