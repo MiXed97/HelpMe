@@ -41,6 +41,7 @@ public class placeOrder extends javax.swing.JFrame {
         model = (DefaultTableModel)menuTable.getModel();
         menuTable.setModel(model);
         save.setAffMenu();
+        save.getCurMenuAva();
         cartHi = save.getCartHi();
         cartList = save.getCart();
         String selectedAID = save.getCurAff().getAid();

@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class store {
-    
+
     JKLLI<aff> aff = new JKLL<>();
     ListLinkInt<DeliveryMen> delMen = new ListLink<>();
     JKLLI<MenuClass> menu = new JKLL<>();
@@ -41,21 +41,21 @@ public class store {
 
     //dont remove(KaiZhi)
     static int hi;
-    
+
     public store() {
     }
-    
+
     public store(int i) {
-        
+
         addDeliMen();
         addCust();
         addMenu();
         addHR();
         addAff();
         addDelivery();
-        
+
     }
-    
+
     public void findAff(String email, String pass) {
         for (int i = 1; i <= aff.getSize(); i++) {
             if (aff.get(i).getEmail().equals(email) && aff.get(i).getPassword().equals(pass)) {
@@ -64,7 +64,7 @@ public class store {
             }
         }
     }
-    
+
     public void findCus(String email, String pass) {
         for (int i = 1; i <= customer.getSize(); i++) {
             if (customer.get(i).getEmail().equals(email) && customer.get(i).getPassword().equals(pass)) {
@@ -72,9 +72,9 @@ public class store {
                 break;
             }
         }
-        
+
     }
-    
+
     public void findDeliMen(String email, String pass) {
         for (int i = 1; i <= delMen.getSize(); i++) {
             if (delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && !delMen.get(i).getStatus().equals("Retired")) {
@@ -83,7 +83,7 @@ public class store {
             }
         }
     }
-    
+
     public void findHr(String email, String pass) {
         for (int i = 1; i <= hr.getSize(); i++) {
             if (hr.get(i).getId().equals(email) && hr.get(i).getPw().equals(pass)) {
@@ -92,41 +92,41 @@ public class store {
             }
         }
     }
-    
+
     public int findStaff(String s) {
         for (int i = 1; i <= delMen.getSize(); i++) {
             if (delMen.get(i).getStaffID().equals(s)) {
                 return i;
             }
         }
-        
+
         return 0;
     }
-    
+
     public int findCurMenu(String foodID) {
-        
+
         for (int i = 1; i <= curMenu.getSize(); i++) {
             if (curMenu.get(i).getFoodid().equals(foodID)) {
                 return i;
             }
         }
-        
+
         return 0;
     }
-    
+
     public int findMenu(String foodID) {
-        
+
         for (int i = 1; i <= menu.getSize(); i++) {
             if (menu.get(i).getFoodid().equals(foodID)) {
                 return i;
             }
         }
-        
+
         return 0;
     }
-    
+
     public int determineUser() {
-        
+
         if (curAff != null) {
             return 1;
         } else if (curCus != null) {
@@ -136,12 +136,12 @@ public class store {
         } else if (curHR != null) {
             return 4;
         }
-        
+
         return 0;
     }
-    
+
     public boolean checkEmailCA(String email) {
-        
+
         for (int i = 1; i <= customer.getSize(); i++) {
             if (customer.get(i).getEmail().equals(email)) {
                 return false;
@@ -152,10 +152,10 @@ public class store {
                 return false;
             }
         }
-        
+
         return true;
     }
-    
+
     public void addAff() {
         aff a = new aff("A1", "Glaz", "123", "970802445566", "0123456789", "glaz@hotmail.com", "Yes Restaurant", "Somewhere", "53300", "Local Cuisine");
         aff b = new aff("A2", "AliBaba", "123", "970802445566", "0123456789", "test2@hotmail.com", "No Restaurant", "Somewhere else", "53330", "Fast food");
@@ -168,17 +168,17 @@ public class store {
         Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
         Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
         Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
-        
+
         cartHi.add(abc);
         cartHi.add(abc1);
         cartHi.add(abc2);
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        
+
         Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1", "cash");
         Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1", "cash");
-        
+
         order.enqueue(o1);
         order.enqueue(o2);
 //      Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
@@ -186,7 +186,7 @@ public class store {
 //        order.enqueue(o3);
 //        order.enqueue(o4);
     }
-    
+
     public void addDeliMen() {
         DeliveryMen d1 = new DeliveryMen("Nicholas", "D1", "192", "Somewhere", "01234567", 123.00);
         d1.setPassword("123");
@@ -197,21 +197,21 @@ public class store {
         d3.setPassword("123");
         DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi", "D4", "789", "Wonder Land", "01134567", 423.00);
         d4.setPassword("123");
-        
+
         delMen.add(d1);
         delMen.add(d2);
         delMen.add(d3);
         delMen.add(d4);
     }
-    
+
     public void addCust() {
         Customer c = new Customer("Abu", "HOO LAND", "012378999", "lol@hotmail.com", "123");
         Customer c1 = new Customer("Ah Meng", "no MAN LAND", "014378999", "lol1@hotmail.com", "1234");
-        
+
         customer.add(c);
         customer.add(c1);
     }
-    
+
     public void addMenu() {
         MenuClass mc1 = new MenuClass("A1F1", "Burger ", "Delicious burger", "11", "Available", "A1", "Dec", "2017");
         MenuClass mc2 = new MenuClass("A1F2", "Caser Salad", "Delicious salad", "8", "Available", "A1", "Dec", "2017");
@@ -219,7 +219,7 @@ public class store {
         MenuClass mc4 = new MenuClass("A2F1", "Test1 ", "asd", "11", "Available", "A2", "Dec", "2017");
         MenuClass mc5 = new MenuClass("A2F2", "T2", "assd", "8", "Available", "A2", "Dec", "2017");
         MenuClass mc6 = new MenuClass("A2F3", "t3", "axsd", "9", "Available", "A2", "Dec", "2017");
-        
+
         menu.add(mc1);
         menu.add(mc2);
         menu.add(mc3);
@@ -227,15 +227,15 @@ public class store {
         menu.add(mc5);
         menu.add(mc6);
     }
-    
+
     public void addHR() {
         humanResource hr1 = new humanResource("H1", "123");
         humanResource hr2 = new humanResource("H2", "123");
-        
+
         hr.add(hr1);
         hr.add(hr2);
     }
-    
+
     public void addDelivery() {
         //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",); Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
         Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
@@ -243,17 +243,17 @@ public class store {
         Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
         Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
         Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
-        
+
         Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1", "cash");
         Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1", "cash");
         Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1", "cash");
-        
+
         Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
         Delivery de2 = new Delivery(c, o1);
         Delivery de5 = new Delivery();
         Delivery de6 = new Delivery();
     }
-    
+
     public void setAffMenu() {
         curMenu.clear();
         for (int i = 1; i <= menu.getSize(); i++) {
@@ -262,143 +262,143 @@ public class store {
             }
         }
     }
-    
+
     public MenuClass getCurMenuForUpdate() {
         return curMenuForUpdate;
     }
-    
+
     public void setCurMenuForUpdate(MenuClass curMenuForUpdate) {
         this.curMenuForUpdate = curMenuForUpdate;
     }
-    
+
     public JKLLI<MenuClass> getCurMenu() {
         return curMenu;
     }
-    
+
     public void setCurMenu(JKLLI<MenuClass> curMenu) {
         this.curMenu = curMenu;
     }
-    
+
     public JKLLI<aff> getAff() {
         return aff;
     }
-    
+
     public void setAff(JKLLI<aff> aff) {
         this.aff = aff;
     }
-    
+
     public ListLinkInt<Customer> getCustomer() {
         return customer;
     }
-    
+
     public void setCustomer(ListLinkInt<Customer> customer) {
         this.customer = customer;
     }
-    
+
     public ListLinkInt<DeliveryMen> getDelMen() {
         return delMen;
     }
-    
+
     public void setDelMen(ListLinkInt<DeliveryMen> delMen) {
         this.delMen = delMen;
     }
-    
+
     public JKLLI<MenuClass> getMenu() {
         return menu;
     }
-    
+
     public void setMenu(JKLLI<MenuClass> menu) {
         this.menu = menu;
     }
-    
+
     public ListLinkInt<Delivery> getDel() {
         return del;
     }
-    
+
     public void setDel(ListLinkInt<Delivery> del) {
         this.del = del;
     }
-    
+
     public ListLinkInt<humanResource> getHr() {
         return hr;
     }
-    
+
     public void setHr(ListLinkInt<humanResource> hr) {
         this.hr = hr;
     }
-    
+
     public Customer getCurCus() {
         return curCus;
     }
-    
+
     public void setCurCus(Customer curCus) {
         this.curCus = curCus;
     }
-    
+
     public aff getCurAff() {
         return curAff;
     }
-    
+
     public void setCurAff(aff curAff) {
         this.curAff = curAff;
     }
-    
+
     public DeliveryMen getCurDelMen() {
         return curDelMen;
     }
-    
+
     public void setCurDelMen(DeliveryMen curDelMen) {
         this.curDelMen = curDelMen;
     }
-    
+
     public humanResource getCurHR() {
         return curHR;
     }
-    
+
     public void setCurHR(humanResource curHR) {
         this.curHR = curHR;
     }
-    
+
     public void setCartHi(ListLinkInt<Cart> cartHi) {
         this.cartHi = cartHi;
     }
-    
+
     public ListLinkInt<Cart> getCartHi() {
         return cartHi;
     }
-    
+
     public void setSelectedRes(String res) {
         this.selectedRes = res;
     }
-    
+
     public String getSelectedRes() {
         return selectedRes;
     }
-    
+
     public void setCart(ListLinkInt<Cart> cart) {
         this.cart = cart;
     }
-    
+
     public ListLinkInt<Cart> getCart() {
         return cart;
     }
-    
+
     public void setOrder(LinkQueueInt<Order1> order) {
         this.order = order;
     }
-    
+
     public LinkQueueInt<Order1> getOrder() {
         return order;
     }
-    
+
     public LinkStackInt<ClockInClockOut> getCico() {
         return cico;
     }
-    
+
     public void setCico(LinkStackInt<ClockInClockOut> cico) {
         this.cico = cico;
     }
-    
+
     public void resetUser() {
         curAff = null;
         curCus = null;
@@ -407,26 +407,26 @@ public class store {
         curHR = null;
         selectedRes = null;
     }
-    
+
     public void removeMenu(String foodID) {
-        
+
         int index = findCurMenu(foodID);
         curMenu.remove(index);
         index = findMenu(foodID);
         menu.remove(index);
-        
+
     }
-    
+
     public void UpdateMenu(String foodID, MenuClass m) {
         int index = findCurMenu(foodID);
         curMenu.add(index, m);
         index = findMenu(foodID);
         menu.add(index, m);
-        
+
     }
-    
+
     public int getMenuCount(String foodID) {
-        
+
         char c[] = foodID.toCharArray();
         int check = 0;
         String digit = "";
@@ -437,21 +437,21 @@ public class store {
                 digit += x;
             }
         }
-        
+
         check = Integer.parseInt(digit);
         check++;
-        
+
         return check;
     }
-    
+
     public void sortPriceMenu() {
         //add getPrice()
         double small = Double.parseDouble(curMenu.get(1).getPrice());
         int remove = 0;
         JKLLI<MenuClass> temp = new JKLL<>();
-        
+
         while (curMenu.getSize() != 0) {
-            
+
             for (int i = 1; i <= curMenu.getSize(); i++) {
                 if (small >= Double.parseDouble(curMenu.get(i).getPrice())) {
                     small = Double.parseDouble(curMenu.get(i).getPrice());
@@ -466,30 +466,28 @@ public class store {
         }
         curMenu = temp;
     }
-    
+
     public void sortNewestMenu() {
         JKLLI<MenuClass> temp = new JKLL<>();
         int num = getMenuNum(curMenu.get(1).getFoodid());
         int remove = 0;
         while (curMenu.getSize() != 0) {
             for (int i = 1; i <= curMenu.getSize(); i++) {
-                if (curMenu.get(i).getStatus().equals("Available")) {
-                    if (num <= getMenuNum(curMenu.get(i).getFoodid())) {
-                        num = getMenuNum(curMenu.get(i).getFoodid());
-                        remove = i;
-                    }
+                if (num <= getMenuNum(curMenu.get(i).getFoodid())) {
+                    num = getMenuNum(curMenu.get(i).getFoodid());
+                    remove = i;
                 }
             }
             temp.add(curMenu.get(remove));
             curMenu.remove(remove);
-            
+
             if (curMenu.getSize() != 0) {
                 num = getMenuNum(curMenu.get(1).getFoodid());
             }
         }
         curMenu = temp;
     }
-    
+
     public void sortStaffNameAsc() {
         ListLinkInt<DeliveryMen> temp = new ListLink<>();
         String name = delMen.get(1).getName();
@@ -503,15 +501,15 @@ public class store {
             }
             temp.add(delMen.get(remove));
             delMen.remove(remove);
-            
+
             if (!delMen.isEmpty()) {
                 name = delMen.get(1).getName();
             }
         }
-        
+
         delMen = temp;
     }
-    
+
     public void sortStaffIDDesc() {
         ListLinkInt<DeliveryMen> temp = new ListLink<>();
         String id = delMen.get(1).getStaffID();
@@ -525,24 +523,24 @@ public class store {
             }
             temp.add(delMen.get(remove));
             delMen.remove(remove);
-            
+
             if (!delMen.isEmpty()) {
                 id = delMen.get(1).getStaffID();
             }
         }
-        
+
         delMen = temp;
-        
+
     }
-    
+
     public int getMenuNum(String s) {
         int result = 0;
-        
+
         char[] c = s.toCharArray();
         String num = "";
         int index = c.length - 1;
         while (c[index] != 'F') {
-            
+
             num += c[index];
             index--;
         }
@@ -550,7 +548,7 @@ public class store {
         result = Integer.parseInt(num);
         return result;
     }
-    
+
     public int findOrderIndex(String orderID) {
         int index = -1;
         for (int i = 0; i < order.size(); i++) {
@@ -561,7 +559,7 @@ public class store {
         // if cannot find match return -1
         return index;
     }
-    
+
     public Customer findCustomer(String email) {
         Customer c = null;
         for (int i = 1; i <= customer.getSize(); i++) {
@@ -572,7 +570,7 @@ public class store {
         }
         return c;
     }
-    
+
     public int findFreeDelMen() {
         //get the free deliveryMen
 
@@ -581,13 +579,13 @@ public class store {
                 if (delMen.get(i).getStatus().equals("Working") && delMen.get(i).isClock()) {
                     return i;
                 }
-                
+
             }
         } catch (Exception e) {
         }
         return 0;
     }
-    
+
     public int findDelivery(String orderID) {
         //get delivery
         for (int i = 1; i <= del.getSize(); i++) {
@@ -595,40 +593,40 @@ public class store {
                 return i;
             }
         }
-        
+
         return 0;
     }
-    
+
     public int AvailableDeliveryMen() {
         try {
             for (int i = 1; i <= delMen.getSize(); i++) {
-                
+
                 if (delMen.get(i).isClock()) {
                     return i;
                 }
-                
+
             }
         } catch (Exception e) {
         }
         return -1;
     }
-    
+
     public String getDateNow() {
         DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd");
         Date date = new Date();
         return dateFormat.format(date).toString();
     }
-    
+
     public int findAffByID(String affID) {
         for (int i = 1; i <= aff.getSize(); i++) {
             if (aff.get(i).getAid().equals(affID)) {
                 return i;
             }
         }
-        
+
         return 0;
     }
-    
+
     public DeliveryMen delMenByTurn() {
         // get next active delivery men by turn
         ListLinkInt<DeliveryMen> temp = activeDelMen();
@@ -643,7 +641,7 @@ public class store {
             return delMen.get(lastNum + 1);
         }
     }
-    
+
     public ListLinkInt<DeliveryMen> activeDelMen() {
         ListLinkInt<DeliveryMen> temp = new ListLink<DeliveryMen>();
         try {
@@ -657,7 +655,7 @@ public class store {
         System.out.println(temp.getSize());
         return temp;
     }
-    
+
     public int extractInt(String delID) {
         int result;
         String s = "";
@@ -667,26 +665,26 @@ public class store {
                 s += x;
             }
         }
-        
+
         result = Integer.parseInt(s);
-        
+
         return result;
     }
-    
+
     public int findDelMenByID(String id) {
         int result = 0;
-        
+
         for (int i = 1; i <= delMen.getSize(); i++) {
             if (delMen.get(i).getStaffID().equals(id)) {
                 return i;
             }
         }
-        
+
         return result;
     }
-    
+
     public int findCustomerIndex(String email) {
-        
+
         for (int i = 1; i <= customer.getSize(); i++) {
             if (customer.get(i).getEmail().equals(email)) {
                 return i;
@@ -695,7 +693,7 @@ public class store {
         return 0;
     }
     
-    public void sortDescDeliveryID() {
+    public void sortDescDeliveryID(){
         ListLinkInt<Delivery> temp = new ListLink<>();
         String id = del.get(1).getOrder().getOrderID();
         int remove = 0;
@@ -708,16 +706,16 @@ public class store {
             }
             temp.add(del.get(remove));
             del.remove(remove);
-            
+
             if (!del.isEmpty()) {
                 id = del.get(1).getOrder().getOrderID();
             }
         }
-        
+
         del = temp;
     }
     
-    public void sortAcsDelPrice() {
+    public void sortAcsDelPrice(){
         ListLinkInt<Delivery> temp = new ListLink<>();
         double price = del.get(1).getOrder().getTotalAmount();
         int remove = 0;
@@ -730,7 +728,7 @@ public class store {
             }
             temp.add(del.get(remove));
             del.remove(remove);
-            
+
             if (!del.isEmpty()) {
                 price = del.get(1).getOrder().getTotalAmount();
             }
@@ -738,10 +736,18 @@ public class store {
         del = temp;
     }
     
-    public String getYearMonthNow() {
+    public String getYearMonthNow(){
         DateFormat dateFormat = new SimpleDateFormat("YYYY/MM");
         Date date = new Date();
         return dateFormat.format(date).toString();
     }
     
+    public void getCurMenuAva(){
+        for(int i = 1; i<= curMenu.getSize();i++){
+            if(!curMenu.get(i).getStatus().equals("Available")){
+                curMenu.remove(i);
+            }
+        }
+    }
+
 }
