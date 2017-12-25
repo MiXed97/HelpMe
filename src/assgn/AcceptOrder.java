@@ -147,16 +147,16 @@ public class AcceptOrder extends javax.swing.JFrame {
                 lastDelStat = save.getDel().get(delSize).getOrder().getOrderStatus();
 
             }
-            System.out.println(affDis);
-            System.out.println(cusDis);
-            System.out.println(disInBet);
-            System.out.println(lastDelStat);
+         //   System.out.println(affDis);
+         //   System.out.println(cusDis);
+         //   System.out.println(disInBet);
+         //   System.out.println(lastDelStat);
 
             if (affDis > 0 && cusDis > 0 && disInBet <= 2 && lastDelStat.equals("Completed")) {
                 System.out.println("yes");
                 save.getOrder().get(index).setOrderStatus("Completed");
-                System.out.println(save.getDel().get(delSize).getDeliveryMen().getStaffID());
-                System.out.println(save.getCustomer().get(custIndex).getName());
+              //  System.out.println(save.getDel().get(delSize).getDeliveryMen().getStaffID());
+              //  System.out.println(save.getCustomer().get(custIndex).getName());
                 Delivery d = new Delivery(save.getCustomer().get(custIndex), save.getOrder().get(index),save.getDel().get(delSize).getDeliveryMen());
                 save.getDel().add(d);
                 JOptionPane.showMessageDialog(null, "Order " + orderID.getSelectedItem().toString() + " has Completed");

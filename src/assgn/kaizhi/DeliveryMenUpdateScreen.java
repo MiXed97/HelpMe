@@ -303,8 +303,9 @@ public class DeliveryMenUpdateScreen extends javax.swing.JFrame {
                 row[2] = save.getDel().get(i).getCustomer().getName();
                 row[3] = save.getDel().get(i).getCustomer().getAddress();
                 row[4] = save.getDel().get(i).getOrder().getOrderStatus();
+                model.addRow(row);
             }
-            model.addRow(row);
+            
         }
         
     }

@@ -45,6 +45,7 @@ public class HrHome extends javax.swing.JFrame {
         addDelMen = new javax.swing.JButton();
         updateStatus = new javax.swing.JButton();
         display = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +82,13 @@ public class HrHome extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Monthly Delivery Report");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +106,9 @@ public class HrHome extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(addDelMen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addDelMen, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(updateStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -119,7 +129,9 @@ public class HrHome extends javax.swing.JFrame {
                     .addComponent(updateStatus)
                     .addComponent(addDelMen))
                 .addGap(18, 18, 18)
-                .addComponent(display)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(display)
+                    .addComponent(jButton1))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
 
@@ -151,6 +163,12 @@ public class HrHome extends javax.swing.JFrame {
         this.setVisible(false);
         displayStaff a = new displayStaff(save);
     }//GEN-LAST:event_displayActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        MonthlyDelRep m = new MonthlyDelRep(save);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +209,7 @@ public class HrHome extends javax.swing.JFrame {
     private javax.swing.JButton addDelMen;
     private javax.swing.JButton back;
     private javax.swing.JButton display;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton updateStatus;

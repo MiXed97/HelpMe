@@ -692,5 +692,48 @@ public class store {
         }
         return 0;
     }
+    
+    public void sortDescDeliveryID(){
+        ListLinkInt<Delivery> temp = new ListLink<>();
+        String id = del.get(1).getOrder().getOrderID();
+        int remove = 0;
+        while (!del.isEmpty()) {
+            for (int i = 1; i <= del.getSize(); i++) {
+                if (id.compareTo(del.get(1).getOrder().getOrderID()) <= 0) {
+                    id = del.get(i).getOrder().getOrderID();
+                    remove = i;
+                }
+            }
+            temp.add(del.get(remove));
+            del.remove(remove);
+
+            if (!del.isEmpty()) {
+                id = del.get(1).getOrder().getOrderID();
+            }
+        }
+
+        del = temp;
+    }
+    
+    public void sortAcsDelPrice(){
+        ListLinkInt<Delivery> temp = new ListLink<>();
+        double price = del.get(1).getOrder().getTotalAmount();
+        int remove = 0;
+        while (!del.isEmpty()) {
+            for (int i = 1; i <= del.getSize(); i++) {
+                if (price >= del.get(i).getOrder().getTotalAmount()) {
+                    price = del.get(i).getOrder().getTotalAmount();
+                    remove = i;
+                }
+            }
+            temp.add(del.get(remove));
+            del.remove(remove);
+
+            if (!del.isEmpty()) {
+                price = del.get(1).getOrder().getTotalAmount();
+            }
+        }
+        del = temp;
+    }
 
 }
