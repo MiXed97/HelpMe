@@ -171,6 +171,7 @@ public class DMHome extends javax.swing.JFrame {
         if (clockStaff.isSelected()) {
             clockStaff.setText("Clock Out");
             save.getCurDelMen().getCico().peek().clockIn();
+            
 
         } else {
             save.getCurDelMen().getCico().peek().clockOut();

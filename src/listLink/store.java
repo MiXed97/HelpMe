@@ -13,6 +13,9 @@ import assgn.hooi.LinkStackInt;
 import assgn.hooi.Order1;
 import assgn.humanResource;
 import assgn.kaizhi.ClockInClockOut;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class store {
 
@@ -172,8 +175,10 @@ public class store {
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/26 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/26 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1");
+
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
+
         order.enqueue(o1);
         order.enqueue(o2);
 //      Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
@@ -184,14 +189,14 @@ public class store {
 
     public void addDeliMen() {
         DeliveryMen d1 = new DeliveryMen("Nicholas", "D1", "192", "Somewhere", "01234567", 123.00);
-        d1.setPassword("1212");
+        d1.setPassword("123");
         d1.setStatus("On Delivery");
         DeliveryMen d2 = new DeliveryMen("Soon Jian Kai", "D2", "999", "No where", "01899997", 223.00);
-        d2.setPassword("abcd");
+        d2.setPassword("123");
         DeliveryMen d3 = new DeliveryMen("Ng Poh Hooi", "D3", "456", "LoL", "01934567", 323.00);
-        d3.setPassword("1234");
+        d3.setPassword("123");
         DeliveryMen d4 = new DeliveryMen("Ong Kai Zhi", "D4", "789", "Wonder Land", "01134567", 423.00);
-        d4.setPassword("1111");
+        d4.setPassword("123");
 
         delMen.add(d1);
         delMen.add(d2);
@@ -568,10 +573,15 @@ public class store {
 
     public int findFreeDelMen() {
         //get the free deliveryMen
-        for (int i = 1; i <= delMen.getSize(); i++) {
-            if (delMen.get(i).getStatus().equals("Working")) {
-                return i;
-            }
+
+        try {
+            for (int i = 1; i <= delMen.getSize(); i++) {
+                if (delMen.get(i).getStatus().equals("Working") && !delMen.get(i).getCico().peek().noClockIn()) {
+                    return i;
+                }
+
+        
+        }}catch (Exception e) {
         }
         return 0;
     }
@@ -586,4 +596,89 @@ public class store {
 
         return 0;
     }
+    public int AvailableDeliveryMen() {
+        try {
+            for (int i = 1; i <= delMen.getSize(); i++) {
+
+                if (!delMen.get(i).getCico().peek().noClockIn()) {
+                    return i;
+                }
+
+            }
+        } catch (Exception e) {
+        }
+        return -1;
+    }
+
+    public String getDateNow() {
+        DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/dd");
+        Date date = new Date();
+        return dateFormat.format(date).toString();
+    }
+
+    public int findAffByID(String affID) {
+        for (int i = 1; i <= aff.getSize(); i++) {
+            if (aff.get(i).getAid().equals(affID)) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+    public DeliveryMen delMenByTurn() {
+        // get next active delivery men by turn
+        ListLinkInt<DeliveryMen> temp = activeDelMen();
+        // get last deliver delMen ID
+        String lastDelMenID = del.get(del.getSize()).getDeliveryMen().getStaffID();
+        int lastNum = extractInt(lastDelMenID);
+        if (lastNum >= temp.getSize()) {
+            //finding the front active delivery Men 
+            int index = findDelMenByID(temp.get(1).getStaffID());
+            return delMen.get(index);
+        } else {
+            return delMen.get(lastNum + 1);
+        }
+    }
+
+    public ListLinkInt<DeliveryMen> activeDelMen() {
+        ListLinkInt<DeliveryMen> temp = new ListLink<DeliveryMen>();
+        try{
+        for (int i = 1; i <= delMen.getSize(); i++) {
+            if (!delMen.get(i).getCico().peek().noClockIn()) {
+                temp.add(delMen.get(i));
+            }
+        }
+        }catch(Exception e){}
+        System.out.println(temp.getSize());
+        return temp;
+    }
+
+    public int extractInt(String delID) {
+        int result;
+        String s = "";
+        char c[] = delID.toCharArray();
+        for (char x : c) {
+            if (Character.isDigit(x)) {
+                s += x;
+            }
+        }
+
+        result = Integer.parseInt(s);
+
+        return result;
+    }
+
+    public int findDelMenByID(String id) {
+        int result = 0;
+
+        for (int i = 1; i <= delMen.getSize(); i++) {
+            if (delMen.get(i).getStaffID().equals(id)) {
+                return i;
+            }
+        }
+
+        return result;
+    }
+
 }

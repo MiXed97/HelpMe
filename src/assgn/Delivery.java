@@ -22,6 +22,7 @@ public class Delivery {
     DeliveryMen deliveryMen;
     int index = 0;
 
+    double distanceIB;
     public Delivery() {
     }
 
