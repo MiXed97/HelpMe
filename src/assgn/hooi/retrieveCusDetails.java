@@ -106,16 +106,20 @@ public class retrieveCusDetails extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // search customer details
         String phone = phoneTxt.getText();
-        for(int a=1;a<customer.getSize()+1;a++){
-            c = customer.get(a);
-            System.out.println(customer.getSize());
-            if(c.getContactNo().equals(phone)){
-                this.setVisible(false);
-                showCusDetails scd = new showCusDetails(save,a);
-                break;
-            }else if(a == customer.getSize()){
-                JOptionPane.showMessageDialog(this, "Unable to find customer with the number "+phoneTxt.getText(), "Searching Customer Details", JOptionPane.INFORMATION_MESSAGE);
-                break;
+        if(phoneTxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter phone number", "Searching Customer Details", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            for(int a=1;a<customer.getSize()+1;a++){
+                c = customer.get(a);
+                System.out.println(customer.getSize());
+                if(c.getContactNo().equals(phone)){
+                    this.setVisible(false);
+                    showCusDetails scd = new showCusDetails(save,a);
+                    break;
+                }else if(a == customer.getSize()){
+                    JOptionPane.showMessageDialog(this, "Unable to find customer with the number "+phoneTxt.getText(), "Searching Customer Details", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                }
             }
         }
     }//GEN-LAST:event_searchBtnActionPerformed
