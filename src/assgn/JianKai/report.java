@@ -9,7 +9,7 @@ import listLink.store;
 public class report extends javax.swing.JFrame {
     
     store save;
-    static String curMonth;
+   
     
     public report() {
         initComponents();
@@ -21,54 +21,31 @@ public class report extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         Calendar now = Calendar.getInstance();
-        
-         if (curMonth == null) {
-             curMonth = new SimpleDateFormat("MMM").format(now.getTime());
-         }
-                 
+        String themonth = new SimpleDateFormat("MMM").format(now.getTime());
+        String theyear = new SimpleDateFormat("YYYY").format(now.getTime());
         this.setTitle("Report for Menu");
         initComponents();
-         //show month
-         String themonth = new SimpleDateFormat("MMM").format(now.getTime());
-         jLabel1.setText("Monthly report for " +themonth);
-         
-         String newMonth = themonth;
-         
-         if (curMonth.equals(newMonth)) {
-             displayMenu();
-         }
-         else
-         {
-             displayMenu2();
-             curMonth = new SimpleDateFormat("MMM").format(now.getTime());
-         }
-         
+        jLabel1.setText("Monthly Report : " +themonth + " "+theyear);
+        displayMenu();
+
     }
     
     public void displayMenu(){
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        
+        Calendar now = Calendar.getInstance();
+        String themonth = new SimpleDateFormat("MMM").format(now.getTime());
+        String theyear = new SimpleDateFormat("YYYY").format(now.getTime());
         Object [] row = new Object[4];
-        for(int i =1; i <= save.getMenuReport().getSize();i++){
-            row[0] = save.getMenuReport().get(i).getAffID();
-            row[1]= save.getMenuReport().get(i).getFoodid();
-            row[2] = save.getMenuReport().get(i).getFoodname();
-            row[3] = save.getMenuReport().get(i).getPrice();
-            model.addRow(row);
-        }
-    }
-    
-    public void displayMenu2(){
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         
-        save.getMenuReport().clear();
-        Object [] row = new Object[4];
-        for(int i =1; i <= save.getMenuReport().getSize();i++){
-            row[0] = save.getMenuReport().get(i).getAffID();
-            row[1]= save.getMenuReport().get(i).getFoodid();
-            row[2] = save.getMenuReport().get(i).getFoodname();
-            row[3] = save.getMenuReport().get(i).getPrice();
-            model.addRow(row);
+        for(int i =1; i <= save.getMenu().getSize();i++){
+            if (save.getMenu().get(i).getthemonth().equals(themonth) && save.getMenu().get(i).gettheyear().equals(theyear)) {
+                row[0] = save.getMenu().get(i).getAffID();
+                  row[1]= save.getMenu().get(i).getFoodid();
+                 row[2] = save.getMenu().get(i).getFoodname();
+                 row[3] = save.getMenu().get(i).getPrice();
+                 model.addRow(row);
+            }
+            
         }
     }
     
@@ -136,7 +113,7 @@ public class report extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         this.setVisible(false);
-        Login red = new Login(save);
+        Manager red = new Manager(save);
     }//GEN-LAST:event_backActionPerformed
 
     /**

@@ -164,8 +164,10 @@ public class Updatefood2 extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
 
+        String themonth = save.getCurMenuForUpdate().getthemonth();
+        String theyear = save.getCurMenuForUpdate().gettheyear();
         
-        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddesc.getText(),price.getText(),jComboBox1.getSelectedItem().toString(),save.getCurAff().getAid());
+        MenuClass mc = new MenuClass(foodid.getText(),foodname.getText(),fooddesc.getText(),price.getText(),jComboBox1.getSelectedItem().toString(),save.getCurAff().getAid(),themonth,theyear);
        
         
        if (mc.checkfn()  && mc.checkdesc() && mc.checkprice()) 

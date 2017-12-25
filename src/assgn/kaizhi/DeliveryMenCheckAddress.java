@@ -24,7 +24,6 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
     /**
      * Creates new form DeliveryMenScreen
      */
-    ListLinkInt<Delivery> delivery = new ListLink<>();
     Delivery deli = new assgn.Delivery();
     DefaultTableModel model;
     DeliveryMen staff;
@@ -40,20 +39,11 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         this.setTitle("Check Address");
         this.save = save;
         initComponents();
-        model = (DefaultTableModel) jTable1.getModel();
         this.staff = save.getCurDelMen();
         this.cico = cico;
         jlblThatguy.setText("Name : " + staff.getName());
+        display();
 
-        Object row[] = new Object[3];
-        for (int i = 0; i < delivery.getSize(); i++) {
-            if (staff == delivery.get(i).getDeliveryMen()) {
-                row[0] = delivery.get(i).getOrder().getOrderID();
-                row[1] = delivery.get(i).getCustomer().getName();
-                row[2] = delivery.get(i).getCustomer().getAddress();
-                model.addRow(row);
-            }
-        }
     }
 
     /**
@@ -130,20 +120,18 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jbtSearchAddress))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfDeliveryID, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jlblThatguy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnBack)))
+                        .addComponent(jbtnBack))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtSearchAddress)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfDeliveryID, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,8 +175,8 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
     private void jbtSearchAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSearchAddressActionPerformed
         // TODO add your handling code here:
 
-        if (deli.checkDeliveryID(delivery, jtfDeliveryID.getText())) {
-            JOptionPane.showMessageDialog(null, delivery.get(deli.getIndex()).getCustomer().getAddress());
+        if (deli.checkDeliveryID(save.getDel(), jtfDeliveryID.getText())) {
+            JOptionPane.showMessageDialog(null, save.getDel().get(deli.getIndex()).getCustomer().getAddress());
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Delivery Id", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -198,7 +186,6 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         DMHome next = new DMHome(save);
-        next.setVisible(false);
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Confirm to go to main menu?");
         panel.add(label);
@@ -211,6 +198,19 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
             next.setVisible(true);
         }
     }//GEN-LAST:event_jbtnBackActionPerformed
+
+    public void display() {
+        model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[3];
+        for (int i = 0; i < save.getDel().getSize(); i++) {
+            if (save.getDel().get(i).getDeliveryMen().equals(save.getCurDelMen())&&!save.getDel().get(i).getOrder().getOrderStatus().equals("Delivered")) {
+                row[0] = save.getDel().get(i).getOrder().getOrderID();
+                row[1] = save.getDel().get(i).getCustomer().getName();
+                row[2] = save.getDel().get(i).getCustomer().getAddress();
+                model.addRow(row);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments

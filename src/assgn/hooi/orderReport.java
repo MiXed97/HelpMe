@@ -3,6 +3,8 @@ package assgn.hooi;
 
 import assgn.JianKai.aff;
 import javax.swing.table.DefaultTableModel;
+import listLink.JKLL;
+import listLink.JKLLI;
 import listLink.ListLink;
 import listLink.ListLinkInt;
 import listLink.store;
@@ -17,7 +19,7 @@ public class orderReport extends javax.swing.JFrame {
     LinkQueueInt<Order1> order = new LinkQueue<>();
     ListLinkInt<Cart> cartHi = new ListLink<>();
     ListLinkInt<Cart> cart = new ListLink<>();
-    ListLinkInt<aff> aff = new ListLink<>();
+    JKLLI<aff> aff = new JKLL<>();
     aff affi;
     Order1 o;
     public orderReport() {

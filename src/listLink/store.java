@@ -16,9 +16,9 @@ import assgn.kaizhi.ClockInClockOut;
 
 public class store {
 
-    ListLinkInt<aff> aff = new ListLink<>();
+    JKLLI<aff> aff = new JKLL<>();
     ListLinkInt<DeliveryMen> delMen = new ListLink<>();
-    ListLinkInt<MenuClass> menu = new ListLink<>();
+    JKLLI<MenuClass> menu = new JKLL<>();
     ListLinkInt<Customer> customer = new ListLink<>();
     ListLinkInt<Delivery> del = new ListLink<>();
     ListLinkInt<humanResource> hr = new ListLink<>();
@@ -27,24 +27,17 @@ public class store {
     LinkQueueInt<Order1> order = new LinkQueue<>();
     LinkStackInt<ClockInClockOut> cico = new LinkStack<>();
 
-    ListLinkInt<MenuClass> menuforreport = new ListLink<>();
-
-    public ListLinkInt<MenuClass> getMenuReport() {
-        return menuforreport;
-    }
-
-    public void setMenuReport(ListLinkInt<MenuClass> menuforreport) {
-        this.menuforreport = menuforreport;
-    }
-
     // keep track user
     Customer curCus = null;
     aff curAff = null;
     DeliveryMen curDelMen = null;
     humanResource curHR = null;
-    ListLinkInt<MenuClass> curMenu = new ListLink<>();
+    JKLLI<MenuClass> curMenu = new JKLL<>();
     MenuClass curMenuForUpdate = new MenuClass();
     String selectedRes = null;
+
+    //dont remove(KaiZhi)
+    static int hi;
 
     public store() {
     }
@@ -56,6 +49,7 @@ public class store {
         addMenu();
         addHR();
         addAff();
+        addDelivery();
 
     }
 
@@ -80,7 +74,7 @@ public class store {
 
     public void findDeliMen(String email, String pass) {
         for (int i = 1; i <= delMen.getSize(); i++) {
-            if (delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && delMen.get(i).getStatus().equals("Working")) {
+            if (delMen.get(i).getStaffID().equals(email) && delMen.get(i).getPassword().equals(pass) && !delMen.get(i).getStatus().equals("Retired")) {
                 curDelMen = delMen.get(i);
                 break;
             }
@@ -119,19 +113,8 @@ public class store {
 
     public int findMenu(String foodID) {
 
-        for (int i = 1; i <= curMenu.getSize(); i++) {
-            if (curMenu.get(i).getFoodid().equals(foodID)) {
-                return i;
-            }
-        }
-
-        return 0;
-    }
-
-    public int findMenuReport(String foodID) {
-
-        for (int i = 1; i <= menuforreport.getSize(); i++) {
-            if (menuforreport.get(i).getFoodid().equals(foodID)) {
+        for (int i = 1; i <= menu.getSize(); i++) {
+            if (menu.get(i).getFoodid().equals(foodID)) {
                 return i;
             }
         }
@@ -178,22 +161,19 @@ public class store {
         //Add to do testing, can remove
         Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
         Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
-        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.5);
-        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 4.0);
-        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 4.0);
-        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 4.5);
-        Cart abc6 = new Cart("CID03", "A1F01", "food 1", 2, 2.5, 10.5);
-        Cart abc7 = new Cart("CID04", "A1F01", "foods 1", 2, 2.5, 20.0);
+        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
+        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
+        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
+
         cartHi.add(abc);
         cartHi.add(abc1);
         cartHi.add(abc2);
         cartHi.add(abc3);
         cartHi.add(abc4);
         cartHi.add(abc5);
-        cartHi.add(abc6 );
-        cartHi.add(abc7);
-        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 15.50, "Delivered", "llol@hotmail.com","A1");
-        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 12.50, "Delivered", "lol@hotmail.com","A2");
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1");
         order.enqueue(o1);
         order.enqueue(o2);
         Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1");
@@ -228,12 +208,12 @@ public class store {
     }
 
     public void addMenu() {
-        MenuClass mc1 = new MenuClass("A1F1", "Burger ", "asd", "11", "Available", "A1");
-        MenuClass mc2 = new MenuClass("A1F2", "Caser Salad", "assd", "8", "Available", "A1");
-        MenuClass mc3 = new MenuClass("A1F3", "Goreng Mee", "axsd", "9", "Available", "A1");
-        MenuClass mc4 = new MenuClass("A2F1", "Test1 ", "asd", "11", "Available", "A2");
-        MenuClass mc5 = new MenuClass("A2F2", "T2", "assd", "8", "Available", "A2");
-        MenuClass mc6 = new MenuClass("A2F3", "t3", "axsd", "9", "Available", "A2");
+        MenuClass mc1 = new MenuClass("A1F1", "Burger ", "asd", "11", "Available", "A1", "Dec", "2017");
+        MenuClass mc2 = new MenuClass("A1F2", "Caser Salad", "assd", "8", "Available", "A1", "Dec", "2017");
+        MenuClass mc3 = new MenuClass("A1F3", "Goreng Mee", "axsd", "9", "Available", "A1", "Dec", "2017");
+        MenuClass mc4 = new MenuClass("A2F1", "Test1 ", "asd", "11", "Available", "A2", "Dec", "2017");
+        MenuClass mc5 = new MenuClass("A2F2", "T2", "assd", "8", "Available", "A2", "Dec", "2017");
+        MenuClass mc6 = new MenuClass("A2F3", "t3", "axsd", "9", "Available", "A2", "Dec", "2017");
 
         menu.add(mc1);
         menu.add(mc2);
@@ -250,19 +230,29 @@ public class store {
         hr.add(hr1);
         hr.add(hr2);
     }
-    
-    public void addDelivery() {
-        if (customer.isEmpty()) {
-            this.addCust();
-        }
-        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",);
 
-        Delivery de2 = new Delivery();
-        Delivery de3 = new Delivery();
-        Delivery de4 = new Delivery();
+    public void addDelivery() {
+        //Delivery de1 = new Delivery("D1",customer.get(0),"Not Deliver",); Cart abc = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc1 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc2 = new Cart("CID01", "A1F01", "food 1", 2, 2.5, 5.0);
+        Cart abc3 = new Cart("CID02", "A1F01", "foods 1", 2, 2.5, 5.0);
+        Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
+        Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
+
+        Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1");
+        Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Order Placed", "lol@hotmail.com", "A1");
+        Order1 o3 = new Order1("OID03", "CID03", "2017/12/25 00:00:00", 2.50, "Order Placed", "llol@hotmail.com", "A1");
+
+        Customer c = new Customer("Name", "HOO LAND", "012378999", "lol@hotmail.com", "123");
+        Delivery de2 = new Delivery(c, o1);
+        de2.setDeliveryMen(delMen.get(0));
+        del.add(de2);
+        Delivery de3 = new Delivery(c, o2);
+        del.add(de3);
+        Delivery de4 = new Delivery(c,o3);
+        del.add(de4);
         Delivery de5 = new Delivery();
         Delivery de6 = new Delivery();
-
     }
 
     public void setAffMenu() {
@@ -282,19 +272,19 @@ public class store {
         this.curMenuForUpdate = curMenuForUpdate;
     }
 
-    public ListLinkInt<MenuClass> getCurMenu() {
+    public JKLLI<MenuClass> getCurMenu() {
         return curMenu;
     }
 
-    public void setCurMenu(ListLinkInt<MenuClass> curMenu) {
+    public void setCurMenu(JKLLI<MenuClass> curMenu) {
         this.curMenu = curMenu;
     }
 
-    public ListLinkInt<aff> getAff() {
+    public JKLLI<aff> getAff() {
         return aff;
     }
 
-    public void setAff(ListLinkInt<aff> aff) {
+    public void setAff(JKLLI<aff> aff) {
         this.aff = aff;
     }
 
@@ -314,11 +304,11 @@ public class store {
         this.delMen = delMen;
     }
 
-    public ListLinkInt<MenuClass> getMenu() {
+    public JKLLI<MenuClass> getMenu() {
         return menu;
     }
 
-    public void setMenu(ListLinkInt<MenuClass> menu) {
+    public void setMenu(JKLLI<MenuClass> menu) {
         this.menu = menu;
     }
 
@@ -425,8 +415,6 @@ public class store {
         curMenu.remove(index);
         index = findMenu(foodID);
         menu.remove(index);
-        index = findMenuReport(foodID);
-        menuforreport.remove(index);
 
     }
 
@@ -435,8 +423,6 @@ public class store {
         curMenu.add(index, m);
         index = findMenu(foodID);
         menu.add(index, m);
-        index = findMenuReport(foodID);
-        menuforreport.add(m);
 
     }
 
@@ -463,7 +449,7 @@ public class store {
         //add getPrice()
         double small = Double.parseDouble(curMenu.get(1).getPrice());
         int remove = 0;
-        ListLinkInt<MenuClass> temp = new ListLink<>();
+        JKLLI<MenuClass> temp = new JKLL<>();
 
         while (curMenu.getSize() != 0) {
 
@@ -483,7 +469,7 @@ public class store {
     }
 
     public void sortNewestMenu() {
-        ListLinkInt<MenuClass> temp = new ListLink<>();
+        JKLLI<MenuClass> temp = new JKLL<>();
         int num = getMenuNum(curMenu.get(1).getFoodid());
         int remove = 0;
         while (curMenu.getSize() != 0) {
@@ -563,21 +549,20 @@ public class store {
         result = Integer.parseInt(num);
         return result;
     }
-    
-    
-    public int findOrderIndex(String orderID){
+
+    public int findOrderIndex(String orderID) {
         int index = -1;
-        for(int i = 0; i < order.size();i++){
-            if(order.get(i).getOrderID().equals(orderID)){
+        for (int i = 0; i < order.size(); i++) {
+            if (order.get(i).getOrderID().equals(orderID)) {
                 index = i;
             }
         }
         // if cannot find match return -1
         return index;
     }
-    
-    public Customer findCustomer(String email){
-       Customer c = null;
+
+    public Customer findCustomer(String email) {
+        Customer c = null;
         for (int i = 1; i <= customer.getSize(); i++) {
             if (customer.get(i).getEmail().equals(email)) {
                 c = customer.get(i);
@@ -586,5 +571,64 @@ public class store {
         }
         return c;
     }
-   
+
+    public int findFreeDelMen() {
+        //get the free deliveryMen
+        for (int i = 1; i <= delMen.getSize(); i++) {
+            if (delMen.get(i).getStatus().equals("Working")) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public int findDelivery(String orderID) {
+        //get delivery
+        for (int i = 1; i <= del.getSize(); i++) {
+            if (del.get(i).getOrder().getOrderID().equals(orderID)) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+    //dont remove this one !!!
+/*
+    public void assignDelivery() {
+        for (int i = 0; i < del.getSize(); i++) {
+            Delivery delivery = del.get(i);
+            if (delivery.getDeliveryMen() == null&&!delivery.getOrder().getOrderStatus().equals("Delivered")) {
+                delivery.setDeliveryMen(delMen.get(turn()));
+            }
+        }
+    }//dont remove this one !!!
+
+    public int turn() {
+        int result = 0;
+        int checking = 0;
+        do {
+            result = hi;
+            if(checking == delMen.getSize())//dont remove this one !!!
+                break;
+            checking++;
+        } while (turnStuff(hi));
+        return result;
+    }
+//dont remove this one !!!
+    public boolean turnStuff(int a) {//dont remove this one !!!
+        boolean result;
+        if (!delMen.get(a).getCico().peek().noClockIn()
+                && delMen.get(a).getCico().peek().noClockOut()) {//dont remove this one !!!
+            hi++;
+            result = false;//dont remove this one !!!
+        } else {//dont remove this one !!!
+            hi++;
+            if (hi == delMen.getSize()) {//dont remove this one !!!
+                hi = 0;
+            }
+            result = true;//dont remove this one !!!
+        }//dont remove this one !!!
+        return result;
+    }//dont remove this one !!!
+*///dont remove this one !!!
 }
