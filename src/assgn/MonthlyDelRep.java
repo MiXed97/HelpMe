@@ -20,24 +20,22 @@ public class MonthlyDelRep extends javax.swing.JFrame {
      */
     store save;
     double total = 0;
-    int cash=0;
-    int card =0;
-    
+    int cash = 0;
+    int card = 0;
+
     public MonthlyDelRep() {
         initComponents();
     }
-    
+
     public MonthlyDelRep(store save) {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Monthly Delivery Report");
-        this.save= save;
+        this.save = save;
         initComponents();
         display();
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,30 +122,27 @@ public class MonthlyDelRep extends javax.swing.JFrame {
 
     private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
         // TODO add your handling code here:
-        card=0;
-        cash=0;
-        total=0;
-        if(sort.getSelectedIndex()== 0){
+        card = 0;
+        cash = 0;
+        total = 0;
+        if (sort.getSelectedIndex() == 0) {
             save.sortDescDeliveryID();
             removeDisplay();
             Redisplay();
-        }
-        else if(sort.getSelectedIndex()==1){
+        } else if (sort.getSelectedIndex() == 1) {
             save.sortDescDeliveryID();
             removeDisplay();
             display();
-        }
-        else if(sort.getSelectedIndex()==2){
+        } else if (sort.getSelectedIndex() == 2) {
             save.sortAcsDelPrice();
             removeDisplay();
             display();
-        }
-        else if(sort.getSelectedIndex()==3){
+        } else if (sort.getSelectedIndex() == 3) {
             save.sortAcsDelPrice();
             removeDisplay();
             Redisplay();
         }
-        
+
     }//GEN-LAST:event_sortActionPerformed
 
     /**
@@ -184,52 +179,55 @@ public class MonthlyDelRep extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void display() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         Object[] row = new Object[6];
         for (int i = 1; i <= save.getDel().getSize(); i++) {
-            row[0] = save.getDel().get(i).getOrder().getOrderID();
-            row[1] = save.getDel().get(i).getCustomer().getName();
-            row[2] = save.getDel().get(i).getDeliveryMen().getStaffID();
-            row[3] = save.getDel().get(i).getDeliveryMen().getName();
-            row[4] = save.getDel().get(i).getOrder().getPaymentType();
-            row[5] = save.getDel().get(i).getOrder().getTotalAmount();
-            total += save.getDel().get(i).getOrder().getTotalAmount();
-            if(save.getDel().get(i).getOrder().getPaymentType().equals("cash"))
-                cash++;
-            else 
-                card++;
-            model.addRow(row);
+            if (save.getDel().get(i).getOrder().getOrderDate().substring(0, 7).equals(save.getDateNow())) {
+                row[0] = save.getDel().get(i).getOrder().getOrderID();
+                row[1] = save.getDel().get(i).getCustomer().getName();
+                row[2] = save.getDel().get(i).getDeliveryMen().getStaffID();
+                row[3] = save.getDel().get(i).getDeliveryMen().getName();
+                row[4] = save.getDel().get(i).getOrder().getPaymentType();
+                row[5] = save.getDel().get(i).getOrder().getTotalAmount();
+                total += save.getDel().get(i).getOrder().getTotalAmount();
+                if (save.getDel().get(i).getOrder().getPaymentType().equals("cash")) {
+                    cash++;
+                } else {
+                    card++;
+                }
+                model.addRow(row);
+            }
         }
-        
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="No. of cash:";
-        row[5]=cash;
+
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "No. of cash:";
+        row[5] = cash;
         model.addRow(row);
-        
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="No. of Credit Card:";
-        row[5]=card;
+
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "No. of Credit Card:";
+        row[5] = card;
         model.addRow(row);
-        
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="Total:";
-        row[5]=String.format("RM %.2f", total);
+
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "Total:";
+        row[5] = String.format("RM %.2f", total);
         model.addRow(row);
-        
+
     }
-    
+
     public void Redisplay() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -242,38 +240,39 @@ public class MonthlyDelRep extends javax.swing.JFrame {
             row[4] = save.getDel().get(i).getOrder().getPaymentType();
             row[5] = save.getDel().get(i).getOrder().getTotalAmount();
             total += save.getDel().get(i).getOrder().getTotalAmount();
-            if(save.getDel().get(i).getOrder().getPaymentType().equals("cash"))
+            if (save.getDel().get(i).getOrder().getPaymentType().equals("cash")) {
                 cash++;
-            else 
+            } else {
                 card++;
-            
+            }
+
             model.addRow(row);
         }
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="No. of cash:";
-        row[5]=cash;
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "No. of cash:";
+        row[5] = cash;
         model.addRow(row);
-        
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="No. of Credit Card:";
-        row[5]=card;
+
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "No. of Credit Card:";
+        row[5] = card;
         model.addRow(row);
-        
-        row[0]= "";
-        row[1]="";
-        row[2]="";
-        row[3]="";
-        row[4]="Total:";
-        row[5]=String.format("RM %.2f", total);
+
+        row[0] = "";
+        row[1] = "";
+        row[2] = "";
+        row[3] = "";
+        row[4] = "Total:";
+        row[5] = String.format("RM %.2f", total);
         model.addRow(row);
     }
-    
+
     public void removeDisplay() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 

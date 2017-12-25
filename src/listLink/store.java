@@ -735,5 +735,11 @@ public class store {
         }
         del = temp;
     }
+    
+    public String getYearMonthNow(){
+        DateFormat dateFormat = new SimpleDateFormat("YYYY/MM");
+        Date date = new Date();
+        return dateFormat.format(date).toString();
+    }
 
 }
