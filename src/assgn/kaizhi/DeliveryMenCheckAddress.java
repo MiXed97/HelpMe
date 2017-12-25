@@ -200,20 +200,21 @@ public class DeliveryMenCheckAddress extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnBackActionPerformed
 
-    
-
     public void display() {
         model = (DefaultTableModel) jTable1.getModel();
         Object row[] = new Object[5];
         for (int i = 0; i < save.getDel().getSize(); i++) {
-            row[0] = save.getDel().get(i).getOrder().getOrderID();
-            row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
-            row[2] = save.getDel().get(i).getCustomer().getName();
-            row[3] = save.getDel().get(i).getCustomer().getAddress();
-            row[4] = save.getDel().get(i).getOrder().getOrderStatus();
-            model.addRow(row);
+            if (save.getDel().get(i).getDeliveryMen().equals(save.getCurDelMen())&&!save.getDel().get(i).getOrder().getOrderStatus().equals("Delivered")) {
+                row[0] = save.getDel().get(i).getOrder().getOrderID();
+                row[1] = save.getDel().get(i).getDeliveryMen().getStaffID();
+                row[2] = save.getDel().get(i).getCustomer().getName();
+                row[3] = save.getDel().get(i).getCustomer().getAddress();
+                row[4] = save.getDel().get(i).getOrder().getOrderStatus();
+                model.addRow(row);
+            }
         }
     }
+
     /**
      * @param args the command line arguments
      */
