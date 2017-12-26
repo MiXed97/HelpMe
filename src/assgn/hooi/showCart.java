@@ -186,13 +186,16 @@ public class showCart extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void cfmOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cfmOrderBtnActionPerformed
-        int result = JOptionPane.showConfirmDialog(this, "Confirm your order?","Confirm Order",JOptionPane.YES_NO_OPTION);
-        if(result==0){
-            //Yes
-            this.setVisible(false);
-            save.setCart(cart);
-            confirmOrder co = new confirmOrder(save);
-        }
+        if(save.getCart().getSize()!=0){
+            int result = JOptionPane.showConfirmDialog(this, "Confirm your order?","Confirm Order",JOptionPane.YES_NO_OPTION);
+            if(result==0){
+                //Yes
+                this.setVisible(false);
+                save.setCart(cart);
+                confirmOrder co = new confirmOrder(save);
+            }
+        }else
+            JOptionPane.showMessageDialog(this, "Your cart is empty");
     }//GEN-LAST:event_cfmOrderBtnActionPerformed
 
     /**

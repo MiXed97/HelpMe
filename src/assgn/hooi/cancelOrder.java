@@ -173,13 +173,23 @@ public class cancelOrder extends javax.swing.JFrame {
                                 del = n;
                             }
                         }
-                        System.out.println(cartID);
-                        for(int b =1; b<cartHi.getSize()+1;b++){
-                            if(cartHi.get(b).getCartID().equals(cartID)){
-                                System.out.println("Remove:"+ cartHi.get(b).getCartID()+", include: "+cartHi.get(b).getItemName());
-                                cartHi.remove(b);
-                            }
+                        System.out.println("Cart size: "+cartHi.getSize());
+                        int k = 1;
+                        while(cartHi.getSize()!=0 && k <= cartHi.getSize()){
+                            System.out.println(cartHi.getSize());
+                            System.out.println(k+" : "+cartHi.get(k).getItemName()+"@ "+cartHi.get(k).getCartID());
+                            if(cartHi.get(k).getCartID().equals(cartID)){
+                                System.out.println("Remove:"+ cartHi.get(k).getCartID()+", include: "+cartHi.get(k).getItemName());
+                                cartHi.remove(k);
+                            }else
+                                k++;
                         }
+//                        for(int b =1; b<cartHi.getSize();b++){
+//                            System.out.println("Cart Size "+cartHi.getSize());
+//                            System.out.println("Cart ID "+cartHi.get(b).itemName);
+//                            
+//                        }
+                        System.out.println("Order delete index: "+del);
                         order.remove(del);
                         
                         JOptionPane.showMessageDialog(this, "Order cancelled successfully");

@@ -1,6 +1,7 @@
 
 package assgn.hooi;
 
+import assgn.DMHome;
 import assgn.JianKai.aff;
 import javax.swing.table.DefaultTableModel;
 import listLink.JKLL;
@@ -59,9 +60,14 @@ public class orderReport extends javax.swing.JFrame {
                     numOfOrder++;
                 }
             }
-            avg = avg/(numOfOrder);
-            System.out.println("Avg before print :"+numOfOrder);
-            model.addRow(new Object[]{affi.getResname(),affi.getAid(),numOfOrder,avg});
+            
+            if(avg == 0.0){
+                model.addRow(new Object[]{affi.getResname(),affi.getAid(),numOfOrder,0.0});
+            }else{
+                avg = avg/(numOfOrder);
+                model.addRow(new Object[]{affi.getResname(),affi.getAid(),numOfOrder,avg});
+            }
+            
             avg = 0.0;
             numOfOrder = 0;
         }
@@ -107,6 +113,11 @@ public class orderReport extends javax.swing.JFrame {
         }
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,6 +144,13 @@ public class orderReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        DMHome next = new DMHome(save);
+        next.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

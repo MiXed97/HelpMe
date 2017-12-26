@@ -45,7 +45,7 @@ public class Login extends javax.swing.JFrame {
 
     public void test() {
         for (int i = 1; i <= save.getCartHi().getSize(); i++) {
-            System.out.println(save.getCartHi().get(i).toString());
+            System.out.println(save.getCartHi().get(i).toString());     
         }
         System.out.println();
         for (int i = 0; i < save.getOrder().size(); i++) {

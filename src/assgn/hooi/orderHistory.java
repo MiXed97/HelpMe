@@ -41,9 +41,11 @@ public class orderHistory extends javax.swing.JFrame {
         order = save.getOrder();
         String cart ="";
         boolean checker = false;
+        System.out.println("Order size "+order.size());
         for(int a = 0; a<order.size();a++){
             if(order.get(a).getCusEmail().equals(save.getCurCus().getEmail()) && order.get(a).getOrderStatus().equals("Delivered")){
                 o = order.get(a);
+                System.out.println(order.get(a).getOrderID());
                 for(int b=1;b<cartHi.getSize()+1;b++){
                     if(cartHi.get(b).getCartID().equals(o.getCartID())){
                         //System.out.println("Checking: "+cartHi.get(b).getCartID()+"@"+o.getCartID()+"@"+o.getOrderID());
@@ -53,6 +55,7 @@ public class orderHistory extends javax.swing.JFrame {
                 }
                 model.addRow(new Object[]{o.getOrderID(),cart,o.getOrderDate(),o.getTotalAmount()});
                 cart="";
+                System.out.println("Cart Size "+cartHi.getSize());
                 for(int c=1;c<cartHi.getSize()+1;c++){
                     if(cartHi.get(c).getCartID().equals(o.getCartID()))
                         if(checker)

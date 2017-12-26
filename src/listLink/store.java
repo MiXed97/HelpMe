@@ -169,18 +169,18 @@ public class store {
         Cart abc4 = new Cart("CID02", "A1F01", "food 2", 2, 2.5, 5.0);
         Cart abc5 = new Cart("CID02", "A1F01", "food 3", 2, 2.5, 5.0);
 
-        cartHi.add(abc);
-        cartHi.add(abc1);
-        cartHi.add(abc2);
-        cartHi.add(abc3);
-        cartHi.add(abc4);
-        cartHi.add(abc5);
+//        cartHi.add(abc);
+//        cartHi.add(abc1);
+//        cartHi.add(abc2);
+//        cartHi.add(abc3);
+//        cartHi.add(abc4);
+//        cartHi.add(abc5);
 
         Order1 o1 = new Order1("OID01", "CID01", "2017/12/25 00:00:00", 2.50, "Delivered", "llol@hotmail.com", "A1", "cash");
         Order1 o2 = new Order1("OID02", "CID02", "2017/12/25 00:00:00", 25.50, "Delivered", "lol@hotmail.com", "A1", "cash");
 
-        order.enqueue(o1);
-        order.enqueue(o2);
+//        order.enqueue(o1);
+//        order.enqueue(o2);
     }
 
     public void addDeliMen() {

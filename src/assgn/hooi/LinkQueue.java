@@ -87,11 +87,11 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         l.enqueue(o1);
         l.enqueue(o2);
         Order1 o3 = new Order1("OID03", "CID03", "2017/12/26 00:00:00", 15.50, "Order Placed", "llol@hotmail.com","A1","cash");
-        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2","cash");
+//        Order1 o4 = new Order1("OID04", "CID04", "2017/12/26 00:00:00", 12.50, "Order Placed", "lol@hotmail.com","A2","cash");
         l.enqueue(o3);
-        l.enqueue(o4);
-        o = new Order1("oid05","cid05","2017/12/24 17:51:07",11.0,"Order Placed","1ol@hotmail.com","A1","cash");
-        l.sortedEnqueue(o);
+//        l.enqueue(o4);
+//        o = new Order1("oid05","cid05","2017/12/24 17:51:07",11.0,"Order Placed","1ol@hotmail.com","A1","cash");
+//        l.sortedEnqueue(o);
 //        o = new Order1("oid03","cid04","2017/12/24 17:52:46",8.0,"Order Placed","1ol@hotmail.com","A1");
 //        l.sortedEnqueue(o);
 //        o = new Order1("oid01","cid01","2017/12/25 00:00:00",2.5,"Order Placed","1ol@hotmail.com","A1");
@@ -99,15 +99,7 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
 //        o = new Order1("oid02","cid02","2017/12/25 00:00:00",25.5,"Order Placed","1ol@hotmail.com","A1");
 //        l.sortedEnqueue(o);
         System.out.println("Size: "+l.size());
-        o = l.get(0);
-        System.out.println("First: "+o.getOrderID()+" , "+o.getCartID());
-        o = l.get(1);
-        System.out.println("Second: "+o.getOrderID()+" , "+o.getCartID());
-        o = l.get(2);
-        System.out.println("Third: "+o.getOrderID()+" , "+o.getCartID());
-        o = l.get(3);
-        System.out.println("Fourth: "+o.getOrderID()+" , "+o.getCartID());
-        System.out.println(l.getOID());
+        System.out.println(l.remove(2));
         
         
     }
@@ -117,14 +109,17 @@ public class LinkQueue<T> implements LinkQueueInt<T>{
         T result = (T)firstNode.data;
         node currentNode = firstNode;
         if(position == 0){
+            result = (T)firstNode.data;
             firstNode = firstNode.next;
+            
         }else{
             for(int a = 0; a<position-1;a++){
                 currentNode = currentNode.next;
             }
+             result = (T)currentNode.next.data;
+             currentNode.next = currentNode.next.next;
         }
-        result = (T)currentNode.next.data;
-        currentNode.next = currentNode.next.next;
+        
         entry--;
         return result;
     }

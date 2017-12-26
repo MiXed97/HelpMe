@@ -5,6 +5,7 @@
  */
 package assgn;
 
+import assgn.hooi.orderReport;
 import assgn.hooi.retrieveCusDetails;
 import assgn.kaizhi.ClockInClockOut;
 import assgn.kaizhi.DeliveryMenCheckAddress;
@@ -57,6 +58,7 @@ public class DMHome extends javax.swing.JFrame {
         jbtnStatus = new javax.swing.JButton();
         jbtnCheckAddress = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +107,13 @@ public class DMHome extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Order Report");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,6 +132,7 @@ public class DMHome extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(jbtnCheckAddress)
                     .addComponent(jbtnStatus)
@@ -146,7 +156,9 @@ public class DMHome extends javax.swing.JFrame {
                 .addComponent(jbtnCheckAddress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,6 +257,12 @@ public class DMHome extends javax.swing.JFrame {
         retrieveCusDetails rcd = new retrieveCusDetails(save);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        orderReport or = new orderReport(save);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +322,7 @@ public class DMHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton clockStaff;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jbtnCheckAddress;
     private javax.swing.JButton jbtnStatus;
