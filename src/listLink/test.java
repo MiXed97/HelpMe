@@ -20,7 +20,8 @@ public class test {
          temp.add("789");
          temp.add("753");
          temp.add("159");
-        temp.remove(3);
+         temp.add("852");
+        temp.remove(5);
  
          
         for(int i = 1;i<= temp.getSize();i++){
