@@ -14,8 +14,22 @@ import java.sql.*;
 public class test {
     
     public static void main(String args[]) throws SQLException{
-        String s = "A1F34";
-        System.out.println(getMenuNum(s));
+         ListLinkInt<String> temp = new ListLink<>();
+         temp.add("123");
+         temp.add("456");
+         temp.add("789");
+         temp.add("753");
+         
+         temp.add(1,"987");
+         
+        for(int i = 1;i<= temp.getSize();i++){
+            System.out.println(temp.get(i));
+        }
+        
+        System.out.println();
+        
+         System.out.println(temp.getSize());
+        
     }
     
     public static ListLinkInt<String> sortPrice(ListLinkInt<String> s){
