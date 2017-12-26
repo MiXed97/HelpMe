@@ -35,11 +35,11 @@ public class ListLink<T> implements ListLinkInt<T> {
     }
 
     @Override
-    public boolean add(int newPosition, T newEntry) {
-        if (newPosition >= 1 && newPosition <= getSize()) {
+    public boolean add(int position, T newEntry) {
+        if (position >= 1 && position <= getSize()) {
 
             node entry = new node(newEntry);
-            node cur = getNode(newPosition);
+            node cur = getNode(position);
 
             node pre = cur.getPre();
             node next = cur.getNext();
@@ -54,9 +54,9 @@ public class ListLink<T> implements ListLinkInt<T> {
                 entry.setNext(next);
             }
 
-            if (newPosition == 1) {
+            if (position == 1) {
                 firstNode = entry;
-            } else if (newPosition == getSize()) {
+            } else if (position == getSize()) {
                 lastNode = entry;
             }
         } else {
@@ -66,26 +66,26 @@ public class ListLink<T> implements ListLinkInt<T> {
     }
 
     @Override
-    public T remove(int givenPosition) {
+    public T remove(int position) {
 
         node n = firstNode;
         node next;
         node pre;
 
-        if (size >= 0 && givenPosition <= getSize() && givenPosition >= 1) {
+        if (size >= 0 && position <= getSize() && position >= 1) {
 
-            if (givenPosition == 1) {
+            if (position == 1) {
                 next = n.getNext();
                 firstNode = next;
             } else {
                 int avg = (size + 1) / 2;
-                if (avg <= givenPosition) {
-                    for (int i = 0; i < givenPosition - 1; i++) {
+                if (avg <= position) {
+                    for (int i = 0; i < position - 1; i++) {
                         n = n.getNext();
                     }
                 } else {
                     n = lastNode;
-                    for (int i = 0; i < givenPosition - 1; i++) {
+                    for (int i = 0; i < position - 1; i++) {
                         n = n.getPre();
                     }
                 }

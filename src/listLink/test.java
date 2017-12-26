@@ -19,9 +19,9 @@ public class test {
          temp.add("456");
          temp.add("789");
          temp.add("753");
-
-        
          
+        temp.remove(3);
+ 
          
         for(int i = 1;i<= temp.getSize();i++){
             System.out.println(temp.get(i));
