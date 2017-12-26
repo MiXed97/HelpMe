@@ -39,7 +39,7 @@ public class ListLink<T> implements ListLinkInt<T> {
         if (newPosition >= 1 && newPosition <= getSize()) {
 
             node entry = new node(newEntry);
-            node cur = getIndex(newPosition);
+            node cur = getNode(newPosition);
 
             node pre = cur.getPre();
             node next = cur.getNext();
@@ -128,14 +128,6 @@ public class ListLink<T> implements ListLinkInt<T> {
     }
 
     public node getNode(int index) {
-        node n = firstNode;
-        for (int i = 0; i < index - 1; i++) {
-            n = n.getNext();
-        }
-        return n;
-    }
-
-    public node getIndex(int index) {
         node n = firstNode;
         for (int i = 0; i < index - 1; i++) {
             n = n.getNext();

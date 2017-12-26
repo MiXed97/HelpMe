@@ -19,14 +19,15 @@ public class test {
          temp.add("456");
          temp.add("789");
          temp.add("753");
+
+        
          
-         temp.add(1,"987");
          
         for(int i = 1;i<= temp.getSize();i++){
             System.out.println(temp.get(i));
         }
         
-        System.out.println();
+        
         
          System.out.println(temp.getSize());
         
