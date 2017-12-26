@@ -19,7 +19,7 @@ public class test {
          temp.add("456");
          temp.add("789");
          temp.add("753");
-         
+         temp.add("159");
         temp.remove(3);
  
          

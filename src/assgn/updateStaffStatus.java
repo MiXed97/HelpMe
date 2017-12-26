@@ -22,6 +22,7 @@ public class updateStaffStatus extends javax.swing.JFrame {
     ListLinkInt<DeliveryMen> l = new ListLink<>();
     int result;// this the index of the selected delivery men
     store save;
+    boolean check = false;
 
     public updateStaffStatus() {
 
@@ -154,6 +155,7 @@ public class updateStaffStatus extends javax.swing.JFrame {
         // TODO add your handling code here:
         result = save.findStaff(staffID.getText());
         if (result > 0) {
+            check = true;
             status.setVisible(true);
 
             if (save.getDelMen().get(result).getStatus().equals("Retired")) {
@@ -171,30 +173,33 @@ public class updateStaffStatus extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-
-        if (!staffID.getText().isEmpty()) {
-            //make sure the text field is the same id as the selected staff else dispaly error
-            if (staffID.getText().equals(save.getDelMen().get(result).getStaffID())) {
-                if (save.getDelMen().get(result).getStatus().equals("On Delivery") || save.getDelMen().get(result).getStatus().equals("Assigned")) {
-                    JOptionPane.showMessageDialog(null, "Staff is still on a delivery", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    if (save.getDelMen().get(result).getStatus().equals("Working") 
-                            || save.getDelMen().get(result).getStatus().equals("On Delivery")||save.getDelMen().get(result).getStatus().equals("Assigned") ) {
-                        status.setSelectedIndex(0);
+        if (check == true) {
+            if (!staffID.getText().isEmpty()) {
+                //make sure the text field is the same id as the selected staff else dispaly error
+                if (staffID.getText().equals(save.getDelMen().get(result).getStaffID())) {
+                    if (save.getDelMen().get(result).getStatus().equals("On Delivery") || save.getDelMen().get(result).getStatus().equals("Assigned")) {
+                        JOptionPane.showMessageDialog(null, "Staff is still on a delivery", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        if (save.getDelMen().get(result).getStatus().equals("Working")
+                                || save.getDelMen().get(result).getStatus().equals("On Delivery") || save.getDelMen().get(result).getStatus().equals("Assigned")) {
+                            status.setSelectedIndex(0);
+                        } else {
+                            status.setSelectedIndex(1);
+                        }
+                    } else if (!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())) {
+                        //if the status is different then it able to sent it 
+                        save.getDelMen().get(result).setStatus(status.getSelectedItem().toString());
+                        JOptionPane.showMessageDialog(null, "Sucessfully updated staff " + staffID.getText() + " status to " + status.getSelectedItem().toString());
                     } else {
-                        status.setSelectedIndex(1);
+                        JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
-                } else if (!status.getSelectedItem().toString().equals(save.getDelMen().get(result).getStatus())) {
-                    //if the status is different then it able to sent it 
-                    save.getDelMen().get(result).setStatus(status.getSelectedItem().toString());
-                    JOptionPane.showMessageDialog(null, "Sucessfully updated staff " + staffID.getText() + " status to " + status.getSelectedItem().toString());
                 } else {
-                    JOptionPane.showMessageDialog(null, "Staff status is same as what you want", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, staffID.getText() + " this staff id in the field is not selected yet", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, staffID.getText() + " this staff id in the field is not selected yet", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Staff id is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Staff id is empty", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please select a staff", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_updateActionPerformed

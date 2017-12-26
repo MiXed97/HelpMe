@@ -79,13 +79,14 @@ public class ListLink<T> implements ListLinkInt<T> {
                 firstNode = next;
             } else {
                 int avg = (size + 1) / 2;
-                if (avg <= position) {
+                if (avg >= position) {
                     for (int i = 0; i < position - 1; i++) {
                         n = n.getNext();
                     }
                 } else {
                     n = lastNode;
-                    for (int i = 0; i < position - 1; i++) {
+                    position = (size+1)- position;
+                    for (int i = 0; i < position; i++) {
                         n = n.getPre();
                     }
                 }
