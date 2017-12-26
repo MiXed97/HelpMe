@@ -101,7 +101,7 @@ public class ListLink<T> implements ListLinkInt<T> {
             size--;
             return (T) n.getData();
         } else {
-            System.out.println("No more element");
+            System.out.println("Element doesn't exist");
         }
 
         return null;
