@@ -75,7 +75,7 @@ public class displayStaff extends javax.swing.JFrame {
 
         jLabel2.setText("Sort By :");
 
-        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Ascending Name", "Descending Name", "Working status", "Descending Staff ID" }));
+        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Ascending Name", "Descending Name", "Descending Staff ID" }));
         sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sortActionPerformed(evt);
@@ -144,11 +144,6 @@ public class displayStaff extends javax.swing.JFrame {
             reverseDisplay();
         }
         else if(sort.getSelectedIndex()==3){
-            removeDisplay();
-            
-            display();
-        }
-        else if(sort.getSelectedIndex()==4){
             removeDisplay();
             save.sortStaffIDDesc();
             display();
