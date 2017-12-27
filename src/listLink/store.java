@@ -695,6 +695,40 @@ public class store {
         
     }
     
+    public void sortWorkStatus(){
+        ListLinkInt<DeliveryMen> working = new ListLink<>();
+        ListLinkInt<DeliveryMen> assgn = new ListLink<>();
+        ListLinkInt<DeliveryMen> retired = new ListLink<>();
+        
+        while(!delMen.isEmpty()){
+            
+            for(int i = 1;i<=delMen.getSize();i++){
+                if(delMen.get(i).getStatus().equals("Retired")){
+                    retired.add(delMen.get(i));
+                    delMen.remove(i);
+                }
+                else if(delMen.get(i).getStatus().equals("Working")){
+                    working.add(delMen.get(i));
+                    delMen.remove(i);
+                }else{
+                    assgn.add(delMen.get(i));
+                    delMen.remove(i);
+                }
+            }
+        }
+        delMen.clear();
+        for(int i = 1;i<=working.getSize();i++){
+            delMen.add(working.get(i));
+        }
+        for(int i = 1;i<=assgn.getSize();i++){
+            delMen.add(assgn.get(i));
+        }
+        for(int i = 1;i<=retired.getSize();i++){
+            delMen.add(retired.get(i));
+        }
+        
+    }
+    
     public void sortAcsDelPrice(){
         ListLinkInt<Delivery> temp = new ListLink<>();
         double price = tempDel.get(1).getOrder().getTotalAmount();

@@ -27,12 +27,14 @@ public class displayStaff extends javax.swing.JFrame {
     }
 
     public displayStaff(store save) {
-        this.save = save;
+        
         this.setVisible(true);
         this.setTitle("Display staff status");
         this.setLocationRelativeTo(back);
         initComponents();
-        display();
+        save.sortStaffIDDesc();
+        this.save = save;
+        reverseDisplay();
     }
 
     /**
@@ -75,7 +77,7 @@ public class displayStaff extends javax.swing.JFrame {
 
         jLabel2.setText("Sort By :");
 
-        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Ascending Name", "Descending Name", "Descending Staff ID" }));
+        sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Ascending Name", "Descending Name", "Newest Staff", "Working status" }));
         sort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sortActionPerformed(evt);
@@ -146,6 +148,11 @@ public class displayStaff extends javax.swing.JFrame {
         else if(sort.getSelectedIndex()==3){
             removeDisplay();
             save.sortStaffIDDesc();
+            display();
+        }
+        else if(sort.getSelectedIndex()==4){
+            removeDisplay();
+            save.sortWorkStatus();
             display();
         }
         
