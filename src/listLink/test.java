@@ -17,13 +17,13 @@ public class test {
          ListLinkInt<String> temp = new ListLink<>();
          temp.add("123");
          temp.add("456");
-         temp.add("789");
-         temp.add("753");
-         temp.add("159");
-         temp.add("852");
-        temp.remove(4);
+   //      temp.add("789");
+     //    temp.add("753");
+      //   temp.add("159");
+       //  temp.add("852");
+        
         temp.remove(2);
-         
+        temp.add("hello");
         for(int i = 1;i<= temp.getSize();i++){
             System.out.println(temp.get(i));
         }

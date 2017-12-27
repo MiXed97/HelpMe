@@ -85,6 +85,9 @@ public class ListLink<T> implements ListLinkInt<T> {
                     }
                 } else {
                     n = lastNode;
+                    if(position == (size+1))
+                        lastNode = n.getPre();
+                    
                     position = (size+1)- position;
                     for (int i = 0; i < position; i++) {
                         n = n.getPre();
